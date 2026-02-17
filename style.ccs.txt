@@ -100,6 +100,28 @@ header {
     border: none; padding: 10px 20px; font-weight: 800; text-transform: uppercase;
 }
 
+/* ---------- ACTION BUTTONS ---------- */
+.admin-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--text-color);
+    color: var(--card-bg);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 12px;
+    border: 2px solid var(--text-color);
+    transition: 0.3s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.admin-btn:hover {
+    background-color: var(--accent-pink);
+    border-color: var(--accent-pink);
+    color: white;
+    transform: scale(1.05);
+}
+
 @media (max-width: 1100px) { 
     .hero-wrapper { flex-direction: column; margin: 20px; padding: 40px; }
     header { padding: 20px; }
