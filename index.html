@@ -169,6 +169,42 @@
     </div>
 </div>
 
-    <script src="script.js"></script>
+<script>
+    function toggleDark() { document.body.classList.toggle('dark-mode'); }
+    function nav(currId, nextId) {
+        const curr = document.getElementById(currId);
+        curr.classList.add('fade-out');
+        setTimeout(() => {
+            curr.style.display = 'none';
+            const next = document.getElementById(nextId);
+            next.style.display = 'block';
+            next.classList.remove('fade-out');
+            next.classList.add('fade-in');
+            window.scrollTo(0,0);
+        }, 400);
+    }
+    function startSurvey() {
+        const name = document.getElementById('stuName').value || "Student";
+        document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
+        nav('pg2', 'pg3');
+    }
+    function updateProg() {
+        const data = new FormData(document.getElementById('styleForm'));
+        let count = 0; for(let p of data.entries()) count++;
+        document.getElementById('pBar').style.width = (count / 16 * 100) + "%";
+    }
+    function showResults() {
+        const data = new FormData(document.getElementById('styleForm'));
+        let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
+        let answered = 0;
+        for(let e of data.entries()) { scores[e[1]]++; answered++; }
+        if(answered < 16) { alert("PLEASE ANSWER ALL 16 QUESTIONS."); return; }
+        const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
+        let style = (scores.visual === max) ? "VISUAL LEARNER 📊" : (scores.auditory === max) ? "AUDITORY LEARNER 🎧" : (scores.interpersonal === max) ? "INTERPERSONAL LEARNER 🤝" : "INDEPENDENT LEARNER 📚";
+        const r = document.getElementById('res');
+        r.style.display = 'block'; r.innerHTML = "RESULT: " + style;
+        r.scrollIntoView({behavior: 'smooth'});
+    }
+</script>
 </body>
 </html>
