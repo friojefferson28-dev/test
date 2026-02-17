@@ -165,12 +165,21 @@
             </div>
             <button type="button" class="proceed-link" style="border:none; background:none;" onclick="showResults()">[ CLICK TO GENERATE FINAL RESULT ]</button>
         </form>
+
         <div id="res" style="display:none; font-size: 35px; font-weight: 900; margin-top: 50px; color: var(--accent-pink); text-align: center; border: 4px solid var(--text-color); padding: 20px;"></div>
+
+        <div id="afterSurvey" style="display:none; margin-top: 30px; text-align: center;">
+            <button onclick="downloadResults()" class="admin-btn" style="background: var(--accent-pink); border-color: var(--accent-pink); margin-bottom: 10px; color: white;">💾 DOWNLOAD RESULTS (.TXT)</button>
+            <br>
+            <p style="font-weight: 600; font-size: 12px; text-transform: uppercase;">Notice something wrong?</p>
+            <a href="mailto:researchers@email.com" class="admin-btn">CONTACT THE RESEARCHERS</a>
+        </div>
     </div>
 </div>
 
 <script>
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
+    
     function nav(currId, nextId) {
         const curr = document.getElementById(currId);
         curr.classList.add('fade-out');
@@ -183,27 +192,62 @@
             window.scrollTo(0,0);
         }, 400);
     }
+
     function startSurvey() {
         const name = document.getElementById('stuName').value || "Student";
         document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
         nav('pg2', 'pg3');
     }
+
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
         let count = 0; for(let p of data.entries()) count++;
         document.getElementById('pBar').style.width = (count / 16 * 100) + "%";
     }
+
+    let finalStyle = ""; 
+
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
         let answered = 0;
         for(let e of data.entries()) { scores[e[1]]++; answered++; }
+        
         if(answered < 16) { alert("PLEASE ANSWER ALL 16 QUESTIONS."); return; }
+        
         const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
-        let style = (scores.visual === max) ? "VISUAL LEARNER 📊" : (scores.auditory === max) ? "AUDITORY LEARNER 🎧" : (scores.interpersonal === max) ? "INTERPERSONAL LEARNER 🤝" : "INDEPENDENT LEARNER 📚";
+        finalStyle = (scores.visual === max) ? "VISUAL LEARNER 📊" : 
+                     (scores.auditory === max) ? "AUDITORY LEARNER 🎧" : 
+                     (scores.interpersonal === max) ? "INTERPERSONAL LEARNER 🤝" : "INDEPENDENT LEARNER 📚";
+        
         const r = document.getElementById('res');
-        r.style.display = 'block'; r.innerHTML = "RESULT: " + style;
+        r.style.display = 'block'; 
+        r.innerHTML = "RESULT: " + finalStyle;
+        
+        document.getElementById('afterSurvey').style.display = 'block';
         r.scrollIntoView({behavior: 'smooth'});
+    }
+
+    function downloadResults() {
+        const name = document.getElementById('stuName').value || "Student";
+        const age = document.getElementById('stuAge').value;
+        const gender = document.getElementById('stuGender').value;
+        
+        const content = `LEARNSTYLE+ RESEARCH RESULT\n` +
+                        `---------------------------\n` +
+                        `Name: ${name}\n` +
+                        `Age: ${age}\n` +
+                        `Gender: ${gender}\n\n` +
+                        `DETECTED LEARNING STYLE: ${finalStyle}\n\n` +
+                        `Thank you for participating in our research project.`;
+        
+        const blob = new Blob([content], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${name}_Result.txt`;
+        a.click();
+        URL.revokeObjectURL(url);
     }
 </script>
 </body>
