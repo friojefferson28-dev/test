@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnStyle+ | Discover Your Style</title>
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
 <body>
 
 <div id="pBar" class="progress-bar"></div>
@@ -42,7 +42,7 @@
     </div>
 </div>
 
-<div id="pg2" class="section">
+<div id="pg2" class="section" style="display:none;">
     <div class="survey-card">
         <h2 style="text-transform: uppercase; font-weight: 900; font-size: 32px; border-left: 10px solid var(--accent-pink); padding-left: 20px;">Student Profile</h2>
         <div style="text-align: left; margin: 30px 0;">
@@ -63,10 +63,11 @@
     </div>
 </div>
 
-<div id="pg3" class="section">
+<div id="pg3" class="section" style="display:none;">
     <div class="survey-card">
         <h2 id="greet" style="text-transform: uppercase; font-weight: 900; margin-bottom: 40px;">Learning Preferences</h2>
         <form id="styleForm" onchange="updateProg()">
+            
             <div class="q-box"><p>1. How do you learn best?</p>
                 <label><input type="radio" name="q1" value="visual" required> Seeing diagrams/images</label>
                 <label><input type="radio" name="q1" value="auditory"> Listening to explanations</label>
@@ -163,45 +164,97 @@
                 <label><input type="radio" name="q16" value="interpersonal"> You work with others</label>
                 <label><input type="radio" name="q16" value="independent"> You work alone</label>
             </div>
+
             <div class="q-box">
-        <p>17. When learning something new, you prefer to:</p>
-        <label><input type="radio" name="q17" value="visual" required> A. Watch a demonstration or visual presentation</label>
-        <label><input type="radio" name="q1" value="auditory"> B. Listen to a detailed explanation</label>
-        <label><input type="radio" name="q1" value="interpersonal"> C. Try it together with others</label>
-        <label><input type="radio" name="q1" value="independent"> D. Figure it out by experimenting on your own</label>
-    </div>
+                <p>17. When learning something new, you prefer to:</p>
+                <label><input type="radio" name="q17" value="visual" required> Watch a demonstration or visual presentation</label>
+                <label><input type="radio" name="q17" value="auditory"> Listen to a detailed explanation</label>
+                <label><input type="radio" name="q17" value="interpersonal"> Try it together with others</label>
+                <label><input type="radio" name="q17" value="independent"> Figure it out by experimenting on your own</label>
+            </div>
 
-    <div class="q-box">
-        <p>18. When solving a difficult problem, you usually:</p>
-        <label><input type="radio" name="q18" value="visual" required> A. Draw diagrams or organize information visually</label>
-        <label><input type="radio" name="q2" value="auditory"> B. Talk through the steps out loud</label>
-        <label><input type="radio" name="q2" value="interpersonal"> C. Ask others for ideas and discuss solutions</label>
-        <label><input type="radio" name="q2" value="independent"> D. Think quietly and work through it independently</label>
-    </div>
+            <div class="q-box">
+                <p>18. When solving a difficult problem, you usually:</p>
+                <label><input type="radio" name="q18" value="visual" required> Draw diagrams or organize information visually</label>
+                <label><input type="radio" name="q18" value="auditory"> Talk through the steps out loud</label>
+                <label><input type="radio" name="q18" value="interpersonal"> Ask others for ideas and discuss solutions</label>
+                <label><input type="radio" name="q18" value="independent"> Think quietly and work through it independently</label>
+            </div>
 
-    <div class="q-box">
-        <p>19. When given instructions for a task, you prefer:</p>
-        <label><input type="radio" name="q19" value="visual" required> A. Step-by-step visuals or written guides with images</label>
-        <label><input type="radio" name="q3" value="auditory"> B. Verbal directions that you can listen to</label>
-        <label><input type="radio" name="q3" value="interpersonal"> C. To ask questions and clarify with others</label>
-        <label><input type="radio" name="q3" value="independent"> D. To try it yourself and learn through trial and error</label>
-    </div>
-            <button type="button" class="proceed-link" style="border:none; background:none;" onclick="showResults()">[ CLICK TO GENERATE FINAL RESULT ]</button>
+            <div class="q-box">
+                <p>19. When given instructions for a task, you prefer:</p>
+                <label><input type="radio" name="q19" value="visual" required> Step-by-step visuals or written guides with images</label>
+                <label><input type="radio" name="q19" value="auditory"> Verbal directions that you can listen to</label>
+                <label><input type="radio" name="q19" value="interpersonal"> To ask questions and clarify with others</label>
+                <label><input type="radio" name="q19" value="independent"> To try it yourself and learn through trial and error</label>
+            </div>
+
+            <div class="q-box">
+                <p>20. When starting a new hobby or skill, you prefer to:</p>
+                <label><input type="radio" name="q20" value="visual" required> See pictures, videos, or examples first</label>
+                <label><input type="radio" name="q20" value="auditory"> Hear someone explain how it works</label>
+                <label><input type="radio" name="q20" value="interpersonal"> Learn alongside friends or classmates</label>
+                <label><input type="radio" name="q20" value="independent"> Jump in and explore it by yourself</label>
+            </div>
+
+            <div class="q-box">
+                <p>21. When preparing for a test or presentation, you usually:</p>
+                <label><input type="radio" name="q21" value="visual" required> Make charts, mind maps, or highlight notes</label>
+                <label><input type="radio" name="q21" value="auditory"> Read your notes aloud or listen to recordings</label>
+                <label><input type="radio" name="q21" value="interpersonal"> Study in a group and quiz each other</label>
+                <label><input type="radio" name="q21" value="independent"> Review quietly and figure things out on your own</label>
+            </div>
+
+            <div class="q-box">
+                <p>22. If you’re assembling something new, you would rather:</p>
+                <label><input type="radio" name="q22" value="visual" required> Follow illustrated instructions</label>
+                <label><input type="radio" name="q22" value="auditory"> Listen to someone describe the steps</label>
+                <label><input type="radio" name="q22" value="interpersonal"> Work with someone and ask questions as you go</label>
+                <label><input type="radio" name="q22" value="independent"> Skip most instructions and experiment until it works</label>
+            </div>
+
+            <div class="q-box">
+                <p>23. You feel you learn most effectively when the material includes:</p>
+                <label><input type="radio" name="q23" value="visual" required> Diagrams, mind maps, or infographics</label>
+                <label><input type="radio" name="q23" value="auditory"> Clear verbal examples and spoken instructions</label>
+                <label><input type="radio" name="q23" value="interpersonal"> Collaborative activities with peers</label>
+                <label><input type="radio" name="q23" value="independent"> Time for quiet reflection alone</label>
+            </div>
+
+            <div class="q-box">
+                <p>24. When you have to solve a complex task, you usually:</p>
+                <label><input type="radio" name="q24" value="visual" required> Organize the information into a visual layout</label>
+                <label><input type="radio" name="q24" value="auditory"> Talk through the steps out loud to yourself</label>
+                <label><input type="radio" name="q24" value="interpersonal"> Ask others for their ideas and brainstorm</label>
+                <label><input type="radio" name="q24" value="independent"> Work through the logic silently</label>
+            </div>
+
+            <div class="q-box">
+                <p>25. You remember information best when you:</p>
+                <label><input type="radio" name="q25" value="visual" required> See pictures, charts, or colors</label>
+                <label><input type="radio" name="q25" value="auditory"> Hear explanations or recordings</label>
+                <label><input type="radio" name="q25" value="interpersonal"> Talk and share ideas with others</label>
+                <label><input type="radio" name="q25" value="independent"> Think quietly and figure it out alone</label>
+            </div>
+
+            <button type="button" class="proceed-link" style="border:none; background:none; width:100%;" onclick="showResults()">[ CLICK TO GENERATE FINAL RESULT ]</button>
         </form>
 
-        <div id="res" style="display:none; font-size: 35px; font-weight: 900; margin-top: 50px; color: var(--accent-pink); text-align: center; border: 4px solid var(--text-color); padding: 20px;"></div>
+        <div id="res" style="display:none; font-size: 30px; font-weight: 900; margin-top: 50px; color: var(--accent-pink); text-align: center; border: 4px solid black; padding: 20px;"></div>
 
         <div id="afterSurvey" style="display:none; margin-top: 30px; text-align: center;">
-            <button onclick="downloadResults()" class="admin-btn" style="background: var(--accent-pink); border-color: var(--accent-pink); margin-bottom: 10px; color: white;">💾 DOWNLOAD RESULTS (.TXT)</button>
+            <button onclick="downloadResults()" class="admin-btn" style="background: var(--accent-pink); color: white; border: none; padding: 15px 30px; cursor: pointer; font-weight: bold; margin-bottom: 15px;">💾 DOWNLOAD RESULTS (.TXT)</button>
             <br>
-            <a href="mailto:technologyonestem6@email.com" class="admin-btn">CONTACT THE RESEARCHERS</a>
+            <a href="mailto:technologyonestem6@email.com" class="admin-btn" style="text-decoration: none; color: black; font-weight: bold;">CONTACT THE RESEARCHERS</a>
         </div>
     </div>
 </div>
 
 <script>
+    // Toggle Light/Dark Mode
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
     
+    // Navigation Function
     function nav(currId, nextId) {
         const curr = document.getElementById(currId);
         curr.classList.add('fade-out');
@@ -215,32 +268,47 @@
         }, 400);
     }
 
+    // Start Survey Greeting
     function startSurvey() {
         const name = document.getElementById('stuName').value || "Student";
         document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
         nav('pg2', 'pg3');
     }
 
+    // Update Progress Bar
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
-        let count = 0; for(let p of data.entries()) count++;
-        document.getElementById('pBar').style.width = (count / 16 * 100) + "%";
+        let count = 0; 
+        for(let p of data.entries()) count++;
+        // Now based on 25 questions
+        document.getElementById('pBar').style.width = (count / 25 * 100) + "%";
     }
 
     let finalStyle = ""; 
 
+    // Calculate and Show Results
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
         let answered = 0;
-        for(let e of data.entries()) { scores[e[1]]++; answered++; }
         
-        if(answered < 16) { alert("PLEASE ANSWER ALL 16 QUESTIONS."); return; }
+        for(let e of data.entries()) { 
+            scores[e[1]]++; 
+            answered++; 
+        }
+        
+        // Ensure all 25 questions are answered
+        if(answered < 25) { 
+            alert("PLEASE ANSWER ALL 25 QUESTIONS BEFORE PROCEEDING. (Answered: " + answered + "/25)"); 
+            return; 
+        }
         
         const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
-        finalStyle = (scores.visual === max) ? "VISUAL LEARNER 📊" : 
-                     (scores.auditory === max) ? "AUDITORY LEARNER 🎧" : 
-                     (scores.interpersonal === max) ? "INTERPERSONAL LEARNER 🤝" : "INDEPENDENT LEARNER 📚";
+        
+        if (scores.visual === max) finalStyle = "VISUAL LEARNER 📊";
+        else if (scores.auditory === max) finalStyle = "AUDITORY LEARNER 🎧";
+        else if (scores.interpersonal === max) finalStyle = "INTERPERSONAL LEARNER 🤝";
+        else finalStyle = "INDEPENDENT LEARNER 📚";
         
         const r = document.getElementById('res');
         r.style.display = 'block'; 
@@ -250,6 +318,7 @@
         r.scrollIntoView({behavior: 'smooth'});
     }
 
+    // Download Result File
     function downloadResults() {
         const name = document.getElementById('stuName').value || "Student";
         const age = document.getElementById('stuAge').value;
@@ -267,12 +336,12 @@
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
-        a.download = `${name}_Result.txt`;
+        a.download = `${name.replace(/\s+/g, '_')}_Result.txt`;
         a.click();
         URL.revokeObjectURL(url);
     }
 </script>
+
 </body>
 </html>
-
 
