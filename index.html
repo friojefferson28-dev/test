@@ -28,7 +28,7 @@
         <div class="hero-text">
             <div class="accent-square"></div>
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p>LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH ANSWERING MULTIPLE QUESTIONS ABOUT DIFFERENT LEARNING STYLES SUCH AS: VISUAL, AUDITORY, INTERPERSONAL, AND INDEPENDENT.</p>
+            <p>LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH ANSWERING 25 RESEARCH QUESTIONS.</p>
             <div class="proceed-link" onclick="nav('pg1', 'pg2')">CLICK HERE TO PROCEED</div>
         </div>
         <div class="hero-images">
@@ -66,158 +66,8 @@
     <div class="survey-card">
         <h2 id="greet" style="text-transform: uppercase; font-weight: 900; margin-bottom: 40px;">Learning Preferences</h2>
         <form id="styleForm" onchange="updateProg()">
-            <div class="q-box"><p>1. How do you learn best?</p>
-                <label><input type="radio" name="q1" value="visual" required> Seeing diagrams/images</label>
-                <label><input type="radio" name="q1" value="auditory"> Listening to explanations</label>
-                <label><input type="radio" name="q1" value="interpersonal"> Studying with others</label>
-                <label><input type="radio" name="q1" value="independent"> Studying alone</label>
-            </div>
-            <div class="q-box"><p>2. What helps you remember lessons?</p>
-                <label><input type="radio" name="q2" value="visual"> Charts and videos</label>
-                <label><input type="radio" name="q2" value="auditory"> Lectures and discussions</label>
-                <label><input type="radio" name="q2" value="interpersonal"> Group activities</label>
-                <label><input type="radio" name="q2" value="independent"> Self-review and notes</label>
-            </div>
-            <div class="q-box"><p>3. In class, you prefer:</p>
-                <label><input type="radio" name="q3" value="visual"> Visual presentations</label>
-                <label><input type="radio" name="q3" value="auditory"> Listening to the teacher</label>
-                <label><input type="radio" name="q3" value="interpersonal"> Working with classmates</label>
-                <label><input type="radio" name="q3" value="independent"> Working quietly solo</label>
-            </div>
-            <div class="q-box"><p>4. When studying at home, you usually:</p>
-                <label><input type="radio" name="q4" value="visual"> Watch videos or read visuals</label>
-                <label><input type="radio" name="q4" value="auditory"> Read aloud or listen to audio</label>
-                <label><input type="radio" name="q4" value="interpersonal"> Study with friends</label>
-                <label><input type="radio" name="q4" value="independent"> Study alone independently</label>
-            </div>
-            <div class="q-box"><p>5. You understand a topic better when:</p>
-                <label><input type="radio" name="q5" value="visual"> You see examples or illustrations</label>
-                <label><input type="radio" name="q5" value="auditory"> Someone explains it verbally</label>
-                <label><input type="radio" name="q5" value="interpersonal"> You discuss it with others</label>
-                <label><input type="radio" name="q5" value="independent"> You explore it on your own</label>
-            </div>
-            <div class="q-box"><p>6. During group work, you:</p>
-                <label><input type="radio" name="q6" value="visual"> Focus on visual aids and plans</label>
-                <label><input type="radio" name="q6" value="auditory"> Listen and contribute verbally</label>
-                <label><input type="radio" name="q6" value="interpersonal"> Enjoy collaborating actively</label>
-                <label><input type="radio" name="q6" value="independent"> Prefer working solo if allowed</label>
-            </div>
-            <div class="q-box"><p>7. When reviewing for exams, you prefer:</p>
-                <label><input type="radio" name="q7" value="visual"> Mind maps and diagrams</label>
-                <label><input type="radio" name="q7" value="auditory"> Recorded notes or discussions</label>
-                <label><input type="radio" name="q7" value="interpersonal"> Reviewing with classmates</label>
-                <label><input type="radio" name="q7" value="independent"> Quiet self-study sessions</label>
-            </div>
-            <div class="q-box"><p>8. You stay focused best when:</p>
-                <label><input type="radio" name="q8" value="visual"> Materials are visually engaging</label>
-                <label><input type="radio" name="q8" value="auditory"> You can listen and respond</label>
-                <label><input type="radio" name="q8" value="interpersonal"> Others are learning with you</label>
-                <label><input type="radio" name="q8" value="independent"> You work without distractions</label>
-            </div>
-            <div class="q-box"><p>9. You prefer instructions that are:</p>
-                <label><input type="radio" name="q9" value="visual"> Written with images or steps</label>
-                <label><input type="radio" name="q9" value="auditory"> Explained verbally</label>
-                <label><input type="radio" name="q9" value="interpersonal"> Explained through discussion</label>
-                <label><input type="radio" name="q9" value="independent"> Short so you can figure it out</label>
-            </div>
-            <div class="q-box"><p>10. Learning is most enjoyable for you when:</p>
-                <label><input type="radio" name="q10" value="visual"> Lessons use visuals and media</label>
-                <label><input type="radio" name="q10" value="auditory"> There is active listening</label>
-                <label><input type="radio" name="q10" value="interpersonal"> You interact with others</label>
-                <label><input type="radio" name="q10" value="independent"> You control your pace alone</label>
-            </div>
-            <div class="q-box"><p>11. When do you find yourself more focused:</p>
-                <label><input type="radio" name="q11" value="visual"> Reviewing through diagrams</label>
-                <label><input type="radio" name="q11" value="auditory"> Listening to music or audio</label>
-                <label><input type="radio" name="q11" value="interpersonal"> Studying with friends</label>
-                <label><input type="radio" name="q11" value="independent"> In a quiet environment</label>
-            </div>
-            <div class="q-box"><p>12. You remember information best by:</p>
-                <label><input type="radio" name="q12" value="visual"> Seeing it written/drawn</label>
-                <label><input type="radio" name="q12" value="auditory"> Hearing it explained</label>
-                <label><input type="radio" name="q12" value="interpersonal"> Talking about it</label>
-                <label><input type="radio" name="q12" value="independent"> Studying it alone</label>
-            </div>
-            <div class="q-box"><p>13. You prefer working on projects:</p>
-                <label><input type="radio" name="q13" value="visual"> With visuals and layouts</label>
-                <label><input type="radio" name="q13" value="auditory"> With discussions</label>
-                <label><input type="radio" name="q13" value="interpersonal"> With a group</label>
-                <label><input type="radio" name="q13" value="independent"> Independently</label>
-            </div>
-            <div class="q-box"><p>14. You understand lessons better after:</p>
-                <label><input type="radio" name="q14" value="visual"> Reviewing visuals</label>
-                <label><input type="radio" name="q14" value="auditory"> Listening again</label>
-                <label><input type="radio" name="q14" value="interpersonal"> Group discussion</label>
-                <label><input type="radio" name="q14" value="independent"> Self-review</label>
-            </div>
-            <div class="q-box"><p>15. You learn best when:</p>
-                <label><input type="radio" name="q15" value="visual"> Watching demonstrations</label>
-                <label><input type="radio" name="q15" value="auditory"> Listening carefully</label>
-                <label><input type="radio" name="q15" value="interpersonal"> Sharing ideas</label>
-                <label><input type="radio" name="q15" value="independent"> Exploring alone</label>
-            </div>
-            <div class="q-box"><p>16. You feel confident learning when:</p>
-                <label><input type="radio" name="q16" value="visual"> You see examples</label>
-                <label><input type="radio" name="q16" value="auditory"> You hear guidance</label>
-                <label><input type="radio" name="q16" value="interpersonal"> You work with others</label>
-                <label><input type="radio" name="q16" value="independent"> You work alone</label>
-            </div>
-            <div class="q-box"><p>17. When learning new things, you:</p>
-                <label><input type="radio" name="q17" value="visual" required> Watch videos</label>
-                <label><input type="radio" name="q17" value="auditory"> Listen to podcasts</label>
-                <label><input type="radio" name="q17" value="interpersonal"> Join workshops</label>
-                <label><input type="radio" name="q17" value="independent"> Read manuals</label>
-            </div>
-            <div class="q-box"><p>18. You organize ideas by:</p>
-                <label><input type="radio" name="q18" value="visual" required> Drawing maps</label>
-                <label><input type="radio" name="q18" value="auditory"> Recording voice notes</label>
-                <label><input type="radio" name="q18" value="interpersonal"> Brainstorming with peers</label>
-                <label><input type="radio" name="q18" value="independent"> Making bulleted lists</label>
-            </div>
-            <div class="q-box"><p>19. You prefer teachers who:</p>
-                <label><input type="radio" name="q19" value="visual" required> Use many slides</label>
-                <label><input type="radio" name="q19" value="auditory"> Tell stories</label>
-                <label><input type="radio" name="q19" value="interpersonal"> Facilitate debates</label>
-                <label><input type="radio" name="q19" value="independent"> Give reading assignments</label>
-            </div>
-            <div class="q-box"><p>20. When tired, you prefer to:</p>
-                <label><input type="radio" name="q20" value="visual" required> Watch a movie</label>
-                <label><input type="radio" name="q20" value="auditory"> Listen to music</label>
-                <label><input type="radio" name="q20" value="interpersonal"> Talk to friends</label>
-                <label><input type="radio" name="q20" value="independent"> Meditate alone</label>
-            </div>
-            <div class="q-box"><p>21. Your workspace is usually:</p>
-                <label><input type="radio" name="q21" value="visual" required> Visually organized</label>
-                <label><input type="radio" name="q21" value="auditory"> Filled with background audio</label>
-                <label><input type="radio" name="q21" value="interpersonal"> Near other people</label>
-                <label><input type="radio" name="q21" value="independent"> Isolated and quiet</label>
-            </div>
-            <div class="q-box"><p>22. In a museum, you:</p>
-                <label><input type="radio" name="q22" value="visual" required> Read every plaque</label>
-                <label><input type="radio" name="q22" value="auditory"> Use the audio guide</label>
-                <label><input type="radio" name="q22" value="interpersonal"> Go with a tour group</label>
-                <label><input type="radio" name="q22" value="independent"> Wander solo</label>
-            </div>
-            <div class="q-box"><p>23. To relax, you:</p>
-                <label><input type="radio" name="q23" value="visual" required> Look at art/photos</label>
-                <label><input type="radio" name="q23" value="auditory"> Listen to a podcast</label>
-                <label><input type="radio" name="q23" value="interpersonal"> Hang out with family</label>
-                <label><input type="radio" name="q23" value="independent"> Read a book alone</label>
-            </div>
-            <div class="q-box"><p>24. You solve puzzles by:</p>
-                <label><input type="radio" name="q24" value="visual" required> Looking for patterns</label>
-                <label><input type="radio" name="q24" value="auditory"> Talking yourself through it</label>
-                <label><input type="radio" name="q24" value="interpersonal"> Asking for a hint</label>
-                <label><input type="radio" name="q24" value="independent"> Trying every piece solo</label>
-            </div>
-            <div class="q-box"><p>25. You give directions by:</p>
-                <label><input type="radio" name="q25" value="visual" required> Drawing a map</label>
-                <label><input type="radio" name="q25" value="auditory"> Describing the turns</label>
-                <label><input type="radio" name="q25" value="interpersonal"> Walking there with them</label>
-                <label><input type="radio" name="q25" value="independent"> Writing down the address</label>
-            </div>
-
-            <button type="button" class="proceed-link" style="border:none; background:none;" onclick="showResults()">[ CLICK TO GENERATE FINAL RESULT ]</button>
+            <div id="questions-container"></div>
+            <button type="button" class="proceed-link" style="border:none; background:none; margin-top: 40px;" onclick="showResults()">[ CLICK TO GENERATE FINAL RESULT ]</button>
         </form>
 
         <div id="res" style="display:none; font-size: 35px; font-weight: 900; margin-top: 50px; color: var(--accent-pink); text-align: center; border: 4px solid var(--text-color); padding: 20px;"></div>
@@ -231,53 +81,66 @@
 </div>
 
 <script>
-    // PASTE YOUR URL FROM GOOGLE APPS SCRIPT HERE
-    const DATABASE_URL = "YOUR_GOOGLE_SCRIPT_URL_HERE";
+    // Your Deployed Web App URL
+    const DATABASE_URL = "https://script.google.com/macros/s/AKfycbzAZuVjtR-ZwaM__h7Xt8dTPYsdG5ol5V9_lwABYELNZJAlaST-se6eESOfZNWDT_AtdA/exec"; 
+
+    const questions = [
+        { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams/images", "Listening to explanations", "Studying with others", "Studying alone"] },
+        { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures and discussions", "Group activities", "Self-review and notes"] },
+        { q: "In class, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual presentations", "Listening to the teacher", "Working with classmates", "Working quietly solo"] },
+        { q: "When studying at home, you usually:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch videos/read visuals", "Read aloud/listen to audio", "Study with friends", "Study alone independently"] },
+        { q: "You understand a topic better when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["You see illustrations", "Someone explains it verbally", "You discuss it with others", "You explore it on your own"] },
+        { q: "During group work, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Focus on visual aids", "Contribute verbally", "Enjoy collaborating", "Prefer working solo"] },
+        { q: "When reviewing, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Mind maps", "Recorded notes", "Reviewing with others", "Quiet self-study"] },
+        { q: "You stay focused when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Material is colorful/visual", "You can listen/respond", "Learning with others", "Working without distraction"] },
+        { q: "You prefer instructions that are:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Written with images", "Explained verbally", "Explained via discussion", "Figured out alone"] },
+        { q: "Learning is enjoyable when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using visuals and media", "Active listening is involved", "Interacting with others", "Controlling your own pace"] },
+        { q: "You find focus by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using diagrams", "Listening to audio", "Studying with friends", "Being in a quiet place"] },
+        { q: "You remember info best by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing it written", "Hearing it explained", "Talking about it", "Studying it alone"] },
+        { q: "You prefer projects with:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual layouts", "Verbal discussions", "Group collaboration", "Independent research"] },
+        { q: "Understanding clicks after:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Reviewing visuals", "Hearing it again", "Group discussion", "Solo self-review"] },
+        { q: "You learn best when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watching demos", "Listening carefully", "Sharing ideas", "Exploring alone"] },
+        { q: "Confidence comes from:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing examples", "Hearing guidance", "Working with a team", "Mastering it solo"] },
+        { q: "In a new hobby, you'd:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a tutorial", "Listen to a coach", "Take a group class", "Buy a book and try"] },
+        { q: "When planning a trip, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look at photos/maps", "Talk to travelers", "Plan with a group", "Plan it all yourself"] },
+        { q: "You solve puzzles by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visualizing the end", "Thinking out loud", "Solving with friends", "Quietly working alone"] },
+        { q: "When memorizing a list, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Write it down or use flashcards", "Say the items out loud repeatedly", "Have someone quiz you", "Study the list silently by yourself"] },
+        { q: "In a meeting or presentation, you notice:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["The slides and visual aids", "The speaker's tone and words", "The reactions of other people", "Your own thoughts and notes"] },
+        { q: "You enjoy games that involve:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual puzzles or matching", "Listening for clues or music", "Working in a team", "Strategy and solo play"] },
+        { q: "When you are stressed, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie or look at art", "Listen to music or a podcast", "Talk to a friend", "Spend time alone in quiet"] },
+        { q: "Your ideal workspace has:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Many visual reminders and boards", "Background music or silence", "Space to collaborate with others", "A private area alone"] },
+        { q: "To understand a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a diagram or video", "Ask someone to explain it clearly", "Discuss it in a group", "Read about it and reflect alone"] }
+    ];
+
+    const container = document.getElementById('questions-container');
+    questions.forEach((item, index) => {
+        let qNum = index + 1;
+        let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
+        item.options.forEach((opt, i) => {
+            html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
+        });
+        html += `</div>`;
+        container.innerHTML += html;
+    });
 
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
-    
     function nav(currId, nextId) {
-        const curr = document.getElementById(currId);
-        curr.classList.add('fade-out');
-        setTimeout(() => {
-            curr.style.display = 'none';
-            const next = document.getElementById(nextId);
-            next.style.display = 'block';
-            next.classList.remove('fade-out');
-            next.classList.add('fade-in');
-            window.scrollTo(0,0);
-        }, 400);
+        document.getElementById(currId).style.display = 'none';
+        document.getElementById(nextId).style.display = 'block';
+        window.scrollTo(0,0);
     }
-
     function startSurvey() {
         const name = document.getElementById('stuName').value || "Student";
         document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
         nav('pg2', 'pg3');
     }
-
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
         let count = 0; for(let p of data.entries()) count++;
         document.getElementById('pBar').style.width = (count / 25 * 100) + "%";
     }
 
-    let finalStyle = ""; 
-
-    function sendToDataBank(name, age, gender, result) {
-        const formData = new URLSearchParams();
-        formData.append("name", name);
-        formData.append("age", age);
-        formData.append("gender", gender);
-        formData.append("result", result);
-
-        fetch(DATABASE_URL, {
-            method: "POST",
-            body: formData,
-            mode: "no-cors"
-        })
-        .then(() => console.log("Data Bank Updated Successfully"))
-        .catch(err => console.error("Data Bank Error:", err));
-    }
+    let finalStyle = "";
 
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
@@ -292,33 +155,32 @@
                      (scores.auditory === max) ? "AUDITORY LEARNER 🎧" : 
                      (scores.interpersonal === max) ? "INTERPERSONAL LEARNER 🤝" : "INDEPENDENT LEARNER 📚";
         
-        const r = document.getElementById('res');
-        r.style.display = 'block'; 
-        r.innerHTML = "RESULT: " + finalStyle;
-        
+        document.getElementById('res').style.display = 'block'; 
+        document.getElementById('res').innerHTML = "RESULT: " + finalStyle;
+
         const name = document.getElementById('stuName').value || "Anonymous";
         const age = document.getElementById('stuAge').value;
         const gender = document.getElementById('stuGender').value;
         
-        // AUTO-SAVE TO GOOGLE SHEET
-        sendToDataBank(name, age, gender, finalStyle);
+        const formData = new URLSearchParams();
+        formData.append("name", name); formData.append("age", age);
+        formData.append("gender", gender); formData.append("result", finalStyle);
+
+        fetch(DATABASE_URL, { method: "POST", body: formData, mode: "no-cors" });
 
         document.getElementById('afterSurvey').style.display = 'block';
-        r.scrollIntoView({behavior: 'smooth'});
+        document.getElementById('res').scrollIntoView({behavior: 'smooth'});
     }
 
     function downloadResults() {
         const name = document.getElementById('stuName').value || "Student";
-        const age = document.getElementById('stuAge').value;
-        const gender = document.getElementById('stuGender').value;
-        const content = `LEARNSTYLE+ RESEARCH RESULT\n---------------------------\nName: ${name}\nAge: ${age}\nGender: ${gender}\n\nDETECTED LEARNING STYLE: ${finalStyle}`;
+        const content = `Name: ${name}\nResult: ${finalStyle}`;
         const blob = new Blob([content], { type: "text/plain" });
-        const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
-        a.href = url;
+        a.href = URL.createObjectURL(blob);
         a.download = `${name}_Result.txt`;
         a.click();
     }
 </script>
 </body>
-</html>
+</html> 
