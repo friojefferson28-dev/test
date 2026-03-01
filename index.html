@@ -81,9 +81,10 @@
 </div>
 
 <script>
-    // Your Deployed Web App URL
+    // This is the URL from your successful deployment screenshot
     const DATABASE_URL = "https://script.google.com/macros/s/AKfycbzAZuVjtR-ZwaM__h7Xt8dTPYsdG5ol5V9_lwABYELNZJAlaST-se6eESOfZNWDT_AtdA/exec"; 
 
+    // Full 25-Question Database
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams/images", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures and discussions", "Group activities", "Self-review and notes"] },
@@ -104,14 +105,15 @@
         { q: "In a new hobby, you'd:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a tutorial", "Listen to a coach", "Take a group class", "Buy a book and try"] },
         { q: "When planning a trip, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look at photos/maps", "Talk to travelers", "Plan with a group", "Plan it all yourself"] },
         { q: "You solve puzzles by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visualizing the end", "Thinking out loud", "Solving with friends", "Quietly working alone"] },
-        { q: "When memorizing a list, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Write it down or use flashcards", "Say the items out loud repeatedly", "Have someone quiz you", "Study the list silently by yourself"] },
-        { q: "In a meeting or presentation, you notice:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["The slides and visual aids", "The speaker's tone and words", "The reactions of other people", "Your own thoughts and notes"] },
-        { q: "You enjoy games that involve:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual puzzles or matching", "Listening for clues or music", "Working in a team", "Strategy and solo play"] },
-        { q: "When you are stressed, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie or look at art", "Listen to music or a podcast", "Talk to a friend", "Spend time alone in quiet"] },
-        { q: "Your ideal workspace has:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Many visual reminders and boards", "Background music or silence", "Space to collaborate with others", "A private area alone"] },
-        { q: "To understand a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a diagram or video", "Ask someone to explain it clearly", "Discuss it in a group", "Read about it and reflect alone"] }
+        { q: "When memorizing a list, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Write it down or use flashcards", "Say the items out loud repeatedly", "Have someone quiz you", "Study the list silently"] },
+        { q: "In a meeting, you notice:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["The slides and visual aids", "The speaker's tone", "The reactions of others", "Your own thoughts and notes"] },
+        { q: "You enjoy games that involve:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual puzzles", "Listening for clues", "Working in a team", "Strategy and solo play"] },
+        { q: "When stressed, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie", "Listen to music", "Talk to a friend", "Spend time alone in quiet"] },
+        { q: "Your ideal workspace has:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual reminders/boards", "Background music or silence", "Space to collaborate", "A private area alone"] },
+        { q: "To understand a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a diagram", "Ask for a verbal explanation", "Discuss it in a group", "Read and reflect alone"] }
     ];
 
+    // Build the questions
     const container = document.getElementById('questions-container');
     questions.forEach((item, index) => {
         let qNum = index + 1;
@@ -148,6 +150,7 @@
         let answered = 0;
         for(let e of data.entries()) { scores[e[1]]++; answered++; }
         
+        // Ensure all 25 are answered
         if(answered < 25) { alert("PLEASE ANSWER ALL 25 QUESTIONS."); return; }
         
         const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
@@ -158,13 +161,16 @@
         document.getElementById('res').style.display = 'block'; 
         document.getElementById('res').innerHTML = "RESULT: " + finalStyle;
 
+        // Auto-Send to your Sheet
         const name = document.getElementById('stuName').value || "Anonymous";
         const age = document.getElementById('stuAge').value;
         const gender = document.getElementById('stuGender').value;
         
         const formData = new URLSearchParams();
-        formData.append("name", name); formData.append("age", age);
-        formData.append("gender", gender); formData.append("result", finalStyle);
+        formData.append("name", name); 
+        formData.append("age", age);
+        formData.append("gender", gender); 
+        formData.append("result", finalStyle);
 
         fetch(DATABASE_URL, { method: "POST", body: formData, mode: "no-cors" });
 
@@ -183,4 +189,4 @@
     }
 </script>
 </body>
-</html> 
+</html>
