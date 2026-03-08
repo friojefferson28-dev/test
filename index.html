@@ -70,7 +70,12 @@
             <button type="button" class="proceed-link" style="border:none; background:none; margin-top: 40px;" onclick="showResults()">[ CLICK TO GENERATE FINAL RESULT ]</button>
         </form>
 
-        <div id="res" style="display:none; font-size: 35px; font-weight: 900; margin-top: 50px; color: var(--accent-pink); text-align: center; border: 4px solid var(--text-color); padding: 20px;"></div>
+        <div id="resBox" style="display:none; margin-top: 50px; text-align: left; border: 4px solid var(--text-color); padding: 30px; background: #fff;">
+            <h2 id="resTitle" style="font-size: 32px; font-weight: 900; color: var(--accent-pink); margin-bottom: 15px; text-align: center;"></h2>
+            <hr style="border: 2px solid var(--text-color); margin-bottom: 20px;">
+            <h3 style="font-weight: 800; text-transform: uppercase;">How to Maximize Your Potential:</h3>
+            <ul id="resTips" style="line-height: 1.8; font-size: 18px; padding-left: 25px; margin-top: 15px;"></ul>
+        </div>
 
         <div id="afterSurvey" style="display:none; margin-top: 30px; text-align: center;">
             <button onclick="downloadResults()" class="admin-btn" style="background: var(--accent-pink); border-color: var(--accent-pink); margin-bottom: 10px; color: white;">💾 DOWNLOAD RESULTS (.TXT)</button>
@@ -81,8 +86,34 @@
 </div>
 
 <script>
-    // Updated with your provided URL
     const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec"; 
+
+    const recommendations = {
+        "visual": [
+            "Learning from infographics and concept maps",
+            "Watching educational videos",
+            "Use data visualization (such as pie charts, bar graphs, tables, etc.)",
+            "Maximize by incorporating doodles, symbols, and sketches alongside text to make information more memorable"
+        ],
+        "auditory": [
+            "Maximize through taking notes and testing knowledge while listening",
+            "Consuming educational podcasts or Audiobooks",
+            "Oral quizzes",
+            "Attending or listening to live lectures or presentations"
+        ],
+        "interpersonal": [
+            "Maximize through in-person collaboration",
+            "Social apps (such as Google Meet, Discord, Meta apps)",
+            "Cooperative games (such as flash cards)",
+            "Joining study groups"
+        ],
+        "independent": [
+            "Using personal diaries, blogs, or error logs to summarize thoughts, feelings, and what was learned",
+            "Self-evaluation per topic",
+            "Can incorporate previous recommendations from other learning styles",
+            "Maximize by regularly reviewing one's own work and using self-reflection to identify personal strengths"
+        ]
+    };
 
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams/images", "Listening to explanations", "Studying with others", "Studying alone"] },
@@ -141,6 +172,7 @@
     }
 
     let finalStyle = "";
+    let styleKey = "";
 
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
@@ -151,13 +183,26 @@
         if(answered < 25) { alert("PLEASE ANSWER ALL 25 QUESTIONS."); return; }
         
         const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
-        finalStyle = (scores.visual === max) ? "VISUAL LEARNER 📊" : 
-                     (scores.auditory === max) ? "AUDITORY LEARNER 🎧" : 
-                     (scores.interpersonal === max) ? "INTERPERSONAL LEARNER 🤝" : "INDEPENDENT LEARNER 📚";
         
-        document.getElementById('res').style.display = 'block'; 
-        document.getElementById('res').innerHTML = "RESULT: " + finalStyle;
+        if (scores.visual === max) styleKey = "visual";
+        else if (scores.auditory === max) styleKey = "auditory";
+        else if (scores.interpersonal === max) styleKey = "interpersonal";
+        else styleKey = "independent";
 
+        finalStyle = styleKey.toUpperCase() + " LEARNER";
+        
+        // Show Results Box
+        document.getElementById('resBox').style.display = 'block';
+        document.getElementById('resTitle').innerText = "RESULT: " + finalStyle;
+        
+        // Populate Recommendations
+        const tipsList = document.getElementById('resTips');
+        tipsList.innerHTML = "";
+        recommendations[styleKey].forEach(tip => {
+            tipsList.innerHTML += `<li>${tip}</li>`;
+        });
+
+        // Send to Data Bank
         const name = document.getElementById('stuName').value || "Anonymous";
         const age = document.getElementById('stuAge').value;
         const gender = document.getElementById('stuGender').value;
@@ -168,22 +213,23 @@
         formData.append("gender", gender); 
         formData.append("result", finalStyle);
 
-        // Send to Data Bank
         fetch(DATABASE_URL, { method: "POST", body: formData, mode: "no-cors" });
 
         document.getElementById('afterSurvey').style.display = 'block';
-        document.getElementById('res').scrollIntoView({behavior: 'smooth'});
+        document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
 
     function downloadResults() {
         const name = document.getElementById('stuName').value || "Student";
-        const content = `Name: ${name}\nResult: ${finalStyle}`;
+        const tips = recommendations[styleKey].join("\n- ");
+        const content = `Name: ${name}\nResult: ${finalStyle}\n\nStudy Tips:\n- ${tips}`;
         const blob = new Blob([content], { type: "text/plain" });
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = `${name}_Result.txt`;
+        a.download = `${name}_LearningStyle.txt`;
         a.click();
     }
 </script>
 </body>
 </html>
+
