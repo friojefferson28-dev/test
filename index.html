@@ -11,13 +11,13 @@
 <div id="pBar" class="progress-bar"></div>
 
 <header>
-    <div class="logo-area">
+    <div class="logo-area" onclick="navToHome()" style="cursor:pointer;">
         <div style="font-size: 35px;">📖</div>
         <div>LEARNSTYLE+<br>.COM</div>
     </div>
     <div class="nav-links">
-        <span>Home</span>
-        <span>About Us</span>
+        <span onclick="navToHome()" style="cursor:pointer;">Home</span>
+        <span onclick="nav('pg1', 'aboutPage')" style="cursor:pointer;">About Us</span>
         <div class="search-box"><span>SEARCH...</span> 🔍</div>
         <button class="theme-toggle" onclick="toggleDark()">🌓 MODE</button>
     </div>
@@ -41,7 +41,20 @@
     </div>
 </div>
 
-<div id="pg2" class="section">
+<div id="aboutPage" class="section" style="display:none;">
+    <div class="survey-card" style="text-align: left; line-height: 1.6;">
+        <h2 style="text-transform: uppercase; font-weight: 900; font-size: 32px; border-left: 10px solid var(--accent-pink); padding-left: 20px; margin-bottom: 20px;">About Us</h2>
+        <p style="font-size: 18px; margin-bottom: 20px;">
+            <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
+        </p>
+        <p style="font-size: 18px; margin-bottom: 30px;">
+            LearnStyle+.com is made by the students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
+        </p>
+        <div class="proceed-link" onclick="navToHome()">[ BACK TO HOME ]</div>
+    </div>
+</div>
+
+<div id="pg2" class="section" style="display:none;">
     <div class="survey-card">
         <h2 style="text-transform: uppercase; font-weight: 900; font-size: 32px; border-left: 10px solid var(--accent-pink); padding-left: 20px;">Student Profile</h2>
         <div style="text-align: left; margin: 30px 0;">
@@ -62,7 +75,7 @@
     </div>
 </div>
 
-<div id="pg3" class="section">
+<div id="pg3" class="section" style="display:none;">
     <div class="survey-card">
         <h2 id="greet" style="text-transform: uppercase; font-weight: 900; margin-bottom: 40px;">Learning Preferences</h2>
         <form id="styleForm" onchange="updateProg()">
@@ -89,30 +102,10 @@
     const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec"; 
 
     const recommendations = {
-        "visual": [
-            "Learning from infographics and concept maps",
-            "Watching educational videos",
-            "Use data visualization (such as pie charts, bar graphs, tables, etc.)",
-            "Maximize by incorporating doodles, symbols, and sketches alongside text to make information more memorable"
-        ],
-        "auditory": [
-            "Maximize through taking notes and testing knowledge while listening",
-            "Consuming educational podcasts or Audiobooks",
-            "Oral quizzes",
-            "Attending or listening to live lectures or presentations"
-        ],
-        "interpersonal": [
-            "Maximize through in-person collaboration",
-            "Social apps (such as Google Meet, Discord, Meta apps)",
-            "Cooperative games (such as flash cards)",
-            "Joining study groups"
-        ],
-        "independent": [
-            "Using personal diaries, blogs, or error logs to summarize thoughts, feelings, and what was learned",
-            "Self-evaluation per topic",
-            "Can incorporate previous recommendations from other learning styles",
-            "Maximize by regularly reviewing one's own work and using self-reflection to identify personal strengths"
-        ]
+        "visual": ["Learning from infographics and concept maps", "Watching educational videos", "Use data visualization (charts, tables)", "Incorporate doodles and symbols alongside text"],
+        "auditory": ["Take notes while listening", "Consume podcasts or Audiobooks", "Oral quizzes", "Listen to live lectures"],
+        "interpersonal": ["In-person collaboration", "Social apps (Meet, Discord)", "Cooperative games", "Join study groups"],
+        "independent": ["Personal diaries or error logs", "Self-evaluation per topic", "Review work and use self-reflection"]
     };
 
     const questions = [
@@ -129,18 +122,18 @@
         { q: "You find focus by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using diagrams", "Listening to audio", "Studying with friends", "Being in a quiet place"] },
         { q: "You remember info best by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing it written", "Hearing it explained", "Talking about it", "Studying it alone"] },
         { q: "You prefer projects with:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual layouts", "Verbal discussions", "Group collaboration", "Independent research"] },
-        { q: "Understanding clicks after:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Reviewing visuals", "Hearing it again", "Group discussion", "Solo self-review"] },
+        { q: "To understand a difficult concept, you would rather:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look at a diagram/flowchart", "Listen to a podcast explanation", "Discuss it with a group", "Read about it privately"] },
         { q: "You learn best when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watching demos", "Listening carefully", "Sharing ideas", "Exploring alone"] },
-        { q: "Confidence comes from:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing examples", "Hearing guidance", "Working with a team", "Mastering it solo"] },
-        { q: "In a new hobby, you'd:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a tutorial", "Listen to a coach", "Take a group class", "Buy a book and try"] },
-        { q: "When planning a trip, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look at photos/maps", "Talk to travelers", "Plan with a group", "Plan it all yourself"] },
-        { q: "You solve puzzles by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visualizing the end", "Thinking out loud", "Solving with friends", "Quietly working alone"] },
-        { q: "When memorizing a list, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Write it down or use flashcards", "Say the items out loud repeatedly", "Have someone quiz you", "Study the list silently"] },
-        { q: "In a meeting, you notice:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["The slides and visual aids", "The speaker's tone", "The reactions of others", "Your own thoughts and notes"] },
-        { q: "You enjoy games that involve:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual puzzles", "Listening for clues", "Working in a team", "Strategy and solo play"] },
-        { q: "When stressed, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie", "Listen to music", "Talk to a friend", "Spend time alone in quiet"] },
-        { q: "Your ideal workspace has:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual reminders/boards", "Background music or silence", "Space to collaborate", "A private area alone"] },
-        { q: "To understand a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a diagram", "Ask for a verbal explanation", "Discuss it in a group", "Read and reflect alone"] }
+        { q: "When you get stuck on a problem, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a picture or video", "Ask someone to explain it out loud", "Brainstorm with a teammate", "Think about it until you solve it solo"] },
+        { q: "Your favorite type of test involves:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Matching or labeling diagrams", "Oral presentations or interviews", "Group projects or roleplay", "Multiple choice or essays"] },
+        { q: "When you go to a museum, you usually:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Read all the signs and look at art", "Use the audio guide or listen to tours", "Go with friends to discuss exhibits", "Wander around by yourself"] },
+        { q: "In your free time, you enjoy:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Drawing or watching movies", "Listening to music or podcasts", "Socializing or playing team games", "Writing or reading books alone"] },
+        { q: "To memorize a list, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Picture the items in your head", "Say the items out loud repeatedly", "Ask someone to quiz you", "Write it down privately several times"] },
+        { q: "In a meeting or presentation, you notice:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["The slides and visual aids", "The speaker's tone and rhythm", "How everyone is reacting", "The core logic of the data"] },
+        { q: "You enjoy games that involve:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual puzzles or matching", "Listening for clues or sounds", "Working in a team", "Strategy and solo thinking"] },
+        { q: "When you are stressed, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie", "Listen to music", "Talk to a close friend", "Spend time alone in quiet reflection"] },
+        { q: "Your ideal workspace has:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Many visual reminders and charts", "Background music or complete silence", "Space to collaborate with others", "A private desk away from others"] },
+        { q: "To master a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a video or graph", "Ask for a verbal explanation", "Talk it through with a peer", "Reflect on it alone until it clicks"] }
     ];
 
     const container = document.getElementById('questions-container');
@@ -156,10 +149,14 @@
 
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
     function nav(currId, nextId) {
-        document.getElementById(currId).style.display = 'none';
+        document.getElementById('pg1').style.display = 'none';
+        document.getElementById('pg2').style.display = 'none';
+        document.getElementById('pg3').style.display = 'none';
+        document.getElementById('aboutPage').style.display = 'none';
         document.getElementById(nextId).style.display = 'block';
         window.scrollTo(0,0);
     }
+    function navToHome() { nav('aboutPage', 'pg1'); }
     function startSurvey() {
         const name = document.getElementById('stuName').value || "Student";
         document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
@@ -179,42 +176,26 @@
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
         let answered = 0;
         for(let e of data.entries()) { scores[e[1]]++; answered++; }
-        
         if(answered < 25) { alert("PLEASE ANSWER ALL 25 QUESTIONS."); return; }
-        
         const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
-        
         if (scores.visual === max) styleKey = "visual";
         else if (scores.auditory === max) styleKey = "auditory";
         else if (scores.interpersonal === max) styleKey = "interpersonal";
         else styleKey = "independent";
-
         finalStyle = styleKey.toUpperCase() + " LEARNER";
-        
-        // Show Results Box
         document.getElementById('resBox').style.display = 'block';
         document.getElementById('resTitle').innerText = "RESULT: " + finalStyle;
-        
-        // Populate Recommendations
         const tipsList = document.getElementById('resTips');
         tipsList.innerHTML = "";
-        recommendations[styleKey].forEach(tip => {
-            tipsList.innerHTML += `<li>${tip}</li>`;
-        });
+        recommendations[styleKey].forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
 
-        // Send to Data Bank
         const name = document.getElementById('stuName').value || "Anonymous";
         const age = document.getElementById('stuAge').value;
         const gender = document.getElementById('stuGender').value;
-        
         const formData = new URLSearchParams();
-        formData.append("name", name); 
-        formData.append("age", age);
-        formData.append("gender", gender); 
-        formData.append("result", finalStyle);
-
+        formData.append("name", name); formData.append("age", age);
+        formData.append("gender", gender); formData.append("result", finalStyle);
         fetch(DATABASE_URL, { method: "POST", body: formData, mode: "no-cors" });
-
         document.getElementById('afterSurvey').style.display = 'block';
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
@@ -222,14 +203,13 @@
     function downloadResults() {
         const name = document.getElementById('stuName').value || "Student";
         const tips = recommendations[styleKey].join("\n- ");
-        const content = `Name: ${name}\nResult: ${finalStyle}\n\nStudy Tips:\n- ${tips}`;
+        const content = `Name: ${name}\nResult: ${finalStyle}\n\nRecommendations:\n- ${tips}`;
         const blob = new Blob([content], { type: "text/plain" });
         const a = document.createElement("a");
         a.href = URL.createObjectURL(blob);
-        a.download = `${name}_LearningStyle.txt`;
+        a.download = `${name}_Result.txt`;
         a.click();
     }
 </script>
 </body>
 </html>
-
