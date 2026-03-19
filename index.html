@@ -4,117 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnStyle+ | Discover Your Style</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --accent-pink: #E91E63;
+            --maroon: #800000;
+            --bg-light: #fdf2f8;
+        }
+
+        body { 
+            font-family: 'Arial Black', sans-serif; 
+            margin: 0; 
+            transition: background 0.3s;
+            background-color: var(--bg-light); 
+            /* Pink Diamond/Chevron Pattern */
+            background-image:  linear-gradient(135deg, #f8bbd0 25%, transparent 25%), 
+                               linear-gradient(225deg, #f8bbd0 25%, transparent 25%), 
+                               linear-gradient(45deg, #f8bbd0 25%, transparent 25%), 
+                               linear-gradient(315deg, #f8bbd0 25%, var(--bg-light) 25%);
+            background-position:  10px 0, 10px 0, 0 0, 0 0;
+            background-size: 20px 20px;
+        }
+
+        .dark-mode { background: #1a1a1a !important; color: white; }
+        .dark-mode .hero-wrapper, .dark-mode header, .dark-mode .survey-card { background: #222; border-color: #444; color: white; }
+
+        header { 
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; background: white; border-bottom: 3px solid black; 
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+
+        /* PHOTO-ACCURATE HERO SECTION */
+        .hero-wrapper {
+            background: white; border: 3px solid black;
+            margin: 40px auto; max-width: 1100px; padding: 50px;
+            display: grid; grid-template-columns: 1.2fr 1fr 120px;
+            gap: 30px; align-items: center;
+        }
+
+        .hero-text h1 { font-size: 45px; line-height: 1.1; margin: 0; }
+        .accent-square { width: 20px; height: 20px; background: var(--accent-pink); margin-bottom: 15px; }
+
+        /* 5-IMAGE GRID: 3 TOP, 2 BOTTOM (1 WIDE) */
+        .hero-images {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 110px 160px; gap: 10px;
+        }
+        .img-box { width: 100%; height: 100%; object-fit: cover; border: 1px solid #000; }
+        .img-span-2 { grid-column: span 2; }
+
+        /* PINK VERTICAL BOXES */
+        .study-cards-container { display: flex; flex-direction: column; gap: 15px; }
+        .vertical-box {
+            border: 4px solid var(--accent-pink); border-radius: 12px;
+            width: 80px; height: 140px; background: white;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center; font-size: 12px; font-weight: 900; color: #333;
+        }
+
+        .proceed-link { 
+            margin-top: 30px; font-weight: 900; text-decoration: underline; 
+            cursor: pointer; font-size: 18px; display: inline-block; 
+        }
+
+        .section { display: none; padding: 20px 5%; }
+        .active { display: block !important; }
+
+        .survey-card { background: white; border: 3px solid black; padding: 40px; max-width: 800px; margin: 0 auto; }
+        .q-box { background: #fff1f6; padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
+        label { display: block; background: white; padding: 12px; margin: 8px 0; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
+        
+        .progress-bar { height: 10px; background: var(--maroon); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
+        
+        .admin-btn { background: var(--maroon); color: white; padding: 15px 30px; border: none; font-weight: 900; cursor: pointer; width: 100%; border-radius: 5px; }
+    </style>
 </head>
 <body>
 
 <div id="pBar" class="progress-bar"></div>
 
-<div id="privacyModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 20px;">
-    <div class="survey-card" style="max-width:500px; text-align:left; border-top: 10px solid #800000; padding: 40px; background: white; border: 2px solid black;">
-        <h2 style="color:#800000; font-weight:900; text-transform: uppercase; margin-top: 0;">Privacy Notice</h2>
-        <hr style="border:1px solid #ddd; margin:15px 0;">
-        <p style="font-size:14px; line-height:1.6; color: #1a1a1a;">
-            By proceeding, you agree that your responses will be collected for the research study: 
-            <br><br>
-            <strong>"Validity of LearnStyle+.com in Identifying Cognitive Learning Styles of EAC-Manila Students."</strong>
-        </p>
-        <div style="text-align: center; margin-top: 20px;">
-            <button class="admin-btn" onclick="acceptPrivacy()" style="background:#800000; color:white;">I AGREE & PROCEED</button>
-        </div>
-    </div>
-</div>
-
 <header>
-    <div class="logo-area" onclick="navToHome()" style="cursor:pointer;">
-        <div style="font-size: 35px;">📖</div>
-        <div>LEARNSTYLE+<br>.COM</div>
+    <div class="logo-area" onclick="nav('pg1')">
+        <div style="font-size: 30px;">📖</div>
+        <div style="font-weight: 900; line-height: 1;">LEARNSTYLE+<br>.COM</div>
     </div>
-    <div class="nav-links">
-        <span onclick="navToHome()" style="cursor:pointer; font-weight: 700;">HOME</span>
-        <span onclick="nav('aboutPage')" style="cursor:pointer; font-weight: 700;">ABOUT US</span>
-        <button class="theme-toggle" onclick="toggleDark()">🌓 MODE</button>
+    <div>
+        <span onclick="nav('pg1')" style="margin-right:20px; cursor:pointer; font-weight:700;">HOME</span>
+        <span onclick="nav('aboutPage')" style="margin-right:20px; cursor:pointer; font-weight:700;">ABOUT US</span>
+        <button onclick="toggleDark()" style="cursor:pointer; font-weight:700; padding: 5px 10px; border: 2px solid black; background: white;">🌓 MODE</button>
     </div>
 </header>
 
-<div id="pg1" class="fade-in">
+<div id="pg1" class="section active">
     <div class="hero-wrapper">
         <div class="hero-text">
             <div class="accent-square"></div>
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p>IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.</p>
+            <p style="font-size: 13px; font-weight: bold; margin-top: 20px; text-transform: uppercase;">
+                LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.
+            </p>
             <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
         </div>
+
         <div class="hero-images">
-            <img src="image1.jpg" class="img-box" alt="1"><img src="image2.jpg" class="img-box" alt="2">
-            <img src="image3.jpg" class="img-box" alt="3"><img src="image4.jpg" class="img-box img-span-2" alt="4">
-            <img src="image5.jpg" class="img-box" alt="5">
+            <img src="image1.jpg" class="img-box">
+            <img src="image2.jpg" class="img-box">
+            <img src="image3.jpg" class="img-box">
+            <img src="image4.jpg" class="img-box img-span-2">
+            <img src="image5.jpg" class="img-box">
+        </div>
+
+        <div class="study-cards-container">
+            <div class="vertical-box">GROUP<br>STUDY</div>
+            <div class="vertical-box">SOLO<br>STUDY</div>
         </div>
     </div>
 </div>
 
-<div id="aboutPage" class="section" style="display: none;">
-    <div class="survey-card" style="text-align: left; max-width: 900px; margin: 40px auto; padding: 60px;">
-        <h2 style="text-transform: uppercase; font-weight: 900; border-left: 10px solid #800000; padding-left: 20px;">About Us</h2>
-        <p style="line-height: 1.8; margin-top: 30px; font-size: 16px;">
-            Welcome to <strong>LearnStyle+.com</strong>! This platform was developed by <strong>12 STEM 6, Group Technology 1</strong> from Emilio Aguinaldo College - Manila. 
-            Our mission is to provide students with a reliable tool to identify their unique cognitive learning styles—whether Visual, Auditory, Interpersonal, or Independent. 
-            <br><br>
-            This website serves as the primary tool for our research study: <strong>"Validity of LearnStyle+.com in Identifying Cognitive Learning Styles of EAC-Manila Students."</strong>
-        </p>
-        <div class="proceed-link" onclick="navToHome()">[ BACK TO HOME ]</div>
-    </div>
-</div>
-
-<div id="pg2" class="section" style="display: none;">
+<div id="aboutPage" class="section">
     <div class="survey-card">
-        <h2 style="text-transform: uppercase; font-weight: 900; border-left: 10px solid #800000; padding-left: 20px;">Student Profile</h2>
-        
-        <div style="text-align: left; margin: 20px 0;">
-            <label style="font-weight: 800;">FULL NAME (OPTIONAL)</label>
-            <input type="text" id="stuName" placeholder="Enter name" style="width:100%; padding:15px; border:2px solid black; margin-top:5px;">
-        </div>
-
-        <div style="text-align: left; margin: 20px 0;">
-            <label style="font-weight: 800;">AGE</label>
-            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; margin-top:5px;">
-        </div>
-
-        <div style="text-align: left; margin: 20px 0;">
-            <label style="font-weight: 800;">GENDER</label>
-            <select id="stuGender" style="width:100%; padding:15px; border:2px solid black; margin-top:5px; height: 53px; background: white;">
-                <option value="Male">MALE</option>
-                <option value="Female">FEMALE</option>
-                <option value="Other">OTHER</option>
-            </select>
-        </div>
-
-        <div class="proceed-link" onclick="triggerPrivacy()">[ START THE QUESTIONNAIRE ]</div>
+        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px;">ABOUT US</h2>
+        <p>Developed by <strong>12 STEM 6, Group Technology 1</strong> from Emilio Aguinaldo College - Manila.</p>
+        <div class="proceed-link" onclick="nav('pg1')">[ BACK TO HOME ]</div>
     </div>
 </div>
 
-<div id="pg3" class="section" style="display: none;">
+<div id="pg2" class="section">
     <div class="survey-card">
-        <h2 id="greet" style="text-transform: uppercase; font-weight: 900;">Questionnaire</h2>
+        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px;">STUDENT PROFILE</h2>
+        <div style="margin: 25px 0;">
+            <label>FULL NAME (OPTIONAL)</label>
+            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
+        </div>
+        <div style="margin: 25px 0;">
+            <label>AGE</label>
+            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
+        </div>
+        <button class="admin-btn" onclick="nav('pg3')">START THE QUESTIONNAIRE</button>
+    </div>
+</div>
+
+<div id="pg3" class="section">
+    <div class="survey-card">
+        <h2 id="greet" style="margin-bottom: 30px; text-transform: uppercase;">Questionnaire</h2>
         <form id="styleForm" onchange="updateProg()">
             <div id="questions-container"></div>
-            <button type="button" class="admin-btn" onclick="showResults()" style="width:100%; margin-top:40px; height: 60px; background: #800000; color: white; border: none; font-weight: 900; cursor: pointer;">GENERATE RESULT</button>
+            <button type="button" class="admin-btn" onclick="showResults()" style="margin-top:30px;">GENERATE RESULT</button>
         </form>
 
-        <div id="resBox" style="display:none; margin-top: 50px; text-align: left; border: 4px solid #1a1a1a; padding: 30px;">
-            <h2 id="resTitle" style="font-weight: 900; color: #800000; text-align: center; text-transform: uppercase;"></h2>
-            <p style="font-weight: 700; margin-top: 20px;">Study Tips for You:</p>
-            <ul id="resTips" style="line-height: 1.8;"></ul>
-            
-            <button onclick="downloadCopy()" class="admin-btn" style="width:100%; margin-top:20px; background: #1a1a1a; color: white;">DOWNLOAD MY COPY (.TXT)</button>
-            <button onclick="location.reload()" class="admin-btn" style="width:100%; margin-top:10px;">RETAKE SURVEY</button>
+        <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid black; padding: 30px; background: #fff;">
+            <h2 id="resTitle" style="color: var(--maroon); text-align: center;"></h2>
+            <p id="resDesc" style="font-weight: bold; text-align: center;"></p>
+            <button onclick="location.reload()" class="admin-btn" style="background: black; margin-top: 20px;">RETAKE SURVEY</button>
         </div>
     </div>
 </div>
 
 <script>
-    const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec";
-
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures", "Group activities", "Self-review"] },
@@ -143,21 +191,11 @@
         { q: "To master a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a graph", "Ask for explanation", "Talk to a peer", "Reflect alone"] }
     ];
 
-    const studyTips = {
-        visual: ["Use color-coded notes.", "Watch video tutorials.", "Draw mind maps."],
-        auditory: ["Record lectures.", "Read notes out loud.", "Use rhymes."],
-        interpersonal: ["Join study groups.", "Discuss topics with peers.", "Teach others."],
-        independent: ["Set solo goals.", "Quiet study space.", "Learning journal."]
-    };
-
-    let userFinalResult = ""; 
-
     window.onload = function() {
-        navToHome();
         const container = document.getElementById('questions-container');
         questions.forEach((item, index) => {
             let qNum = index + 1;
-            let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
+            let html = `<div class="q-box"><p><strong>${qNum}. ${item.q}</strong></p>`;
             item.options.forEach((opt, i) => {
                 html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
             });
@@ -167,21 +205,12 @@
     };
 
     function nav(id) {
-        document.querySelectorAll('.section, #pg1').forEach(s => s.style.display = 'none');
-        document.getElementById(id).style.display = 'block';
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
         window.scrollTo(0,0);
     }
 
-    function navToHome() { nav('pg1'); }
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
-    function triggerPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
-    
-    function acceptPrivacy() { 
-        document.getElementById('privacyModal').style.display = 'none'; 
-        const name = document.getElementById('stuName').value || "Anonymous";
-        document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
-        nav('pg3'); 
-    }
 
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
@@ -194,42 +223,16 @@
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
         let answered = 0;
         for(let e of data.entries()) { scores[e[1]]++; answered++; }
-        
-        if(answered < 25) { alert("PLEASE ANSWER ALL QUESTIONS."); return; }
 
-        const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
-        let styleKey = Object.keys(scores).find(key => scores[key] === max);
-        userFinalResult = styleKey.toUpperCase();
+        if(answered < 25) { alert("PLEASE ANSWER ALL 25 QUESTIONS."); return; }
 
-        fetch(DATABASE_URL, {
-            method: "POST", mode: "no-cors",
-            body: JSON.stringify({
-                name: document.getElementById('stuName').value || "Anonymous",
-                age: document.getElementById('stuAge').value,
-                gender: document.getElementById('stuGender').value,
-                result: userFinalResult
-            })
-        });
-
+        let topStyle = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
         document.getElementById('resBox').style.display = 'block';
-        document.getElementById('resTitle').innerText = "RESULT: " + userFinalResult + " LEARNER";
-        const tipsList = document.getElementById('resTips');
-        tipsList.innerHTML = "";
-        studyTips[styleKey].forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
+        document.getElementById('resTitle').innerText = "YOUR STYLE: " + topStyle.toUpperCase();
+        document.getElementById('resDesc').innerText = "You have a strong preference for " + topStyle + " learning!";
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
-
-    // FUNCTION TO DOWNLOAD SURVEY COPY
-    function downloadCopy() {
-        const name = document.getElementById('stuName').value || "Student";
-        const content = `LEARNSTYLE+ SURVEY RESULTS\n--------------------------\nName: ${name}\nAge: ${document.getElementById('stuAge').value}\nGender: ${document.getElementById('stuGender').value}\n\nYour Learning Style: ${userFinalResult}\n\nThank you for participating in our research study at EAC Manila!`;
-        
-        const blob = new Blob([content], { type: "text/plain" });
-        const link = document.createElement("a");
-        link.href = URL.createObjectURL(blob);
-        link.download = `LearnStyle_Result_${name}.txt`;
-        link.click();
-    }
 </script>
+
 </body>
 </html>
