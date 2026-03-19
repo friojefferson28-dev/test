@@ -9,6 +9,18 @@
             --accent-pink: #E91E63;
             --maroon: #800000;
             --bg-light: #fdf2f8;
+            --text-color: #000;
+            --card-bg: #fff;
+            --pattern-color: #f8bbd0;
+        }
+
+        /* DARK MODE VARIABLES */
+        .dark-mode {
+            --accent-pink: #2196F3; /* Pink changes to Blue */
+            --bg-light: #000000;    /* Background changes to Black */
+            --text-color: #ffffff;  /* Text changes to White */
+            --card-bg: #1a1a1a;
+            --pattern-color: #333;
         }
 
         body { 
@@ -16,29 +28,42 @@
             margin: 0; 
             padding: 0;
             background-color: var(--bg-light); 
-            background-image: linear-gradient(135deg, #f8bbd0 25%, transparent 25%), 
-                              linear-gradient(225deg, #f8bbd0 25%, transparent 25%), 
-                              linear-gradient(45deg, #f8bbd0 25%, transparent 25%), 
-                              linear-gradient(315deg, #f8bbd0 25%, var(--bg-light) 25%);
+            color: var(--text-color);
+            background-image: linear-gradient(135deg, var(--pattern-color) 25%, transparent 25%), 
+                              linear-gradient(225deg, var(--pattern-color) 25%, transparent 25%), 
+                              linear-gradient(45deg, var(--pattern-color) 25%, transparent 25%), 
+                              linear-gradient(315deg, var(--pattern-color) 25%, var(--bg-light) 25%);
             background-position: 10px 0, 10px 0, 0 0, 0 0;
             background-size: 20px 20px;
             overflow-x: hidden;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .dark-mode { background: #1a1a1a !important; color: white; }
-        .dark-mode .hero-wrapper, .dark-mode header, .dark-mode .survey-card { background: #222; border-color: #444; color: white; }
+        /* FADE EFFECT */
+        .section { 
+            display: none; 
+            padding: 20px 5%; 
+            width: 100%; 
+            box-sizing: border-box; 
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        
+        .section.active { 
+            display: block !important; 
+            opacity: 1;
+        }
 
         header { 
             display: flex; justify-content: space-between; align-items: center;
-            padding: 15px 5%; background: white; border-bottom: 3px solid black; 
+            padding: 15px 5%; background: var(--card-bg); border-bottom: 3px solid var(--text-color); 
             position: sticky; top: 0; z-index: 1000;
         }
 
         .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 
-        /* HERO SECTION - Vertical and Scrollable */
         .hero-wrapper {
-            background: white; border: 3px solid black;
+            background: var(--card-bg); border: 3px solid var(--text-color);
             margin: 20px auto; max-width: 900px; padding: 40px;
             display: flex; flex-direction: column; 
             gap: 20px; box-sizing: border-box;
@@ -47,29 +72,29 @@
         .hero-text h1 { font-size: clamp(32px, 8vw, 55px); line-height: 1; margin: 0; }
         .accent-square { width: 20px; height: 20px; background: var(--accent-pink); }
 
-        /* 5-IMAGE GRID - Matches your photo layout without side boxes */
+        /* GRID UPDATED: Removed side boxes, centered images */
         .hero-images {
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
             grid-template-rows: auto auto; 
             gap: 10px; width: 100%;
         }
-        .img-box { width: 100%; height: 150px; object-fit: cover; border: 1px solid #000; }
+        .img-box { width: 100%; height: 150px; object-fit: cover; border: 1px solid var(--text-color); }
         .img-span-2 { grid-column: span 2; height: 220px; }
 
         .proceed-link { 
             margin-top: 20px; font-weight: 900; text-decoration: underline; 
             cursor: pointer; font-size: 20px; display: inline-block; 
+            color: var(--text-color);
         }
 
-        .section { display: none; padding: 20px 5%; width: 100%; box-sizing: border-box; }
-        .active { display: block !important; }
-
-        .survey-card { background: white; border: 3px solid black; padding: 30px; max-width: 800px; margin: 0 auto; }
-        .q-box { background: #fff1f6; padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
+        .survey-card { background: var(--card-bg); border: 3px solid var(--text-color); padding: 30px; max-width: 800px; margin: 0 auto; }
+        .q-box { background: rgba(233, 30, 99, 0.1); padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
         
         .admin-btn { background: var(--maroon); color: white; padding: 15px; border: none; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; }
-        .progress-bar { height: 10px; background: var(--maroon); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
+        .progress-bar { height: 10px; background: var(--accent-pink); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
+        
+        button { cursor: pointer; transition: 0.2s; }
     </style>
 </head>
 <body>
@@ -83,7 +108,7 @@
     </div>
     <div style="display: flex; gap: 15px; align-items: center;">
         <span onclick="nav('aboutPage')" style="cursor:pointer; font-weight:700;">ABOUT US</span>
-        <button onclick="toggleDark()" style="cursor:pointer; padding: 5px 10px; border: 2px solid black; background: white; font-weight: 700;">🌓 MODE</button>
+        <button onclick="toggleDark()" style="padding: 5px 10px; border: 2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); font-weight: 700;">🌓 MODE</button>
     </div>
 </header>
 
@@ -93,16 +118,16 @@
         <div class="hero-text">
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
             <p style="font-size: 14px; font-weight: bold; margin-top: 20px; text-transform: uppercase; line-height: 1.5;">
-                LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.
+                LearnStyle+.com is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
             </p>
         </div>
 
         <div class="hero-images">
-            <img src="image1.jpg" class="img-box">
-            <img src="image2.jpg" class="img-box">
-            <img src="image3.jpg" class="img-box">
-            <img src="image4.jpg" class="img-box img-span-2">
-            <img src="image5.jpg" class="img-box">
+            <img src="image1.jpg" class="img-box" alt="Study 1">
+            <img src="image2.jpg" class="img-box" alt="Study 2">
+            <img src="image3.jpg" class="img-box" alt="Study 3">
+            <img src="image4.jpg" class="img-box img-span-2" alt="Study 4">
+            <img src="image5.jpg" class="img-box" alt="Study 5">
         </div>
         
         <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
@@ -111,7 +136,7 @@
 
 <div id="aboutPage" class="section">
     <div class="survey-card">
-        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px; text-transform: uppercase;">ABOUT US</h2>
+        <h2 style="border-left: 10px solid var(--accent-pink); padding-left: 15px; text-transform: uppercase;">ABOUT US</h2>
         <div style="line-height: 1.8; font-family: Arial, sans-serif; font-weight: 500; font-size: 16px;">
             <p>
                 <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
@@ -126,14 +151,14 @@
 
 <div id="pg2" class="section">
     <div class="survey-card">
-        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px;">STUDENT PROFILE</h2>
+        <h2 style="border-left: 10px solid var(--accent-pink); padding-left: 15px;">STUDENT PROFILE</h2>
         <div style="margin: 20px 0;">
             <label style="font-weight: 900; display:block; margin-bottom:5px;">FULL NAME (OPTIONAL)</label>
-            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
+            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); box-sizing: border-box;">
         </div>
         <div style="margin: 20px 0;">
             <label style="font-weight: 900; display:block; margin-bottom:5px;">AGE</label>
-            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
+            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); box-sizing: border-box;">
         </div>
         <button class="admin-btn" onclick="nav('pg3')">START THE QUESTIONNAIRE</button>
     </div>
@@ -147,16 +172,15 @@
             <button type="button" class="admin-btn" onclick="showResults()" style="margin-top:20px;">GENERATE RESULT</button>
         </form>
 
-        <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid black; padding: 30px; background: #fff;">
-            <h2 id="resTitle" style="color: var(--maroon); text-align: center;"></h2>
+        <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid var(--text-color); padding: 30px; background: var(--card-bg);">
+            <h2 id="resTitle" style="color: var(--accent-pink); text-align: center;"></h2>
             <p id="resDesc" style="font-weight: bold; text-align: center; font-family: sans-serif;"></p>
-            <button onclick="location.reload()" class="admin-btn" style="background: black; margin-top: 20px;">RETAKE SURVEY</button>
+            <button onclick="location.reload()" class="admin-btn" style="background: var(--text-color); color: var(--card-bg); margin-top: 20px;">RETAKE SURVEY</button>
         </div>
     </div>
 </div>
 
 <script>
-    // 25 Questions Array
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures", "Group activities", "Self-review"] },
@@ -191,7 +215,7 @@
             let qNum = index + 1;
             let html = `<div class="q-box"><p><strong>${qNum}. ${item.q}</strong></p>`;
             item.options.forEach((opt, i) => {
-                html += `<label style="display:block; margin:5px 0; background:#fff; padding:10px; border:1px solid #ccc; border-radius:5px; cursor:pointer;"><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
+                html += `<label style="display:block; margin:5px 0; background:var(--card-bg); color:var(--text-color); padding:10px; border:1px solid #ccc; border-radius:5px; cursor:pointer;"><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
             });
             html += `</div>`;
             container.innerHTML += html;
@@ -199,12 +223,19 @@
     };
 
     function nav(id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        // Brief timeout to allow the fade-out appearance
+        setTimeout(() => {
+            document.getElementById(id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 50);
     }
 
-    function toggleDark() { document.body.classList.toggle('dark-mode'); }
+    function toggleDark() { 
+        document.body.classList.toggle('dark-mode'); 
+    }
 
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
