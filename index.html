@@ -11,18 +11,20 @@
             --bg-light: #fdf2f8;
         }
 
+        /* Standard scrollable layout for all devices */
         body { 
             font-family: 'Arial Black', sans-serif; 
             margin: 0; 
+            padding: 0;
             transition: background 0.3s;
             background-color: var(--bg-light); 
-            /* Pink Diamond/Chevron Pattern */
             background-image:  linear-gradient(135deg, #f8bbd0 25%, transparent 25%), 
                                linear-gradient(225deg, #f8bbd0 25%, transparent 25%), 
                                linear-gradient(45deg, #f8bbd0 25%, transparent 25%), 
                                linear-gradient(315deg, #f8bbd0 25%, var(--bg-light) 25%);
             background-position:  10px 0, 10px 0, 0 0, 0 0;
             background-size: 20px 20px;
+            overflow-x: hidden;
         }
 
         .dark-mode { background: #1a1a1a !important; color: white; }
@@ -36,49 +38,47 @@
 
         .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 
-        /* PHOTO-ACCURATE HERO SECTION */
+        /* Full-width vertical layout */
         .hero-wrapper {
             background: white; border: 3px solid black;
-            margin: 40px auto; max-width: 1100px; padding: 50px;
-            display: grid; grid-template-columns: 1.2fr 1fr 120px;
-            gap: 30px; align-items: center;
+            margin: 20px auto; max-width: 900px; padding: 40px;
+            display: flex; flex-direction: column; gap: 30px;
+            box-sizing: border-box;
         }
 
-        .hero-text h1 { font-size: 45px; line-height: 1.1; margin: 0; }
+        .hero-text h1 { font-size: clamp(30px, 8vw, 50px); line-height: 1.1; margin: 0; }
         .accent-square { width: 20px; height: 20px; background: var(--accent-pink); margin-bottom: 15px; }
 
-        /* 5-IMAGE GRID: 3 TOP, 2 BOTTOM (1 WIDE) */
+        /* 5-IMAGE GRID (NO SIDE BOXES) */
         .hero-images {
             display: grid; grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: 110px 160px; gap: 10px;
+            grid-auto-rows: minmax(100px, auto); gap: 10px;
+            width: 100%;
         }
-        .img-box { width: 100%; height: 100%; object-fit: cover; border: 1px solid #000; }
-        .img-span-2 { grid-column: span 2; }
-
-        /* PINK VERTICAL BOXES */
-        .study-cards-container { display: flex; flex-direction: column; gap: 15px; }
-        .vertical-box {
-            border: 4px solid var(--accent-pink); border-radius: 12px;
-            width: 80px; height: 140px; background: white;
-            display: flex; align-items: center; justify-content: center;
-            text-align: center; font-size: 12px; font-weight: 900; color: #333;
-        }
+        .img-box { width: 100%; height: 100%; object-fit: cover; border: 1px solid #000; border-radius: 4px; }
+        .img-span-2 { grid-column: span 2; height: 200px; }
 
         .proceed-link { 
-            margin-top: 30px; font-weight: 900; text-decoration: underline; 
-            cursor: pointer; font-size: 18px; display: inline-block; 
+            margin-top: 20px; font-weight: 900; text-decoration: underline; 
+            cursor: pointer; font-size: clamp(16px, 4vw, 20px); display: inline-block; 
         }
 
-        .section { display: none; padding: 20px 5%; }
+        .section { display: none; padding: 20px 5%; width: 100%; box-sizing: border-box; }
         .active { display: block !important; }
 
-        .survey-card { background: white; border: 3px solid black; padding: 40px; max-width: 800px; margin: 0 auto; }
+        .survey-card { background: white; border: 3px solid black; padding: 30px; max-width: 800px; margin: 0 auto; box-sizing: border-box; }
         .q-box { background: #fff1f6; padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
         label { display: block; background: white; padding: 12px; margin: 8px 0; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
         
         .progress-bar { height: 10px; background: var(--maroon); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
         
-        .admin-btn { background: var(--maroon); color: white; padding: 15px 30px; border: none; font-weight: 900; cursor: pointer; width: 100%; border-radius: 5px; }
+        .admin-btn { background: var(--maroon); color: white; padding: 15px; border: none; font-weight: 900; cursor: pointer; width: 100%; border-radius: 5px; text-transform: uppercase; }
+
+        @media (max-width: 600px) {
+            .hero-wrapper { margin: 10px; padding: 20px; }
+            .hero-images { grid-template-columns: 1fr 1fr; }
+            .img-span-2 { grid-column: span 2; }
+        }
     </style>
 </head>
 <body>
@@ -91,8 +91,6 @@
         <div style="font-weight: 900; line-height: 1;">LEARNSTYLE+<br>.COM</div>
     </div>
     <div>
-        <span onclick="nav('pg1')" style="margin-right:20px; cursor:pointer; font-weight:700;">HOME</span>
-        <span onclick="nav('aboutPage')" style="margin-right:20px; cursor:pointer; font-weight:700;">ABOUT US</span>
         <button onclick="toggleDark()" style="cursor:pointer; font-weight:700; padding: 5px 10px; border: 2px solid black; background: white;">🌓 MODE</button>
     </div>
 </header>
@@ -102,7 +100,7 @@
         <div class="hero-text">
             <div class="accent-square"></div>
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p style="font-size: 13px; font-weight: bold; margin-top: 20px; text-transform: uppercase;">
+            <p style="font-size: 14px; font-weight: bold; margin-top: 20px; text-transform: uppercase; line-height: 1.6;">
                 LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.
             </p>
             <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
@@ -115,18 +113,19 @@
             <img src="image4.jpg" class="img-box img-span-2">
             <img src="image5.jpg" class="img-box">
         </div>
-
-        <div class="study-cards-container">
-            <div class="vertical-box">GROUP<br>STUDY</div>
-            <div class="vertical-box">SOLO<br>STUDY</div>
-        </div>
+        
+        <center><button class="admin-btn" style="background:#333; max-width: 200px;" onclick="nav('aboutPage')">ABOUT US</button></center>
     </div>
 </div>
 
 <div id="aboutPage" class="section">
     <div class="survey-card">
-        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px;">ABOUT US</h2>
-        <p>Developed by <strong>12 STEM 6, Group Technology 1</strong> from Emilio Aguinaldo College - Manila.</p>
+        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px; text-transform: uppercase;">About Us</h2>
+        <p style="line-height: 1.8; font-family: Arial, sans-serif;">
+            <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
+            <br><br>
+            <strong>LearnStyle+.com</strong> is made by the students of Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
+        </p>
         <div class="proceed-link" onclick="nav('pg1')">[ BACK TO HOME ]</div>
     </div>
 </div>
@@ -135,12 +134,12 @@
     <div class="survey-card">
         <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px;">STUDENT PROFILE</h2>
         <div style="margin: 25px 0;">
-            <label>FULL NAME (OPTIONAL)</label>
-            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
+            <label style="font-weight: 900;">FULL NAME (OPTIONAL)</label>
+            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box; font-family: sans-serif;">
         </div>
         <div style="margin: 25px 0;">
-            <label>AGE</label>
-            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
+            <label style="font-weight: 900;">AGE</label>
+            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box; font-family: sans-serif;">
         </div>
         <button class="admin-btn" onclick="nav('pg3')">START THE QUESTIONNAIRE</button>
     </div>
@@ -156,7 +155,7 @@
 
         <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid black; padding: 30px; background: #fff;">
             <h2 id="resTitle" style="color: var(--maroon); text-align: center;"></h2>
-            <p id="resDesc" style="font-weight: bold; text-align: center;"></p>
+            <p id="resDesc" style="font-weight: bold; text-align: center; font-family: sans-serif;"></p>
             <button onclick="location.reload()" class="admin-btn" style="background: black; margin-top: 20px;">RETAKE SURVEY</button>
         </div>
     </div>
@@ -207,7 +206,7 @@
     function nav(id) {
         document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
-        window.scrollTo(0,0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
@@ -229,7 +228,7 @@
         let topStyle = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
         document.getElementById('resBox').style.display = 'block';
         document.getElementById('resTitle').innerText = "YOUR STYLE: " + topStyle.toUpperCase();
-        document.getElementById('resDesc').innerText = "You have a strong preference for " + topStyle + " learning!";
+        document.getElementById('resDesc').innerText = "Based on your choices, you have a strong preference for " + topStyle + " learning! Check your study tips below.";
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
 </script>
