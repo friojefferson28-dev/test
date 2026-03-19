@@ -14,19 +14,18 @@
             --pattern-color: #f8bbd0;
         }
 
-        /* DARK MODE VARIABLES */
+        /* DARK MODE - Pink to Blue, White to Black */
         .dark-mode {
-            --accent-pink: #2196F3; /* Pink changes to Blue */
-            --bg-light: #000000;    /* Background changes to Black */
-            --text-color: #ffffff;  /* Text changes to White */
+            --accent-pink: #2196F3; 
+            --bg-light: #000000;    
+            --text-color: #ffffff;  
             --card-bg: #1a1a1a;
             --pattern-color: #333;
         }
 
         body { 
             font-family: 'Arial Black', sans-serif; 
-            margin: 0; 
-            padding: 0;
+            margin: 0; padding: 0;
             background-color: var(--bg-light); 
             color: var(--text-color);
             background-image: linear-gradient(135deg, var(--pattern-color) 25%, transparent 25%), 
@@ -35,22 +34,25 @@
                               linear-gradient(315deg, var(--pattern-color) 25%, var(--bg-light) 25%);
             background-position: 10px 0, 10px 0, 0 0, 0 0;
             background-size: 20px 20px;
+            transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        /* FADE EFFECT */
+        /* FADE TRANSITION CSS */
         .section { 
             display: none; 
-            padding: 20px 5%; 
-            width: 100%; 
-            box-sizing: border-box; 
             opacity: 0;
-            transition: opacity 0.5s ease-in-out;
+            transition: opacity 0.6s ease-in-out;
+            padding: 20px 5%;
+            width: 100%;
+            box-sizing: border-box;
         }
         
         .section.active { 
-            display: block !important; 
+            display: block; 
+        }
+
+        .section.fade-in {
             opacity: 1;
         }
 
@@ -58,43 +60,44 @@
             display: flex; justify-content: space-between; align-items: center;
             padding: 15px 5%; background: var(--card-bg); border-bottom: 3px solid var(--text-color); 
             position: sticky; top: 0; z-index: 1000;
+            transition: background 0.4s ease;
         }
 
         .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 
+        .nav-links { display: flex; gap: 20px; align-items: center; }
+        .nav-item { cursor: pointer; font-weight: 700; text-transform: uppercase; font-size: 14px; }
+        .nav-item:hover { color: var(--accent-pink); }
+
         .hero-wrapper {
             background: var(--card-bg); border: 3px solid var(--text-color);
             margin: 20px auto; max-width: 900px; padding: 40px;
-            display: flex; flex-direction: column; 
-            gap: 20px; box-sizing: border-box;
+            display: flex; flex-direction: column; gap: 20px;
+            transition: background 0.4s ease;
         }
 
         .hero-text h1 { font-size: clamp(32px, 8vw, 55px); line-height: 1; margin: 0; }
-        .accent-square { width: 20px; height: 20px; background: var(--accent-pink); }
-
-        /* GRID UPDATED: Removed side boxes, centered images */
+        
         .hero-images {
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            grid-template-rows: auto auto; 
-            gap: 10px; width: 100%;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%;
         }
-        .img-box { width: 100%; height: 150px; object-fit: cover; border: 1px solid var(--text-color); }
+        .img-box { width: 100%; height: 150px; object-fit: cover; border: 1px solid var(--text-color); background: #eee; }
         .img-span-2 { grid-column: span 2; height: 220px; }
 
         .proceed-link { 
             margin-top: 20px; font-weight: 900; text-decoration: underline; 
-            cursor: pointer; font-size: 20px; display: inline-block; 
-            color: var(--text-color);
+            cursor: pointer; font-size: 20px; color: var(--text-color);
         }
 
         .survey-card { background: var(--card-bg); border: 3px solid var(--text-color); padding: 30px; max-width: 800px; margin: 0 auto; }
-        .q-box { background: rgba(233, 30, 99, 0.1); padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
+        .q-box { background: rgba(128, 0, 0, 0.05); padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
         
-        .admin-btn { background: var(--maroon); color: white; padding: 15px; border: none; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; }
+        .admin-btn { background: var(--maroon); color: white; padding: 15px; border: none; font-weight: 900; cursor: pointer; width: 100%; transition: 0.3s; }
+        .admin-btn:hover { filter: brightness(1.2); }
+
         .progress-bar { height: 10px; background: var(--accent-pink); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
-        
-        button { cursor: pointer; transition: 0.2s; }
+
+        input { background: var(--card-bg); color: var(--text-color); border: 2px solid var(--text-color); padding: 15px; width: 100%; box-sizing: border-box; }
     </style>
 </head>
 <body>
@@ -106,15 +109,16 @@
         <div style="font-size: 30px;">📖</div>
         <div style="font-weight: 900; line-height: 1;">LEARNSTYLE+<br>.COM</div>
     </div>
-    <div style="display: flex; gap: 15px; align-items: center;">
-        <span onclick="nav('aboutPage')" style="cursor:pointer; font-weight:700;">ABOUT US</span>
-        <button onclick="toggleDark()" style="padding: 5px 10px; border: 2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); font-weight: 700;">🌓 MODE</button>
+    <div class="nav-links">
+        <span class="nav-item" onclick="nav('pg1')">HOME</span>
+        <span class="nav-item" onclick="nav('aboutPage')">ABOUT US</span>
+        <button onclick="toggleDark()" style="padding: 5px 10px; border: 2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); font-weight: 700; cursor:pointer;">🌓 MODE</button>
     </div>
 </header>
 
-<div id="pg1" class="section active">
+<div id="pg1" class="section active fade-in">
     <div class="hero-wrapper">
-        <div class="accent-square"></div>
+        <div style="width: 20px; height: 20px; background: var(--accent-pink);"></div>
         <div class="hero-text">
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
             <p style="font-size: 14px; font-weight: bold; margin-top: 20px; text-transform: uppercase; line-height: 1.5;">
@@ -123,11 +127,11 @@
         </div>
 
         <div class="hero-images">
-            <img src="image1.jpg" class="img-box" alt="Study 1">
-            <img src="image2.jpg" class="img-box" alt="Study 2">
-            <img src="image3.jpg" class="img-box" alt="Study 3">
-            <img src="image4.jpg" class="img-box img-span-2" alt="Study 4">
-            <img src="image5.jpg" class="img-box" alt="Study 5">
+            <img src="image1.jpg" class="img-box" alt="Visual">
+            <img src="image2.jpg" class="img-box" alt="Auditory">
+            <img src="image3.jpg" class="img-box" alt="Interpersonal">
+            <img src="image4.jpg" class="img-box img-span-2" alt="Group">
+            <img src="image5.jpg" class="img-box" alt="Solo">
         </div>
         
         <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
@@ -154,11 +158,11 @@
         <h2 style="border-left: 10px solid var(--accent-pink); padding-left: 15px;">STUDENT PROFILE</h2>
         <div style="margin: 20px 0;">
             <label style="font-weight: 900; display:block; margin-bottom:5px;">FULL NAME (OPTIONAL)</label>
-            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); box-sizing: border-box;">
+            <input type="text" id="stuName" placeholder="Enter your name...">
         </div>
         <div style="margin: 20px 0;">
             <label style="font-weight: 900; display:block; margin-bottom:5px;">AGE</label>
-            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color); box-sizing: border-box;">
+            <input type="number" id="stuAge" value="17">
         </div>
         <button class="admin-btn" onclick="nav('pg3')">START THE QUESTIONNAIRE</button>
     </div>
@@ -181,6 +185,7 @@
 </div>
 
 <script>
+    // 25 Questions Data
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures", "Group activities", "Self-review"] },
@@ -209,6 +214,34 @@
         { q: "To master a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a graph", "Ask for explanation", "Talk to a peer", "Reflect alone"] }
     ];
 
+    // Navigation Logic with FADE EFFECT
+    function nav(id) {
+        const sections = document.querySelectorAll('.section');
+        
+        // 1. Instantly remove visual "fade-in" from all
+        sections.forEach(s => s.classList.remove('fade-in'));
+
+        // 2. Wait for fade-out, then switch display
+        setTimeout(() => {
+            sections.forEach(s => s.classList.remove('active'));
+            const target = document.getElementById(id);
+            target.classList.add('active');
+
+            // 3. Trigger fade-in using double-frame request
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    target.classList.add('fade-in');
+                });
+            });
+        }, 50);
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleDark() { 
+        document.body.classList.toggle('dark-mode'); 
+    }
+
     window.onload = function() {
         const container = document.getElementById('questions-container');
         questions.forEach((item, index) => {
@@ -221,21 +254,6 @@
             container.innerHTML += html;
         });
     };
-
-    function nav(id) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(s => s.classList.remove('active'));
-        
-        // Brief timeout to allow the fade-out appearance
-        setTimeout(() => {
-            document.getElementById(id).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 50);
-    }
-
-    function toggleDark() { 
-        document.body.classList.toggle('dark-mode'); 
-    }
 
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
