@@ -53,6 +53,19 @@
     </div>
 </div>
 
+<div id="aboutPage" class="section" style="display: none;">
+    <div class="survey-card" style="text-align: left; max-width: 900px; margin: 40px auto; padding: 60px;">
+        <h2 style="text-transform: uppercase; font-weight: 900; border-left: 10px solid #800000; padding-left: 20px;">About Us</h2>
+        <p style="line-height: 1.8; margin-top: 30px; font-size: 16px;">
+            Welcome to <strong>LearnStyle+.com</strong>! This platform was developed by <strong>12 STEM 6, Group Technology 1</strong> from Emilio Aguinaldo College - Manila. 
+            Our mission is to provide students with a reliable tool to identify their unique cognitive learning styles.
+            <br><br>
+            This website serves as the primary tool for our research study: <strong>"Validity of LearnStyle+.com in Identifying Cognitive Learning Styles of EAC-Manila Students."</strong>
+        </p>
+        <div class="proceed-link" onclick="navToHome()">[ BACK TO HOME ]</div>
+    </div>
+</div>
+
 <div id="pg2" class="section" style="display: none;">
     <div class="survey-card">
         <h2 style="text-transform: uppercase; font-weight: 900; border-left: 10px solid #800000; padding-left: 20px;">Student Profile</h2>
@@ -90,7 +103,7 @@
 
         <div id="resBox" style="display:none; margin-top: 50px; text-align: left; border: 4px solid #1a1a1a; padding: 30px;">
             <h2 id="resTitle" style="font-weight: 900; color: #800000; text-align: center; text-transform: uppercase;"></h2>
-            <p style="font-weight: 700; margin-top: 20px;">Recommendations:</p>
+            <p style="font-weight: 700; margin-top: 20px;">Tailored Recommendations:</p>
             <ul id="resTips" style="line-height: 1.8;"></ul>
             
             <button onclick="downloadCopy()" class="admin-btn" style="width:100%; margin-top:20px; background: #1a1a1a; color: white;">DOWNLOAD MY COPY (.TXT)</button>
@@ -102,20 +115,22 @@
 <script>
     const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec";
 
+    // SINGLE STYLES
     const singleTips = {
-        visual: ["Infographics & concept maps", "Educational videos", "Data visualization", "Doodles and symbols"],
-        auditory: ["Note-taking while listening", "Podcasts/Audiobooks", "Oral quizzes", "Live lectures"],
-        interpersonal: ["In-person collaboration", "Social apps (Discord/Meet)", "Cooperative games", "Study groups"],
-        independent: ["Personal diaries/blogs", "Self-evaluation per topic", "Self-reflection on work"]
+        visual: ["Learning from infographics and concept maps", "Watching educational videos", "Use data visualization (pie charts, bar graphs, tables)", "Incorporate doodles, symbols, and sketches alongside text"],
+        auditory: ["Taking notes and testing knowledge while listening", "Consuming educational podcasts or Audiobooks", "Oral quizzes", "Attending live lectures"],
+        interpersonal: ["In-person collaboration", "Social apps (Google Meet, Discord, Meta apps)", "Cooperative games like flashcards", "Joining study groups"],
+        independent: ["Using personal diaries or blogs to summarize thoughts", "Self-evaluation per topic", "Reviewing own work through self-reflection"]
     };
 
+    // DUAL STYLES (Your specific inputs)
     const dualTips = {
-        "auditory_visual": ["Videos with narration", "Lectures with charts", "Animated tutorials", "Color-coded notes while listening"],
-        "interpersonal_visual": ["Studying with maps/diagrams", "Group discussions with whiteboards", "Collaborative mind mapping", "Group infographics"],
-        "independent_visual": ["Personal concept maps", "Videos for self-study", "Color-coded summaries", "Flashcards with images"],
-        "auditory_interpersonal": ["Verbal group discussions", "Listening to lectures as a group", "Oral reviews with peers", "Explaining lessons verbally"],
-        "auditory_independent": ["Podcasts for self-study", "Recording and replaying summaries", "Reading notes aloud solo", "Self-recitation"],
-        "independent_interpersonal": ["Balancing group work with reflection", "Reviewing group talks solo", "Journaling peer insights", "Goal setting after collaboration"]
+        "visual_auditory": ["Watching educational videos with narration", "Listening to recorded lectures while following diagrams", "Animated lessons for complex concepts", "Combining note taking with color coding while listening"],
+        "visual_interpersonal": ["Studying with classmates using concept maps", "Group discussions with visual aids like whiteboards", "Collaborative mind mapping", "Creating group presentations with infographics"],
+        "visual_independent": ["Creating personal concept maps to organize ideas", "Self-study using educational videos and illustrations", "Color-coded notes and visual summaries", "Flashcards with images and symbols"],
+        "auditory_interpersonal": ["Group discussions where ideas are explained verbally", "Listening to lectures together with classmates", "Conducting oral reviews in groups", "Explaining lessons verbally to peers"],
+        "auditory_independent": ["Listening to podcasts during self-study", "Recording personal summaries and replaying them", "Reading notes aloud to improve retention", "Practicing self-recitation"],
+        "interpersonal_independent": ["Balancing group study with personal reflection", "Reviewing group discussions independently later", "Sharing ideas then writing personal insights in journals", "Combining peer learning with individual goal setting"]
     };
 
     const questions = [
@@ -143,13 +158,13 @@
         { q: "You enjoy games that involve:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual puzzles", "Listening for clues", "Teamwork", "Solo strategy"] },
         { q: "When stressed, you prefer to:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie", "Listen to music", "Talk to a friend", "Quiet reflection"] },
         { q: "Your ideal workspace has:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual boards", "Music or silence", "Collaboration space", "Private desk"] },
-        { q: "To master a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a graph", "Ask for explanation", "Talk to a peer", "Reflecting alone"] }
+        { q: "To master a complex idea, you master it by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Looking for a graph", "Asking for explanation", "Talking to a peer", "Reflecting alone"] }
     ];
 
-    let userFinalResult = "";
+    let userFinalResult = ""; 
 
     window.onload = function() {
-        nav('pg1');
+        navToHome();
         const container = document.getElementById('questions-container');
         questions.forEach((item, index) => {
             let qNum = index + 1;
@@ -169,9 +184,9 @@
     }
 
     function navToHome() { nav('pg1'); }
-    function triggerPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
-
+    function triggerPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
+    
     function acceptPrivacy() { 
         document.getElementById('privacyModal').style.display = 'none'; 
         const name = document.getElementById('stuName').value || "Anonymous";
@@ -186,46 +201,32 @@
     }
 
     function showResults() {
-        const form = document.getElementById('styleForm');
-        const data = new FormData(form);
+        const data = new FormData(document.getElementById('styleForm'));
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
         let answered = 0;
+        for(let e of data.entries()) { scores[e[1]]++; answered++; }
+        
+        if(answered < 25) { alert("PLEASE ANSWER ALL QUESTIONS."); return; }
 
-        for(let e of data.entries()) { 
-            if(scores.hasOwnProperty(e[1])) {
-                scores[e[1]]++; 
-                answered++; 
-            }
-        }
-
-        if(answered < 25) { 
-            alert("Please answer all 25 questions. (" + answered + "/25)"); 
-            return; 
-        }
-
+        // SORT SCORES TO FIND TOP TWO
         let sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
-        let top1 = sorted[0]; 
+        let top1 = sorted[0];
         let top2 = sorted[1];
 
         const tipsList = document.getElementById('resTips');
         tipsList.innerHTML = "";
-        let finalTips = [];
 
-        // Dual Logic: Gap of 3 or less
-        if (top1[1] - top2[1] <= 3) {
-            let pairKey = [top1[0], top2[0]].sort().join("_");
+        // CHECK IF IT'S A DUAL STYLE (Score gap is 2 or less)
+        if (top1[1] - top2[1] <= 2) {
+            let pair = [top1[0], top2[0]].sort().join("_");
             userFinalResult = top1[0].toUpperCase() + " & " + top2[0].toUpperCase();
             document.getElementById('resTitle').innerText = "DUAL STYLE: " + userFinalResult;
-            finalTips = dualTips[pairKey] || singleTips[top1[0]];
+            dualTips[pair].forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
         } else {
             userFinalResult = top1[0].toUpperCase();
-            document.getElementById('resTitle').innerText = "RESULT: " + userFinalResult;
-            finalTips = singleTips[top1[0]];
+            document.getElementById('resTitle').innerText = "RESULT: " + userFinalResult + " LEARNER";
+            singleTips[top1[0]].forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
         }
-
-        finalTips.forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
-        document.getElementById('resBox').style.display = 'block';
-        document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
 
         fetch(DATABASE_URL, {
             method: "POST", mode: "no-cors",
@@ -236,15 +237,18 @@
                 result: userFinalResult
             })
         });
+
+        document.getElementById('resBox').style.display = 'block';
+        document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
 
     function downloadCopy() {
         const name = document.getElementById('stuName').value || "Student";
-        const content = `LEARNSTYLE+ RESULTS\n----------------\nName: ${name}\nAge: ${document.getElementById('stuAge').value}\nStyle: ${userFinalResult}\n\nStudy Well!`;
+        const content = `LEARNSTYLE+ RESULTS\n--------------------------\nName: ${name}\nAge: ${document.getElementById('stuAge').value}\nGender: ${document.getElementById('stuGender').value}\n\nStyle: ${userFinalResult}\n\nEAC Manila - 12 STEM 6`;
         const blob = new Blob([content], { type: "text/plain" });
         const link = document.createElement("a");
         link.href = URL.createObjectURL(blob);
-        link.download = `Result_${name}.txt`;
+        link.download = `LearnStyle_Result_${name}.txt`;
         link.click();
     }
 </script>
