@@ -6,6 +6,7 @@
     <title>Informed and Proud | LearnStyle+</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Custom UI Enhancements */
         .gradient-btn {
             background: linear-gradient(135deg, #E91E63 0%, #8E24AA 100%) !important;
             color: white !important;
@@ -32,7 +33,7 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 15px;
             margin-top: 25px;
         }
@@ -42,8 +43,8 @@
             background: #fff1f6;
             text-align: center;
         }
-        .member-name { font-weight: 900; font-size: 16px; display: block; color: #333; }
-        .member-role { font-size: 11px; color: #E91E63; font-weight: 700; text-transform: uppercase; }
+        .member-name { font-weight: 900; font-size: 15px; display: block; color: #333; }
+        .member-role { font-size: 10px; color: #E91E63; font-weight: 700; text-transform: uppercase; }
 
         .section { display: none; }
         
@@ -78,29 +79,35 @@
         </div>
         
         <div class="image-row">
-            <img src="group-study.jpg" alt="Collaborative Learning">
-            <img src="solo-study.jpg" alt="Cognitive Focus">
+            <img src="group-study.jpg" alt="Group Study">
+            <img src="solo-study.jpg" alt="Solo Study">
         </div>
     </div>
 
-    <div id="about-section" class="survey-card" style="margin-top: 60px; margin-bottom: 80px;">
+    <div id="about-section" class="survey-card" style="margin-top: 60px; margin-bottom: 80px; text-align: left;">
         <h2 style="font-weight: 900; color: #E91E63; text-transform: uppercase;">About LearnStyle+</h2>
-        <p style="font-size: 15px; font-weight: 500; line-height: 1.7;">
-            <strong>LearnStyle+.com</strong> is a specialized diagnostic platform that identifies your unique learning style through 25 research-based questions. Beyond identification, the site provides tailored recommendations to help you assess and apply your results effectively in your academic journey.
+        
+        <p style="font-size: 15px; font-weight: 500; line-height: 1.7; text-transform: none;">
+            <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
         </p>
-        <p style="font-size: 15px; font-weight: 500; line-height: 1.7; margin-top: 15px;">
-            This project is developed by the students of <strong>Emilio Aguinaldo College-Manila (12 STEM 6, Group Technology 1)</strong>. Our research aims to validate this tool's effectiveness in identifying the Cognitive Learning Styles of students, specifically within the EAC-Manila community.
+        
+        <p style="font-size: 15px; font-weight: 500; line-height: 1.7; margin-top: 15px; text-transform: none;">
+            <strong>LearnStyle+.com</strong> is made by the students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
         </p>
 
         <hr style="border: 1px solid #f8bbd0; margin: 40px 0;">
         
-        <h3 style="font-weight: 900; font-size: 18px; text-transform: uppercase; text-align: center;">Our Team (Group Technology 1)</h3>
+        <h3 style="font-weight: 900; font-size: 18px; text-transform: uppercase; text-align: center;">The Research Team</h3>
         <div class="team-grid">
-            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Team Leader</span></div>
-            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Lead Developer</span></div>
-            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Researcher</span></div>
-            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Researcher</span></div>
-            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">TEAM LEADER NAME</span><span class="member-role">Team Leader</span></div>
+            <div class="member-card"><span class="member-name">YOUR NAME</span><span class="member-role">Lead Developer</span></div>
+            <div class="member-card"><span class="member-name">RESEARCHER NAME</span><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">RESEARCHER NAME</span><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">RESEARCHER NAME</span><span class="member-role">Researcher</span></div>
+        </div>
+        
+        <div class="proceed-link" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" style="margin-top: 40px; display: block; text-align: center; cursor: pointer;">
+            [ BACK TO TOP ]
         </div>
     </div>
 </div>
