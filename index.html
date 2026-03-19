@@ -6,18 +6,16 @@
     <title>Informed and Proud | LearnStyle+</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Extra styles for the new features */
         .gradient-btn {
             background: linear-gradient(135deg, var(--accent-pink) 0%, #8E24AA 100%) !important;
             color: white !important;
             border: none !important;
             box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
             transition: 0.3s !important;
+            cursor: pointer;
         }
-        .gradient-btn:hover {
-            transform: translateY(-3px) scale(1.02) !important;
-            box-shadow: 0 6px 20px rgba(233, 30, 99, 0.4);
-        }
+        .gradient-btn:hover { transform: translateY(-3px) scale(1.02) !important; }
+        
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -33,12 +31,7 @@
             font-weight: 700;
             text-transform: uppercase;
         }
-        .role-tag {
-            display: block;
-            font-size: 10px;
-            color: var(--accent-pink);
-            margin-top: 5px;
-        }
+        #about-pg, .section { display: none; padding: 40px 80px; }
     </style>
 </head>
 <body class="fade-in">
@@ -46,12 +39,13 @@
 <div id="pBar" class="progress-bar"></div>
 
 <header>
-    <div class="logo-area" onclick="location.reload()" style="cursor:pointer;">
+    <div class="logo-area" onclick="nav('pg1')" style="cursor:pointer;">
         <div style="font-size: 35px;">📖</div>
         <div>LEARNSTYLE+<br><span style="color: var(--accent-pink);">.COM</span></div>
     </div>
     <div class="nav-links">
-        <span onclick="document.getElementById('about-section').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">ABOUT</span>
+        <span onclick="nav('pg1')" style="cursor:pointer;">HOME</span>
+        <span onclick="nav('about-pg')" style="cursor:pointer;">ABOUT</span>
         <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')">🌓 MODE</button>
     </div>
 </header>
@@ -72,21 +66,24 @@
             <img src="image5.jpg" class="img-box img-span-2" alt="5">
         </div>
     </div>
+</div>
 
-    <div id="about-section" class="survey-card" style="margin-top: 0; margin-bottom: 80px; border-top: none;">
+<div id="about-pg" class="fade-in">
+    <div class="survey-card">
         <h2 style="font-weight: 900; color: var(--accent-pink); text-transform: uppercase;">About the Project</h2>
         <p style="font-size: 14px; font-weight: 500; text-transform: none; line-height: 1.6;">
             <strong>Informed and Proud</strong> is a media literacy initiative by Grade 12 STEM students from EAC-Manila. 
-            By identifying your learning style, we aim to provide better tools for critical thinking and fighting digital misinformation.
+            By identifying your learning style, we provide better tools for critical thinking and fighting digital misinformation.
         </p>
         <hr style="border: 1px solid var(--base-pink); margin: 30px 0;">
         <h3 style="font-weight: 900; font-size: 14px; text-transform: uppercase;">The Research Team</h3>
         <div class="team-grid">
-            <div class="member-card">Team Leader<span class="role-tag">Management</span></div>
-            <div class="member-card">Lead Developer<span class="role-tag">Code & UI</span></div>
-            <div class="member-card">Researchers<span class="role-tag">Data Collection</span></div>
-            <div class="member-card">Collaborators<span class="role-tag">Documentation</span></div>
+            <div class="member-card">Team Leader<span style="display:block; font-size:10px; color:var(--accent-pink);">Coordination</span></div>
+            <div class="member-card">Lead Developer<span style="display:block; font-size:10px; color:var(--accent-pink);">UI & Logic</span></div>
+            <div class="member-card">Researchers<span style="display:block; font-size:10px; color:var(--accent-pink);">Data</span></div>
+            <div class="member-card">Collaborators<span style="display:block; font-size:10px; color:var(--accent-pink);">Design</span></div>
         </div>
+        <div class="proceed-link" onclick="nav('pg1')" style="margin-top: 40px; display: block; text-align: center;">[ BACK TO HOME ]</div>
     </div>
 </div>
 
@@ -127,7 +124,7 @@
     const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec";
     
     const singleTips = { visual: ["Infographics", "Videos", "Mind maps"], auditory: ["Note-taking", "Podcasts", "Lectures"], interpersonal: ["Collaboration", "Study groups"], independent: ["Diaries", "Self-evaluation"] };
-    const dualTips = { "auditory_visual": ["Narrated videos", "Animated tutorials"], "interpersonal_visual": ["Collaborative whiteboards", "Group diagrams"], "independent_visual": ["Personal concept maps", "Self-study videos"], "auditory_interpersonal": ["Group discussions", "Peer teaching"], "auditory_independent": ["Podcasts", "Reading aloud solo"], "independent_interpersonal": ["Group work + reflection"] };
+    const dualTips = { "auditory_visual": ["Narrated videos", "Lectures with charts"], "interpersonal_visual": ["Mind mapping groups", "Group whiteboards"], "independent_visual": ["Personal concept maps", "Visual flashcards"], "auditory_interpersonal": ["Group debates", "Peer teaching"], "auditory_independent": ["Recording summaries", "Reading aloud solo"], "independent_interpersonal": ["Reflective group work"] };
 
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening", "Group study", "Studying alone"] },
@@ -168,8 +165,16 @@
         });
     };
 
-    function nav(id) { document.querySelectorAll('.section, #pg1').forEach(s => s.style.display = 'none'); document.getElementById(id).style.display = 'block'; window.scrollTo(0,0); }
-    function updateProg() { const data = new FormData(document.getElementById('styleForm')); document.getElementById('pBar').style.width = (Array.from(data.keys()).length / 25 * 100) + "%"; }
+    function nav(id) { 
+        document.querySelectorAll('.section, #pg1, #about-pg').forEach(s => s.style.display = 'none'); 
+        document.getElementById(id).style.display = 'block'; 
+        window.scrollTo(0,0); 
+    }
+
+    function updateProg() { 
+        const data = new FormData(document.getElementById('styleForm')); 
+        document.getElementById('pBar').style.width = (Array.from(data.keys()).length / 25 * 100) + "%"; 
+    }
     
     function showResults() {
         const form = document.getElementById('styleForm');
@@ -197,6 +202,16 @@
         }
         document.getElementById('resBox').style.display = 'block';
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
+
+        fetch(DATABASE_URL, {
+            method: "POST", mode: "no-cors",
+            body: JSON.stringify({
+                name: document.getElementById('stuName').value || "Anonymous",
+                age: document.getElementById('stuAge').value,
+                gender: document.getElementById('stuGender').value,
+                result: resultTxt
+            })
+        });
     }
 
     function downloadCopy() {
