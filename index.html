@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informed and Proud | LearnStyle+</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         /* 1. LAYOUT FOR 5 IMAGES (3 on top, 2 on bottom) */
         .hero-container {
@@ -29,13 +28,13 @@
             width: 100%;
             height: 140px;
             object-fit: cover;
-            border: 3px solid var(--accent-pink);
+            border: 3px solid #E91E63; /* Fixed accent color */
             border-radius: 10px;
         }
         .bottom-row img { height: 180px; }
 
         /* 2. SECTION HANDLING */
-        .section { display: none; }
+        .section { display: none; padding: 20px; }
         .active { display: block !important; }
 
         /* 3. TEAM GRID */
@@ -47,43 +46,56 @@
         }
         .member-card {
             padding: 15px;
-            background: var(--light-pink);
-            border: 1px solid var(--base-pink);
+            background: #fff1f6;
+            border: 1px solid #f8bbd0;
             text-align: center;
             border-radius: 10px;
         }
-        .member-name { font-weight: 900; color: var(--text-color); }
-        .member-role { font-size: 10px; color: var(--accent-pink); font-weight: 700; text-transform: uppercase; }
+        .member-name { font-weight: 900; color: #333; }
+        .member-role { font-size: 10px; color: #E91E63; font-weight: 700; text-transform: uppercase; }
 
         /* 4. BUTTONS & UI */
-        .gradient-btn {
-            background: linear-gradient(135deg, var(--accent-pink) 0%, #8E24AA 100%) !important;
-            color: white !important;
-            border: none !important;
+        .proceed-link {
+            display: inline-block;
+            background: #E91E63;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background: #fff;
+            border-bottom: 2px solid #f8bbd0;
         }
     </style>
 </head>
 <body class="fade-in">
 
-<div id="pBar" class="progress-bar"></div>
-
 <header>
     <div class="logo-area" onclick="nav('pg1')" style="cursor:pointer;">
-        <div style="font-size: 35px;">📖</div>
-        <div>LEARNSTYLE+<br><span style="color: var(--accent-pink);">.COM</span></div>
+        <div style="font-size: 35px; display: inline-block;">📖</div>
+        <div style="display: inline-block; vertical-align: top; margin-top: 5px; font-weight: 900;">
+            LEARNSTYLE+<br><span style="color: #E91E63;">.COM</span>
+        </div>
     </div>
     <div class="nav-links">
-        <span onclick="nav('pgAbout')" style="cursor:pointer; font-weight: 800;">ABOUT</span>
-        <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')">🌓 MODE</button>
+        <span onclick="nav('pgAbout')" style="cursor:pointer; font-weight: 800; margin-right: 20px;">ABOUT</span>
+        <button onclick="document.body.classList.toggle('dark-mode')">🌓 MODE</button>
     </div>
 </header>
 
 <div id="pg1" class="section active">
     <div class="hero-wrapper" style="text-align: center;">
         <div class="hero-text">
-            <div class="accent-square" style="margin: 0 auto;"></div>
-            <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p>TITLE: INFORMED AND PROUD: FIGHTING MISINFORMATION IN THE DIGITAL AGE</p>
+            <h1 style="font-size: 2.5rem;">LEARN YOUR<br>LEARNING STYLE!</h1>
+            <p style="font-weight: bold; color: #555;">TITLE: INFORMED AND PROUD: FIGHTING MISINFORMATION IN THE DIGITAL AGE</p>
             
             <div class="hero-container">
                 <div class="top-row">
@@ -103,18 +115,18 @@
 </div>
 
 <div id="pgAbout" class="section">
-    <div class="survey-card">
-        <h2 style="font-weight: 900; color: var(--accent-pink); text-transform: uppercase; border-left: 5px solid var(--accent-pink); padding-left: 15px;">About LearnStyle+</h2>
+    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 40px; border-radius: 15px; border: 1px solid #f8bbd0;">
+        <h2 style="font-weight: 900; color: #E91E63; text-transform: uppercase; border-left: 5px solid #E91E63; padding-left: 15px;">About LearnStyle+</h2>
         
         <p style="font-size: 16px; line-height: 1.8; margin-top: 20px;">
             <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
         </p>
         
         <p style="font-size: 16px; line-height: 1.8; margin-top: 15px;">
-            <strong>LearnStyle+.com</strong> is made by the students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
+            <strong>LearnStyle+.com</strong> is made by the students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>.
         </p>
 
-        <hr style="border: 1px solid var(--base-pink); margin: 40px 0;">
+        <hr style="border: 0; border-top: 1px solid #f8bbd0; margin: 40px 0;">
         <h3 style="text-align: center; font-weight: 900; text-transform: uppercase;">The Research Team</h3>
         <div class="team-grid">
             <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Team Leader</span></div>
@@ -123,39 +135,44 @@
             <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Researcher</span></div>
             <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Researcher</span></div>
         </div>
-        <div class="proceed-link" onclick="nav('pg1')" style="margin-top: 40px; text-align: center;">[ BACK TO HOME ]</div>
+        <center><div class="proceed-link" onclick="nav('pg1')" style="margin-top: 40px; background: #333;">[ BACK TO HOME ]</div></center>
     </div>
 </div>
 
 <div id="pg2" class="section">
-    <div class="survey-card">
-        <h1 style="font-weight: 900; border-left: 8px solid var(--accent-pink); padding-left: 20px; margin-bottom: 40px;">STUDENT PROFILE</h1>
-        <div class="q-box" style="border:none;">
-            <p>FULL NAME (OPTIONAL)</p><input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color);">
-            <p style="margin-top:20px;">AGE</p><input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color);">
-        </div>
-        <div class="proceed-link" onclick="nav('pg3')" style="margin-top: 30px; text-align: center;">[ START THE TEST ]</div>
+    <div style="max-width: 600px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 15px;">
+        <h1 style="font-weight: 900; border-left: 8px solid #E91E63; padding-left: 20px;">STUDENT PROFILE</h1>
+        <p>Full Name (Optional)</p><input type="text" id="stuName" style="width:100%; padding:15px; margin-bottom: 20px;">
+        <p>Age</p><input type="number" id="stuAge" value="17" style="width:100%; padding:15px;">
+        <center><div class="proceed-link" onclick="nav('pg3')" style="margin-top: 30px;">START THE TEST</div></center>
     </div>
 </div>
 
 <div id="pg3" class="section">
-    <div class="survey-card">
-        <form id="styleForm" onchange="updateProg()">
+    <div style="max-width: 800px; margin: 0 auto;">
+        <form id="styleForm">
             <div id="questions-container"></div>
-            <button type="button" class="admin-btn gradient-btn" onclick="showResults()" style="width:100%; margin-top:50px; height: 70px;">GENERATE RESULT</button>
+            <button type="button" class="proceed-link" onclick="showResults()" style="width:100%; margin-top:50px; border: none;">GENERATE RESULT</button>
         </form>
 
-        <div id="resBox" style="display:none; margin-top: 50px; border: 4px solid var(--accent-pink); padding: 40px; background: var(--light-pink);">
+        <div id="resBox" style="display:none; margin-top: 50px; border: 4px solid #E91E63; padding: 40px; background: #fff1f6; border-radius: 15px;">
             <h2 id="resTitle" style="font-weight: 900; text-align: center; font-size: 2.5rem; margin-top: 0;"></h2>
-            <hr style="border: 1px solid var(--text-color);">
+            <hr>
             <p style="font-weight: 800; font-size: 1.2rem;">RECOMMENDATIONS:</p>
-            <ul id="resTips" style="line-height: 2; font-size: 1.1rem; font-weight: 600;"></ul>
-            <button onclick="location.reload()" class="admin-btn" style="width:100%; margin-top: 20px; background: transparent; color: var(--text-color);">RETAKE SURVEY</button>
+            <ul id="resTips" style="line-height: 2; font-size: 1.1rem;"></ul>
+            <button onclick="location.reload()" style="width:100%; padding: 15px; margin-top: 20px; cursor: pointer;">RETAKE SURVEY</button>
         </div>
     </div>
 </div>
 
 <script>
+    // Navigation Function
+    function nav(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
+    }
+
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening", "Group study", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts/Videos", "Lectures", "Group activities", "Self-review"] },
@@ -184,31 +201,25 @@
         { q: "To finish a task, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using a checklist", "Verbal check-ins", "Shared deadlines", "Self-pacing"] }
     ];
 
-    const singleTips = { visual: ["Infographics", "Videos", "Mind maps"], auditory: ["Note-taking", "Podcasts", "Lectures"], interpersonal: ["Collaboration", "Study groups"], independent: ["Diaries", "Self-evaluation"] };
-
-    function nav(id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.scrollTo(0, 0);
-    }
+    const singleTips = { 
+        visual: ["Use Infographics", "Watch Videos", "Create Mind maps"], 
+        auditory: ["Try Note-taking", "Listen to Podcasts", "Record Lectures"], 
+        interpersonal: ["Seek Collaboration", "Join Study groups"], 
+        independent: ["Keep Learning Diaries", "Use Self-evaluation"] 
+    };
 
     window.onload = function() {
         const container = document.getElementById('questions-container');
         questions.forEach((item, index) => {
             let qNum = index + 1;
-            let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
+            let html = `<div style="margin-bottom: 20px; padding: 20px; background: #fff1f6; border-radius: 10px;"><p><strong>${qNum}. ${item.q}</strong></p>`;
             item.options.forEach((opt, idx) => {
-                html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[idx]}</label>`;
+                html += `<label style="display: block; margin: 10px 0;"><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[idx]}</label>`;
             });
             html += `</div>`;
             container.innerHTML += html;
         });
     };
-
-    function updateProg() {
-        const data = new FormData(document.getElementById('styleForm'));
-        document.getElementById('pBar').style.width = (Array.from(data.keys()).length / 25 * 100) + "%";
-    }
 
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
@@ -221,7 +232,7 @@
         let sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
         let topStyle = sorted[0][0];
 
-        document.getElementById('resTitle').innerText = "STYLE: " + topStyle.toUpperCase();
+        document.getElementById('resTitle').innerText = "YOUR STYLE: " + topStyle.toUpperCase();
         const tips = document.getElementById('resTips');
         tips.innerHTML = "";
         singleTips[topStyle].forEach(t => { tips.innerHTML += `<li>${t}</li>`; });
