@@ -250,6 +250,12 @@
 <script>
     const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec"; 
 
+    // Force return to home on fresh load
+    window.onload = function() {
+        navToHome();
+        window.scrollTo(0,0);
+    };
+
     const recommendations = {
         "visual": ["Learning from infographics", "Watching educational videos", "Use data visualization", "Incorporate doodles"],
         "auditory": ["Take notes while listening", "Consume podcasts", "Oral quizzes", "Listen to live lectures"],
@@ -297,22 +303,31 @@
     });
 
     function toggleDark() { document.body.classList.toggle('dark-mode'); }
+    
     function nav(currId, nextId) {
         document.querySelectorAll('.section, #pg1').forEach(s => s.style.display = 'none');
         document.getElementById(nextId).style.display = 'block';
         window.scrollTo(0,0);
     }
+    
     function navToHome() { nav('any', 'pg1'); }
-    function triggerPrivacy() { document.getElementById('privacyModal').style.display = 'flex'; }
+
+    // This shows the Privacy Notice only when they click the start button on the Profile Page
+    function triggerPrivacy() {
+        document.getElementById('privacyModal').style.display = 'flex';
+    }
+    
     function acceptPrivacy() { 
         document.getElementById('privacyModal').style.display = 'none'; 
         startSurvey(); 
     }
+
     function startSurvey() {
         const name = document.getElementById('stuName').value || "Student";
         document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
-        nav('pg2', 'pg3');
+        nav('pg2', 'pg3'); // Moves to the questionnaire area
     }
+
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
         let count = 0; for(let p of data.entries()) count++;
