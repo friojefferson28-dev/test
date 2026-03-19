@@ -6,7 +6,7 @@
     <title>Informed and Proud | LearnStyle+</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* 1. FIXED LAYOUT FOR 5 IMAGES (Keeping your exact logic) */
+        /* 1. FIXED IMAGE GRID (3 ON TOP, 2 ON BOTTOM) */
         .hero-container {
             display: flex;
             flex-direction: column;
@@ -38,7 +38,7 @@
         .section { display: none; }
         .active { display: block !important; }
 
-        /* 3. TEAM GRID */
+        /* 3. TEAM GRID FOR ABOUT US */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -55,7 +55,7 @@
         .member-name { font-weight: 900; color: var(--text-color); }
         .member-role { font-size: 10px; color: var(--accent-pink); font-weight: 700; text-transform: uppercase; }
 
-        /* 4. BUTTONS & UI */
+        /* 4. YOUR ORIGINAL BUTTONS */
         .gradient-btn {
             background: linear-gradient(135deg, var(--accent-pink) 0%, #8E24AA 100%) !important;
             color: white !important;
@@ -156,7 +156,7 @@
 </div>
 
 <script>
-    // Keeping your exact question logic
+    /* YOUR ORIGINAL SCRIPT & QUESTIONS */
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening", "Group study", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts/Videos", "Lectures", "Group activities", "Self-review"] },
