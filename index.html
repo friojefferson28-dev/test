@@ -6,63 +6,61 @@
     <title>Informed and Proud | LearnStyle+</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* GRID LAYOUT FOR IMAGES */
-        .hero-images {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+        /* 1. LAYOUT FOR 5 IMAGES (3 on top, 2 on bottom) */
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
             width: 100%;
             max-width: 600px;
+            margin: 20px auto;
         }
-        .img-box {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-            border: 3px solid var(--accent-pink);
-            border-radius: 8px;
+        .top-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
         }
-        /* Makes the 4th and 5th images sit side-by-side at the bottom */
-        .img-span-2 {
-            grid-column: span 1.5; 
-            height: 180px;
-        }
-        /* Flex fallback for the span to ensure they stay side-by-side */
         .bottom-row {
-            grid-column: span 3;
-            display: flex;
-            gap: 15px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
-        .bottom-row img {
-            width: 50%;
-            height: 180px;
+        .hero-container img {
+            width: 100%;
+            height: 140px;
             object-fit: cover;
             border: 3px solid var(--accent-pink);
-            border-radius: 8px;
+            border-radius: 10px;
         }
+        .bottom-row img { height: 180px; }
 
+        /* 2. SECTION HANDLING */
+        .section { display: none; }
+        .active { display: block !important; }
+
+        /* 3. TEAM GRID */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+        .member-card {
+            padding: 15px;
+            background: var(--light-pink);
+            border: 1px solid var(--base-pink);
+            text-align: center;
+            border-radius: 10px;
+        }
+        .member-name { font-weight: 900; color: var(--text-color); }
+        .member-role { font-size: 10px; color: var(--accent-pink); font-weight: 700; text-transform: uppercase; }
+
+        /* 4. BUTTONS & UI */
         .gradient-btn {
             background: linear-gradient(135deg, var(--accent-pink) 0%, #8E24AA 100%) !important;
             color: white !important;
             border: none !important;
-            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
         }
-
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
-        }
-        .member-card {
-            padding: 20px;
-            border: 2px solid var(--base-pink);
-            background: var(--light-pink);
-            text-align: center;
-        }
-        .member-name { font-weight: 900; display: block; color: var(--text-color); }
-        .member-role { font-size: 10px; color: var(--accent-pink); font-weight: 700; text-transform: uppercase; }
-
-        .section { display: none; }
     </style>
 </head>
 <body class="fade-in">
@@ -70,82 +68,89 @@
 <div id="pBar" class="progress-bar"></div>
 
 <header>
-    <div class="logo-area" onclick="location.reload()" style="cursor:pointer;">
+    <div class="logo-area" onclick="nav('pg1')" style="cursor:pointer;">
         <div style="font-size: 35px;">📖</div>
         <div>LEARNSTYLE+<br><span style="color: var(--accent-pink);">.COM</span></div>
     </div>
     <div class="nav-links">
-        <span onclick="document.getElementById('about-section').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">ABOUT</span>
+        <span onclick="nav('pgAbout')" style="cursor:pointer; font-weight: 800;">ABOUT</span>
         <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')">🌓 MODE</button>
     </div>
 </header>
 
-<div id="pg1">
-    <div class="hero-wrapper">
+<div id="pg1" class="section active">
+    <div class="hero-wrapper" style="text-align: center;">
         <div class="hero-text">
-            <div class="accent-square"></div>
+            <div class="accent-square" style="margin: 0 auto;"></div>
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
             <p>TITLE: INFORMED AND PROUD: FIGHTING MISINFORMATION IN THE DIGITAL AGE</p>
-            <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
-        </div>
-        
-        <div class="hero-images">
-            <img src="image1.jpg" class="img-box" alt="1">
-            <img src="image2.jpg" class="img-box" alt="2">
-            <img src="image3.jpg" class="img-box" alt="3">
-            <div class="bottom-row">
-                <img src="image4.jpg" alt="4">
-                <img src="image5.jpg" alt="5">
+            
+            <div class="hero-container">
+                <div class="top-row">
+                    <img src="image1.jpg" alt="Study 1">
+                    <img src="image2.jpg" alt="Study 2">
+                    <img src="image3.jpg" alt="Study 3">
+                </div>
+                <div class="bottom-row">
+                    <img src="image4.jpg" alt="Study 4">
+                    <img src="image5.jpg" alt="Study 5">
+                </div>
             </div>
+
+            <div class="proceed-link" onclick="nav('pg2')" style="margin-top: 20px;">CLICK HERE TO PROCEED</div>
         </div>
     </div>
+</div>
 
-    <div id="about-section" class="survey-card" style="margin-top: 60px; margin-bottom: 80px;">
-        <h2 style="font-weight: 900; color: var(--accent-pink); text-transform: uppercase;">About LearnStyle+</h2>
-        <p style="font-size: 15px; line-height: 1.7;">
+<div id="pgAbout" class="section">
+    <div class="survey-card">
+        <h2 style="font-weight: 900; color: var(--accent-pink); text-transform: uppercase; border-left: 5px solid var(--accent-pink); padding-left: 15px;">About LearnStyle+</h2>
+        
+        <p style="font-size: 16px; line-height: 1.8; margin-top: 20px;">
             <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
         </p>
-        <p style="font-size: 15px; line-height: 1.7; margin-top: 15px;">
-            Made by students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>, this project aims to see the validity of this website in identifying students'—specifically from EAC-Manila—Cognitive Learning Style.
+        
+        <p style="font-size: 16px; line-height: 1.8; margin-top: 15px;">
+            <strong>LearnStyle+.com</strong> is made by the students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
         </p>
 
-        <hr style="border: 1px solid var(--base-pink); margin: 30px 0;">
-        <h3 style="font-weight: 900; font-size: 16px; text-transform: uppercase; text-align: center;">The Research Team</h3>
+        <hr style="border: 1px solid var(--base-pink); margin: 40px 0;">
+        <h3 style="text-align: center; font-weight: 900; text-transform: uppercase;">The Research Team</h3>
         <div class="team-grid">
-            <div class="member-card"><span class="member-name">TEAM LEADER</span><span class="member-role">Management</span></div>
-            <div class="member-card"><span class="member-name">LEAD DEVELOPER</span><span class="member-role">Logic & UI</span></div>
-            <div class="member-card"><span class="member-name">RESEARCHER</span><span class="member-role">Data</span></div>
-            <div class="member-card"><span class="member-name">RESEARCHER</span><span class="member-role">Data</span></div>
-            <div class="member-card"><span class="member-name">RESEARCHER</span><span class="member-role">Data</span></div>
+            <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Team Leader</span></div>
+            <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Lead Developer</span></div>
+            <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">NAME</span><br><span class="member-role">Researcher</span></div>
         </div>
+        <div class="proceed-link" onclick="nav('pg1')" style="margin-top: 40px; text-align: center;">[ BACK TO HOME ]</div>
     </div>
 </div>
 
 <div id="pg2" class="section">
     <div class="survey-card">
         <h1 style="font-weight: 900; border-left: 8px solid var(--accent-pink); padding-left: 20px; margin-bottom: 40px;">STUDENT PROFILE</h1>
-        <div class="q-box" style="border:none;"><p>FULL NAME (OPTIONAL)</p><input type="text" id="stuName"></div>
-        <div class="q-box" style="border:none;"><p>AGE</p><input type="number" id="stuAge" value="17"></div>
-        <div class="q-box" style="border:none;"><p>GENDER</p>
-            <select id="stuGender">
-                <option value="Male">MALE</option><option value="Female">FEMALE</option><option value="Other">OTHER</option>
-            </select>
+        <div class="q-box" style="border:none;">
+            <p>FULL NAME (OPTIONAL)</p><input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color);">
+            <p style="margin-top:20px;">AGE</p><input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid var(--text-color); background: var(--card-bg); color: var(--text-color);">
         </div>
-        <div class="proceed-link" onclick="nav('pg3')" style="margin-top: 40px; display: block; text-align: center;">[ START THE TEST ]</div>
+        <div class="proceed-link" onclick="nav('pg3')" style="margin-top: 30px; text-align: center;">[ START THE TEST ]</div>
     </div>
 </div>
 
 <div id="pg3" class="section">
     <div class="survey-card">
-        <h2 id="greet" style="font-weight: 900; color: var(--accent-pink);"></h2>
         <form id="styleForm" onchange="updateProg()">
             <div id="questions-container"></div>
             <button type="button" class="admin-btn gradient-btn" onclick="showResults()" style="width:100%; margin-top:50px; height: 70px;">GENERATE RESULT</button>
         </form>
+
         <div id="resBox" style="display:none; margin-top: 50px; border: 4px solid var(--accent-pink); padding: 40px; background: var(--light-pink);">
-            <h2 id="resTitle" style="font-weight: 900; text-align: center;"></h2>
-            <ul id="resTips" style="line-height: 2;"></ul>
-            <button onclick="location.reload()" class="admin-btn" style="width:100%; margin-top: 20px;">RETAKE SURVEY</button>
+            <h2 id="resTitle" style="font-weight: 900; text-align: center; font-size: 2.5rem; margin-top: 0;"></h2>
+            <hr style="border: 1px solid var(--text-color);">
+            <p style="font-weight: 800; font-size: 1.2rem;">RECOMMENDATIONS:</p>
+            <ul id="resTips" style="line-height: 2; font-size: 1.1rem; font-weight: 600;"></ul>
+            <button onclick="location.reload()" class="admin-btn" style="width:100%; margin-top: 20px; background: transparent; color: var(--text-color);">RETAKE SURVEY</button>
         </div>
     </div>
 </div>
@@ -179,10 +184,12 @@
         { q: "To finish a task, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using a checklist", "Verbal check-ins", "Shared deadlines", "Self-pacing"] }
     ];
 
-    function nav(id) { 
-        document.querySelectorAll('.section, #pg1').forEach(s => s.style.display = 'none'); 
-        document.getElementById(id).style.display = 'block'; 
-        window.scrollTo(0,0); 
+    const singleTips = { visual: ["Infographics", "Videos", "Mind maps"], auditory: ["Note-taking", "Podcasts", "Lectures"], interpersonal: ["Collaboration", "Study groups"], independent: ["Diaries", "Self-evaluation"] };
+
+    function nav(id) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0, 0);
     }
 
     window.onload = function() {
@@ -190,24 +197,37 @@
         questions.forEach((item, index) => {
             let qNum = index + 1;
             let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
-            item.options.forEach((opt, idx) => { html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[idx]}</label>`; });
+            item.options.forEach((opt, idx) => {
+                html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[idx]}</label>`;
+            });
             html += `</div>`;
             container.innerHTML += html;
         });
     };
 
-    function updateProg() { 
-        const data = new FormData(document.getElementById('styleForm')); 
-        document.getElementById('pBar').style.width = (Array.from(data.keys()).length / 25 * 100) + "%"; 
+    function updateProg() {
+        const data = new FormData(document.getElementById('styleForm'));
+        document.getElementById('pBar').style.width = (Array.from(data.keys()).length / 25 * 100) + "%";
     }
 
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
-        for(let value of data.values()) { scores[value]++; }
+        let count = 0;
+        for(let value of data.values()) { scores[value]++; count++; }
+        
+        if(count < 25) { alert("Please answer all 25 questions!"); return; }
+
         let sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
-        document.getElementById('resTitle').innerText = "YOUR STYLE: " + sorted[0][0].toUpperCase();
+        let topStyle = sorted[0][0];
+
+        document.getElementById('resTitle').innerText = "STYLE: " + topStyle.toUpperCase();
+        const tips = document.getElementById('resTips');
+        tips.innerHTML = "";
+        singleTips[topStyle].forEach(t => { tips.innerHTML += `<li>${t}</li>`; });
+        
         document.getElementById('resBox').style.display = 'block';
+        document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
 </script>
 </body>
