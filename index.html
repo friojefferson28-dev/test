@@ -4,298 +4,226 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informed and Proud | LearnStyle+</title>
+    <link rel="stylesheet" href="style.css">
     <style>
-        :root {
-            --accent-pink: #E91E63;
-            --light-pink: #fff1f6;
-            --base-pink: #f8bbd0;
-            --text-color: #333;
+        .gradient-btn {
+            background: linear-gradient(135deg, #E91E63 0%, #8E24AA 100%) !important;
+            color: white !important;
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(233, 30, 99, 0.3);
+            transition: 0.3s !important;
+            cursor: pointer;
         }
+        .gradient-btn:hover { transform: translateY(-3px) scale(1.02) !important; }
 
-        body { 
-            font-family: 'Arial Black', sans-serif; 
-            margin: 0; 
-            background-color: #fdf2f8; 
-            background-image: radial-gradient(var(--base-pink) 0.5px, transparent 0.5px);
-            background-size: 20px 20px;
+        .image-row {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+            justify-content: center;
         }
-
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 5%; background: white; border-bottom: 4px solid var(--accent-pink); 
-            position: sticky; top: 0; z-index: 1000;
-        }
-
-        /* 5-IMAGE GRID (3 TOP, 2 BOTTOM) */
-        .hero-container {
-            display: flex; flex-direction: column; gap: 10px;
-            width: 100%; max-width: 550px; margin: 25px auto;
-        }
-        .top-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .bottom-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-        .hero-container img {
-            width: 100%; height: 140px; object-fit: cover;
-            border: 3px solid var(--accent-pink); border-radius: 12px;
-        }
-        .bottom-row img { height: 180px; }
-
-        .glass-card {
-            background: white; border-radius: 25px;
-            padding: 40px; margin: 20px auto; max-width: 800px;
-            border: 1px solid var(--base-pink);
-            box-shadow: 0 10px 30px rgba(233, 30, 99, 0.1);
-        }
-
-        .diamond-btn {
-            background: linear-gradient(135deg, var(--accent-pink), #C2185B);
-            color: white; padding: 20px 40px; border-radius: 50px;
-            font-weight: 900; border: none; cursor: pointer; display: inline-block;
-        }
-
-        .section { display: none; padding: 20px 5%; }
-        .active { display: block !important; }
-
-        .q-box {
-            background: var(--light-pink); padding: 25px; 
-            border-radius: 20px; margin-bottom: 25px; border: 1px solid var(--base-pink);
-        }
-        label {
-            display: block; background: white; padding: 15px;
-            margin: 10px 0; border-radius: 12px; border: 1px solid #ddd;
-            font-family: Arial, sans-serif; font-weight: bold; cursor: pointer;
+        .image-row img {
+            width: 45%; 
+            height: 280px;
+            object-fit: cover;
+            border: 4px solid #E91E63;
+            border-radius: 10px;
         }
 
         .team-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 15px; margin-top: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
         }
         .member-card {
-            padding: 15px; background: var(--light-pink); border-radius: 12px; text-align: center; border: 1px solid var(--base-pink);
+            padding: 20px;
+            border: 2px solid #f8bbd0;
+            background: #fff1f6;
+            text-align: center;
+        }
+        .member-name { font-weight: 900; font-size: 16px; display: block; color: #333; }
+        .member-role { font-size: 11px; color: #E91E63; font-weight: 700; text-transform: uppercase; }
+
+        .section { display: none; }
+        
+        @media (max-width: 768px) {
+            .image-row { flex-direction: column; align-items: center; }
+            .image-row img { width: 90%; }
         }
     </style>
 </head>
-<body>
+<body class="fade-in">
+
+<div id="pBar" class="progress-bar"></div>
 
 <header>
-    <div onclick="nav('home')" style="cursor:pointer;">
-        <span style="font-weight: 900; font-size: 22px;">LEARNSTYLE+<span style="color:var(--accent-pink)">.COM</span></span>
+    <div class="logo-area" onclick="location.reload()" style="cursor:pointer;">
+        <div style="font-size: 35px;">📖</div>
+        <div>LEARNSTYLE+<br><span style="color: #E91E63;">.COM</span></div>
     </div>
-    <div style="font-weight: 900; cursor: pointer;" onclick="nav('about')">ABOUT US</div>
+    <div class="nav-links">
+        <span onclick="document.getElementById('about-section').scrollIntoView({behavior:'smooth'})" style="cursor:pointer;">ABOUT</span>
+        <button class="theme-toggle" onclick="document.body.classList.toggle('dark-mode')">🌓 MODE</button>
+    </div>
 </header>
 
-<div id="home" class="section active">
-    <div style="text-align: center;">
-        <h1 style="font-size: 3rem;">LEARN YOUR<br>LEARNING STYLE!</h1>
-        <p style="font-weight: bold; color: var(--accent-pink);">INFORMED AND PROUD: FIGHTING MISINFORMATION</p>
-        <div class="hero-container">
-            <div class="top-row"><img src="image1.jpg"><img src="image2.jpg"><img src="image3.jpg"></div>
-            <div class="bottom-row"><img src="image4.jpg"><img src="image5.jpg"></div>
+<div id="pg1">
+    <div class="hero-wrapper">
+        <div class="hero-text">
+            <div class="accent-square"></div>
+            <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
+            <p>TITLE: INFORMED AND PROUD: FIGHTING MISINFORMATION IN THE DIGITAL AGE</p>
+            <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
         </div>
-        <button class="diamond-btn" onclick="nav('test')">CLICK HERE TO PROCEED</button>
+        
+        <div class="image-row">
+            <img src="group-study.jpg" alt="Collaborative Learning">
+            <img src="solo-study.jpg" alt="Cognitive Focus">
+        </div>
     </div>
-</div>
 
-<div id="about" class="section">
-    <div class="glass-card">
-        <h2 style="color:var(--accent-pink); border-left: 8px solid var(--accent-pink); padding-left: 15px;">ABOUT US</h2>
-        <p>Created by 12 STEM 6 | Group Technology 1 (EAC-Manila).</p>
+    <div id="about-section" class="survey-card" style="margin-top: 60px; margin-bottom: 80px;">
+        <h2 style="font-weight: 900; color: #E91E63; text-transform: uppercase;">About LearnStyle+</h2>
+        <p style="font-size: 15px; font-weight: 500; line-height: 1.7;">
+            <strong>LearnStyle+.com</strong> is a specialized diagnostic platform that identifies your unique learning style through 25 research-based questions. Beyond identification, the site provides tailored recommendations to help you assess and apply your results effectively in your academic journey.
+        </p>
+        <p style="font-size: 15px; font-weight: 500; line-height: 1.7; margin-top: 15px;">
+            This project is developed by the students of <strong>Emilio Aguinaldo College-Manila (12 STEM 6, Group Technology 1)</strong>. Our research aims to validate this tool's effectiveness in identifying the Cognitive Learning Styles of students, specifically within the EAC-Manila community.
+        </p>
+
+        <hr style="border: 1px solid #f8bbd0; margin: 40px 0;">
+        
+        <h3 style="font-weight: 900; font-size: 18px; text-transform: uppercase; text-align: center;">Our Team (Group Technology 1)</h3>
         <div class="team-grid">
-            <div class="member-card"><strong>NAME</strong><br><small>Leader</small></div>
-            <div class="member-card"><strong>NAME</strong><br><small>Developer</small></div>
-            <div class="member-card"><strong>NAME</strong><br><small>Researcher</small></div>
-            <div class="member-card"><strong>NAME</strong><br><small>Researcher</small></div>
-            <div class="member-card"><strong>NAME</strong><br><small>Researcher</small></div>
+            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Team Leader</span></div>
+            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Lead Developer</span></div>
+            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Researcher</span></div>
+            <div class="member-card"><span class="member-name">NAME HERE</span><span class="member-role">Researcher</span></div>
         </div>
-        <center><button class="diamond-btn" style="margin-top: 30px; background: #333;" onclick="nav('home')">BACK HOME</button></center>
     </div>
 </div>
 
-<div id="test" class="section">
-    <div class="glass-card">
-        <h1 style="border-left: 8px solid var(--accent-pink); padding-left: 15px;">STUDENT TEST</h1>
-        <form id="quizForm">
-            <div class="q-box"><p>1. How do you learn best?</p>
-                <label><input type="radio" name="q1" value="visual" required> Seeing diagrams</label>
-                <label><input type="radio" name="q1" value="auditory"> Listening to lectures</label>
-                <label><input type="radio" name="q1" value="interpersonal"> Group study</label>
-                <label><input type="radio" name="q1" value="independent"> Studying alone</label></div>
+<div id="pg2" class="section">
+    <div class="survey-card">
+        <h1 style="font-weight: 900; border-left: 8px solid #E91E63; padding-left: 20px; margin-bottom: 40px;">STUDENT PROFILE</h1>
+        <div class="q-box" style="border:none;"><p>FULL NAME (OPTIONAL)</p><input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid #333; background: #fff; color: #333;"></div>
+        <div class="q-box" style="border:none;"><p>AGE</p><input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid #333; background: #fff; color: #333;"></div>
+        <div class="q-box" style="border:none;"><p>GENDER</p>
+            <select id="stuGender" style="width:100%; padding:15px; border:2px solid #333; background: #fff; color: #333; height: 55px;">
+                <option value="Male">MALE</option><option value="Female">FEMALE</option><option value="Other">OTHER</option>
+            </select>
+        </div>
+        <div class="proceed-link" onclick="nav('pg3')" style="margin-top: 40px; display: block; text-align: center;">[ START THE TEST ]</div>
+    </div>
+</div>
 
-            <div class="q-box"><p>2. What helps you remember lessons?</p>
-                <label><input type="radio" name="q2" value="visual"> Charts/Videos</label>
-                <label><input type="radio" name="q2" value="auditory"> Lectures</label>
-                <label><input type="radio" name="q2" value="interpersonal"> Group activities</label>
-                <label><input type="radio" name="q2" value="independent"> Self-review</label></div>
-
-            <div class="q-box"><p>3. In class, you prefer:</p>
-                <label><input type="radio" name="q3" value="visual"> PowerPoints</label>
-                <label><input type="radio" name="q3" value="auditory"> Class discussions</label>
-                <label><input type="radio" name="q3" value="interpersonal"> Partner work</label>
-                <label><input type="radio" name="q3" value="independent"> Working solo</label></div>
-
-            <div class="q-box"><p>4. During free time, you:</p>
-                <label><input type="radio" name="q4" value="visual"> Watch movies</label>
-                <label><input type="radio" name="q4" value="auditory"> Listen to music</label>
-                <label><input type="radio" name="q4" value="interpersonal"> Meet friends</label>
-                <label><input type="radio" name="q4" value="independent"> Read books solo</label></div>
-
-            <div class="q-box"><p>5. You solve problems by:</p>
-                <label><input type="radio" name="q5" value="visual"> Drawing it out</label>
-                <label><input type="radio" name="q5" value="auditory"> Talking it out</label>
-                <label><input type="radio" name="q5" value="interpersonal"> Asking for help</label>
-                <label><input type="radio" name="q5" value="independent"> Thinking alone</label></div>
-
-            <div class="q-box"><p>6. Instructions are better when:</p>
-                <label><input type="radio" name="q6" value="visual"> Illustrated</label>
-                <label><input type="radio" name="q6" value="auditory"> Spoken</label>
-                <label><input type="radio" name="q6" value="interpersonal"> Done together</label>
-                <label><input type="radio" name="q6" value="independent"> Written in detail</label></div>
-
-            <div class="q-box"><p>7. To understand a concept, you need:</p>
-                <label><input type="radio" name="q7" value="visual"> A video demo</label>
-                <label><input type="radio" name="q7" value="auditory"> A podcast</label>
-                <label><input type="radio" name="q7" value="interpersonal"> A study session</label>
-                <label><input type="radio" name="q7" value="independent"> Time to reflect</label></div>
-
-            <div class="q-box"><p>8. You communicate best via:</p>
-                <label><input type="radio" name="q8" value="visual"> Email/Text</label>
-                <label><input type="radio" name="q8" value="auditory"> Phone calls</label>
-                <label><input type="radio" name="q8" value="interpersonal"> Face-to-face</label>
-                <label><input type="radio" name="q8" value="independent"> Written reports</label></div>
-
-            <div class="q-box"><p>9. Your ideal project is:</p>
-                <label><input type="radio" name="q9" value="visual"> Designing a poster</label>
-                <label><input type="radio" name="q9" value="auditory"> Giving a speech</label>
-                <label><input type="radio" name="q9" value="interpersonal"> Group project</label>
-                <label><input type="radio" name="q9" value="independent"> Personal essay</label></div>
-
-            <div class="q-box"><p>10. You stay focused when:</p>
-                <label><input type="radio" name="q10" value="visual"> Watching a demo</label>
-                <label><input type="radio" name="q10" value="auditory"> Listening to audio</label>
-                <label><input type="radio" name="q10" value="interpersonal"> Learning with others</label>
-                <label><input type="radio" name="q10" value="independent"> Working solo</label></div>
-
-            <div class="q-box"><p>11. You find focus by:</p>
-                <label><input type="radio" name="q11" value="visual"> Highlighting notes</label>
-                <label><input type="radio" name="q11" value="auditory"> Listening to background music</label>
-                <label><input type="radio" name="q11" value="interpersonal"> Peer discussion</label>
-                <label><input type="radio" name="q11" value="independent"> Quiet silence</label></div>
-
-            <div class="q-box"><p>12. In a museum, you like:</p>
-                <label><input type="radio" name="q12" value="visual"> Looking at artifacts</label>
-                <label><input type="radio" name="q12" value="auditory"> Audio guides</label>
-                <label><input type="radio" name="q12" value="interpersonal"> Tour groups</label>
-                <label><input type="radio" name="q12" value="independent"> Walking alone</label></div>
-
-            <div class="q-box"><p>13. You remember people by:</p>
-                <label><input type="radio" name="q13" value="visual"> Their faces</label>
-                <label><input type="radio" name="q13" value="auditory"> Their voices</label>
-                <label><input type="radio" name="q13" value="interpersonal"> Conversations had</label>
-                <label><input type="radio" name="q13" value="independent"> Their actions solo</label></div>
-
-            <div class="q-box"><p>14. Tests are easier with:</p>
-                <label><input type="radio" name="q14" value="visual"> Map labeling</label>
-                <label><input type="radio" name="q14" value="auditory"> Oral exams</label>
-                <label><input type="radio" name="q14" value="interpersonal"> Group quizzes</label>
-                <label><input type="radio" name="q14" value="independent"> Multiple choice</label></div>
-
-            <div class="q-box"><p>15. To memorize a list, you:</p>
-                <label><input type="radio" name="q15" value="visual"> Visualize it</label>
-                <label><input type="radio" name="q15" value="auditory"> Say it aloud</label>
-                <label><input type="radio" name="q15" value="interpersonal"> Have someone quiz you</label>
-                <label><input type="radio" name="q15" value="independent"> Write it repeatedly</label></div>
-
-            <div class="q-box"><p>16. When stressed, you:</p>
-                <label><input type="radio" name="q16" value="visual"> Watch a movie</label>
-                <label><input type="radio" name="q16" value="auditory"> Listen to music</label>
-                <label><input type="radio" name="q16" value="interpersonal"> Call a friend</label>
-                <label><input type="radio" name="q16" value="independent"> Walk alone</label></div>
-
-            <div class="q-box"><p>17. Your notes are full of:</p>
-                <label><input type="radio" name="q17" value="visual"> Colors/Arrows</label>
-                <label><input type="radio" name="q17" value="auditory"> Quotes</label>
-                <label><input type="radio" name="q17" value="interpersonal"> Peer ideas</label>
-                <label><input type="radio" name="q17" value="independent"> Personal reflections</label></div>
-
-            <div class="q-box"><p>18. Success to you is:</p>
-                <label><input type="radio" name="q18" value="visual"> Seeing the goal</label>
-                <label><input type="radio" name="q18" value="auditory"> Hearing praise</label>
-                <label><input type="radio" name="q18" value="interpersonal"> Helping a team</label>
-                <label><input type="radio" name="q18" value="independent"> Mastering a skill</label></div>
-
-            <div class="q-box"><p>19. You find ideas when:</p>
-                <label><input type="radio" name="q19" value="visual"> Browsing Pinterest</label>
-                <label><input type="radio" name="q19" value="auditory"> Listening to a talk</label>
-                <label><input type="radio" name="q19" value="interpersonal"> Brainstorming</label>
-                <label><input type="radio" name="q19" value="independent"> Daydreaming</label></div>
-
-            <div class="q-box"><p>20. You dislike learning when:</p>
-                <label><input type="radio" name="q20" value="visual"> It's dull/plain</label>
-                <label><input type="radio" name="q20" value="auditory"> It's dead silent</label>
-                <label><input type="radio" name="q20" value="interpersonal"> It's isolated</label>
-                <label><input type="radio" name="q20" value="independent"> It's too noisy</label></div>
-
-            <div class="q-box"><p>21. Studying for exams involves:</p>
-                <label><input type="radio" name="q21" value="visual"> Flashcards</label>
-                <label><input type="radio" name="q21" value="auditory"> Reading notes aloud</label>
-                <label><input type="radio" name="q21" value="interpersonal"> Quizzing friends</label>
-                <label><input type="radio" name="q21" value="independent"> Re-reading books solo</label></div>
-
-            <div class="q-box"><p>22. You follow news by:</p>
-                <label><input type="radio" name="q22" value="visual"> Watching TV/Video</label>
-                <label><input type="radio" name="q22" value="auditory"> Radio/Podcasts</label>
-                <label><input type="radio" name="q22" value="interpersonal"> Social media talk</label>
-                <label><input type="radio" name="q22" value="independent"> Reading articles solo</label></div>
-
-            <div class="q-box"><p>23. You find focus in a:</p>
-                <label><input type="radio" name="q23" value="visual"> Bright room</label>
-                <label><input type="radio" name="q23" value="auditory"> Room with noise</label>
-                <label><input type="radio" name="q23" value="interpersonal"> Shared office</label>
-                <label><input type="radio" name="q23" value="independent"> Silent corner</label></div>
-
-            <div class="q-box"><p>24. New tech is learned by:</p>
-                <label><input type="radio" name="q24" value="visual"> Watching YouTube</label>
-                <label><input type="radio" name="q24" value="auditory"> Hearing advice</label>
-                <label><input type="radio" name="q24" value="interpersonal"> Workshops</label>
-                <label><input type="radio" name="q24" value="independent"> The manual</label></div>
-
-            <div class="q-box"><p>25. To finish a task, you prefer:</p>
-                <label><input type="radio" name="q25" value="visual" required> Checklists</label>
-                <label><input type="radio" name="q25" value="auditory"> Verbal check-ins</label>
-                <label><input type="radio" name="q25" value="interpersonal"> Shared deadlines</label>
-                <label><input type="radio" name="q25" value="independent"> Self-pacing</label></div>
-
-            <button type="button" class="diamond-btn" style="width: 100%; margin-top: 30px;" onclick="calculate()">GENERATE RESULT</button>
+<div id="pg3" class="section">
+    <div class="survey-card">
+        <h2 id="greet" style="font-weight: 900; color: #E91E63;"></h2>
+        <form id="styleForm" onchange="updateProg()">
+            <div id="questions-container"></div>
+            <button type="button" class="admin-btn" onclick="showResults()" style="width:100%; margin-top:50px; height: 70px; font-size: 1.5rem;">GENERATE RESULT</button>
         </form>
 
-        <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid var(--accent-pink); padding: 30px; text-align: center; border-radius: 20px; background: white;">
-            <h2 id="resTitle" style="color:var(--accent-pink)"></h2>
-            <button class="diamond-btn" onclick="location.reload()" style="background:#333;">RETAKE TEST</button>
+        <div id="resBox" style="display:none; margin-top: 50px; border: 4px solid #E91E63; padding: 40px; background: #fff1f6;">
+            <h2 id="resTitle" style="font-weight: 900; text-align: center; font-size: 2.5rem; margin-top: 0;"></h2>
+            <hr style="border: 1px solid #333;">
+            <p style="font-weight: 800; font-size: 1.2rem;">RECOMMENDATIONS:</p>
+            <ul id="resTips" style="line-height: 2; font-size: 1.1rem; font-weight: 600;"></ul>
+            <button onclick="downloadCopy()" class="admin-btn gradient-btn" style="width:100%; margin-top: 20px;">DOWNLOAD COPY (.TXT)</button>
+            <button onclick="location.reload()" class="admin-btn" style="width:100%; margin-top: 10px; background: transparent; color: #333;">RETAKE SURVEY</button>
         </div>
     </div>
 </div>
 
 <script>
-    function nav(id) {
-        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        window.scrollTo(0,0);
+    const questions = [
+        { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening", "Group study", "Studying alone"] },
+        { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts/Videos", "Lectures", "Group activities", "Self-review"] },
+        { q: "In class, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual presentations", "Listening", "Partner work", "Working solo"] },
+        { q: "When studying at home, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch videos", "Read aloud", "Study with friends", "Study alone"] },
+        { q: "You understand better when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["You see an illustration", "Someone explains it", "You discuss it", "You explore it solo"] },
+        { q: "During group work, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Focus on visuals", "Contribute verbally", "Enjoy collaborating", "Prefer solo tasks"] },
+        { q: "When reviewing, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Mind maps", "Audio notes", "Group quizzes", "Personal summaries"] },
+        { q: "You stay focused when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watching a demo", "Listening to audio", "Learning with others", "Working solo"] },
+        { q: "Instructions are better when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Written with images", "Verbal", "Via discussion", "Figured out alone"] },
+        { q: "Learning is fun when:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using media", "Active listening", "Team games", "Self-pacing"] },
+        { q: "You find focus by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using highlighters", "Listening to audio", "Group sessions", "Quiet reflection"] },
+        { q: "You remember info by:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing it", "Hearing it", "Talking about it", "Writing it alone"] },
+        { q: "You prefer projects with:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visual posters", "Verbal reports", "Teamwork", "Independent research"] },
+        { q: "To understand a concept, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look at a diagram", "Listen to a podcast", "Join a study circle", "Read privately"] },
+        { q: "You learn best from:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Infographics", "Live lectures", "Interactive labs", "Personal blogs"] },
+        { q: "When stuck, you first:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Search for a video", "Ask the teacher", "Ask a classmate", "Think it through"] },
+        { q: "Tests are easier with:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Diagram labeling", "Oral exams", "Group projects", "Multiple choice"] },
+        { q: "In a museum, you like:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Exhibits", "Audio guides", "Going with a group", "Wandering alone"] },
+        { q: "In your free time, you enjoy:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Drawing", "Music", "Socializing", "Reading solo"] },
+        { q: "To memorize a list, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visualize", "Repeat aloud", "Have a friend quiz you", "Write it down"] },
+        { q: "In a presentation, you notice:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Slide design", "Speaker's tone", "Audience mood", "Raw facts"] },
+        { q: "You enjoy games that are:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Visually stunning", "Sound-based", "Multiplayer", "Solo strategy"] },
+        { q: "When stressed, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Watch a movie", "Listen to music", "Call a friend", "Walk alone"] },
+        { q: "Your ideal workspace is:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Filled with boards", "Background music", "Open for teamwork", "Private corner"] },
+        { q: "To finish a task, you prefer:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Using a checklist", "Verbal check-ins", "Shared deadlines", "Self-pacing"] }
+    ];
+
+    const singleTips = { visual: ["Infographics", "Videos", "Mind maps"], auditory: ["Note-taking", "Podcasts", "Lectures"], interpersonal: ["Collaboration", "Study groups"], independent: ["Diaries", "Self-evaluation"] };
+    const dualTips = { "auditory_visual": ["Narrated videos", "Animated tutorials"], "interpersonal_visual": ["Collaborative whiteboards", "Group diagrams"], "independent_visual": ["Personal concept maps", "Visual flashcards"], "auditory_interpersonal": ["Oral group exams", "Study group debates"], "auditory_independent": ["Reading notes aloud", "Solo podcasts"], "independent_interpersonal": ["Peer review then solo reflection"] };
+
+    window.onload = function() {
+        const container = document.getElementById('questions-container');
+        questions.forEach((item, index) => {
+            let qNum = index + 1;
+            let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
+            item.options.forEach((opt, idx) => { html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[idx]}</label>`; });
+            html += `</div>`;
+            container.innerHTML += html;
+        });
+    };
+
+    function nav(id) { 
+        document.querySelectorAll('.section, #pg1').forEach(s => s.style.display = 'none'); 
+        document.getElementById(id).style.display = 'block'; 
+        window.scrollTo(0,0); 
     }
 
-    function calculate() {
-        const form = new FormData(document.getElementById('quizForm'));
+    function updateProg() { 
+        const data = new FormData(document.getElementById('styleForm')); 
+        document.getElementById('pBar').style.width = (Array.from(data.keys()).length / 25 * 100) + "%"; 
+    }
+    
+    function showResults() {
+        const form = document.getElementById('styleForm');
+        const data = new FormData(form);
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
-        let answeredCount = 0;
-        for(let value of form.values()) { scores[value]++; answeredCount++; }
-
-        if(answeredCount < 25) { 
-            alert("Please answer all 25 questions!"); 
-            return;
+        let answered = 0;
+        for(let value of data.values()) { if(scores.hasOwnProperty(value)) { scores[value]++; answered++; } }
+        if(answered < 25) { alert("Please complete all 25 questions!"); return; }
+        
+        let sorted = Object.entries(scores).sort((a,b) => b[1] - a[1]);
+        let top1 = sorted[0], top2 = sorted[1];
+        const tipsList = document.getElementById('resTips');
+        tipsList.innerHTML = "";
+        
+        if (top1[1] - top2[1] <= 3) {
+            let pair = [top1[0], top2[0]].sort().join("_");
+            document.getElementById('resTitle').innerText = "DUAL STYLE: " + top1[0].toUpperCase() + " & " + top2[0].toUpperCase();
+            (dualTips[pair] || singleTips[top1[0]]).forEach(t => tipsList.innerHTML += `<li>${t}</li>`);
+        } else {
+            document.getElementById('resTitle').innerText = "STYLE: " + top1[0].toUpperCase();
+            singleTips[top1[0]].forEach(t => tipsList.innerHTML += `<li>${t}</li>`);
         }
-
-        let topStyle = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
-        document.getElementById('resTitle').innerText = "YOUR STYLE: " + topStyle.toUpperCase();
         document.getElementById('resBox').style.display = 'block';
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
+    }
+
+    function downloadCopy() {
+        const name = document.getElementById('stuName').value || "Student";
+        const blob = new Blob([`LEARNSTYLE+ Result\nName: ${name}\nStyle: ${document.getElementById('resTitle').innerText}`], { type: "text/plain" });
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = `Result_${name}.txt`;
+        a.click();
     }
 </script>
 </body>
