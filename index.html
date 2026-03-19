@@ -45,6 +45,7 @@
         .section { display: none; opacity: 0; transition: opacity 0.5s ease; padding: 20px 5%; }
         .section.active { display: block; opacity: 1; }
 
+        /* HERO LAYOUT */
         .hero-container {
             background: var(--card-bg); border: 3px solid var(--text-color);
             margin: 20px auto; max-width: 1100px; padding: 40px;
@@ -56,15 +57,15 @@
         .hero-text p { font-family: Arial; font-weight: 900; text-transform: uppercase; font-size: 14px; }
 
         .hero-images-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .img-box { width: 100%; height: 110px; object-fit: cover; border: 2px solid var(--text-color); }
+        .img-box { width: 100%; height: 110px; object-fit: cover; border: 2px solid var(--text-color); background: #eee; }
         .img-large { grid-column: span 2; height: 160px; }
         .img-tall { grid-column: span 1; height: 160px; }
 
         .side-boxes { display: flex; flex-direction: column; gap: 15px; }
-        .side-box { border: 3px solid var(--accent-pink); border-radius: 12px; padding: 25px 5px; text-align: center; font-size: 11px; font-weight: 900; }
+        .side-box { border: 3px solid var(--accent-pink); border-radius: 12px; padding: 25px 5px; text-align: center; font-size: 11px; font-weight: 900; background: white; }
 
-        /* QUESTION BOX STYLING */
-        .survey-card { background: var(--card-bg); border: 3px solid var(--text-color); padding: 30px; max-width: 850px; margin: 0 auto; }
+        /* SURVEY CARDS & BOXES */
+        .survey-card { background: var(--card-bg); border: 3px solid var(--text-color); padding: 30px; max-width: 850px; margin: 0 auto; box-shadow: 10px 10px 0px rgba(0,0,0,0.1); }
         
         .q-wrapper { 
             background: #ffffff; 
@@ -82,7 +83,7 @@
         }
 
         .option-box:hover { background: var(--bg-light); border-color: var(--accent-pink); transform: translateX(5px); }
-        .option-box input { margin-right: 15px; transform: scale(1.3); }
+        .option-box input { margin-right: 15px; transform: scale(1.2); }
 
         .admin-btn { background: var(--maroon); color: white; padding: 18px; border: 2px solid black; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; }
         .progress-bar { height: 10px; background: var(--accent-pink); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
@@ -98,7 +99,8 @@
     </div>
     <div style="display: flex; gap: 20px; align-items: center;">
         <span onclick="nav('pg1')" style="cursor:pointer; font-weight: 900;">HOME</span>
-        <button onclick="document.body.classList.toggle('dark-mode')" style="cursor:pointer; font-weight: 900; background: none; border: 2px solid var(--text-color);">MODE</button>
+        <span onclick="nav('aboutPage')" style="cursor:pointer; font-weight: 900;">ABOUT US</span>
+        <button onclick="document.body.classList.toggle('dark-mode')" style="cursor:pointer; font-weight: 900; background: none; border: 2px solid var(--text-color); padding: 5px 10px;">MODE</button>
     </div>
 </header>
 
@@ -106,20 +108,32 @@
     <div class="hero-container">
         <div class="hero-text">
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p>IDENTIFY YOUR STYLE THROUGH 25 RESEARCH QUESTIONS.</p>
-            <button class="admin-btn" onclick="nav('pg2')" style="margin-top: 20px;">START TEST RUN</button>
+            <p>LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.</p>
+            <p onclick="nav('pg2')" style="text-decoration: underline; cursor:pointer; font-size: 18px; color: var(--maroon); margin-top: 20px; font-weight: 900;">CLICK HERE TO PROCEED</p>
         </div>
         <div class="hero-images-grid">
-            <img src="image1.jpg" class="img-box">
-            <img src="image2.jpg" class="img-box">
-            <img src="image3.jpg" class="img-box">
-            <img src="image4.jpg" class="img-box img-large">
-            <img src="image5.jpg" class="img-box img-tall">
+            <img src="image1.jpg" alt="Img 1" class="img-box">
+            <img src="image2.jpg" alt="Img 2" class="img-box">
+            <img src="image3.jpg" alt="Img 3" class="img-box">
+            <img src="image4.jpg" alt="Img 4" class="img-box img-large">
+            <img src="image5.jpg" alt="Img 5" class="img-box img-tall">
         </div>
         <div class="side-boxes">
             <div class="side-box">GROUP<br>STUDY</div>
             <div class="side-box">SOLO<br>STUDY</div>
         </div>
+    </div>
+</div>
+
+<div id="aboutPage" class="section">
+    <div class="survey-card">
+        <h2 style="border-left: 10px solid var(--accent-pink); padding-left: 15px;">ABOUT US</h2>
+        <div style="font-family: Arial; font-weight: bold; line-height: 1.6;">
+            <p>LearnStyle+.com is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!</p>
+            
+            <p>LearnStyle+.com is made by the students of Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.</p>
+        </div>
+        <button class="admin-btn" onclick="nav('pg1')" style="margin-top: 30px;">BACK TO HOME</button>
     </div>
 </div>
 
@@ -134,8 +148,9 @@
         <select id="stuGender" style="width:100%; padding:15px; margin:10px 0 30px; border:3px solid black; box-sizing: border-box;">
             <option value="Male">Male</option>
             <option value="Female">Female</option>
+            <option value="Other">Other</option>
         </select>
-        <button class="admin-btn" onclick="nav('pg3')">BEGIN QUESTIONS</button>
+        <button class="admin-btn" onclick="nav('pg3')">START QUESTIONNAIRE</button>
     </div>
 </div>
 
@@ -144,20 +159,20 @@
         <h2>QUESTIONNAIRE</h2>
         <form id="styleForm" onchange="updateProg()">
             <div id="q-container"></div>
-            <button type="button" class="admin-btn" id="finishBtn" onclick="finish()">SUBMIT RESULTS</button>
+            <button type="button" class="admin-btn" id="finishBtn" onclick="finish()">SUBMIT & SAVE</button>
         </form>
         <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid var(--text-color); padding: 30px; text-align: center; background: white;">
             <h2 id="resTitle" style="color: var(--accent-pink);"></h2>
-            <p id="resDesc">Your data has been sent to the Google Sheet.</p>
-            <button onclick="location.reload()" class="admin-btn" style="width:auto; padding: 15px 30px;">RESTART</button>
+            <p id="resDesc" style="font-family: Arial; font-weight: bold;">Thank you for participating in our EAC research!</p>
+            <button onclick="location.reload()" class="admin-btn" style="width:auto; padding: 15px 30px;">RETAKE</button>
         </div>
     </div>
 </div>
 
 <script>
-    // Paste your Google Script Web App URL here
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyi85rE20-25eZ1S4Yy9wY9YvU9X7e9/exec"; 
 
+    // Full 25 questions integrated
     const questions = [
         { q: "When learning something new, do you prefer to:", v: "Watch a video or diagram", a: "Listen to a verbal explanation", p: "Discuss it with a partner", i: "Read about it on your own" },
         { q: "Which best describes your study area?", v: "Full of charts and colorful notes", a: "Quiet, or has background music/audio", p: "In a shared space or library with others", i: "Personal desk with minimal distraction" },
@@ -165,25 +180,25 @@
         { q: "When solving a math problem, you usually:", v: "Draw out the steps or shapes", a: "Talk yourself through the logic", p: "Ask a classmate for their method", i: "Solve it quietly by yourself" },
         { q: "In a classroom setting, you focus best when:", v: "The teacher uses a projector/board", a: "The teacher gives a clear lecture", p: "There are group activities", i: "There is silent individual work" },
         { q: "When studying for an exam, you prefer to:", v: "Review highlighted notes and maps", a: "Read your notes out loud to yourself", p: "Study with a group and quiz each other", i: "Study alone in a silent room" },
-        { q: "During a presentation, you are most likely to notice:", v: "The quality of the slides and images", a: "The tone and clarity of the speaker", p: "How the audience is interacting", i: "The core facts and details presented" },
-        { q: "When following directions to a new place, you prefer:", v: "Looking at a map", a: "Hearing someone tell you the way", p: "Following someone else who knows", i: "Reading written step-by-step notes" },
-        { q: "What helps you focus most when doing difficult work?", v: "Having a clean, organized visual space", a: "Listening to instrumental background music", p: "Being around other people who are working", i: "Complete silence and zero interruptions" },
-        { q: "When you are stuck on a task, you usually:", v: "Look for a tutorial or example picture", a: "Ask someone to explain it again", p: "Ask a friend to work on it with you", i: "Take a break and try to figure it out alone" },
-        { q: "In your free time, you would rather:", v: "Watch a movie or browse photos", a: "Listen to a podcast or music", p: "Go out and talk with friends", i: "Read a book or work on a hobby alone" },
-        { q: "How do you prefer to receive feedback?", v: "Seeing written comments or marks", a: "Having a one-on-one conversation", p: "Discussing it in a group session", i: "Reading a private report or email" },
-        { q: "When learning a new software or game, you:", v: "Look at screenshots and interface icons", a: "Listen to the tutorial voiceover", p: "Play with friends and learn together", i: "Read the instruction manual or 'help' file" },
-        { q: "What is your favorite type of school project?", v: "Designing a poster or video", a: "Giving an oral presentation", p: "Collaborating on a large group mural", i: "Writing a research paper or essay" },
-        { q: "When you recall a memory, it is usually:", v: "A vivid mental picture", a: "The sounds and words spoken", p: "The feeling of being with the people", i: "The facts of what happened" },
-        { q: "Your notes usually consist of:", v: "Diagrams, arrows, and colors", a: "Keywords and short phrases to say", p: "Shared thoughts from your classmates", i: "Detailed sentences and lists" },
-        { q: "When you buy something new, you:", v: "Look at the pictures on the box", a: "Ask the salesperson for a summary", p: "Check what your friends are using", i: "Read the technical specifications" },
-        { q: "During a lecture, you feel most engaged when:", v: "The teacher draws on the board", a: "The teacher tells a story or anecdote", p: "There is a class-wide debate", i: "You can follow along in your book" },
-        { q: "When you want to explain an idea, you:", v: "Draw a quick sketch", a: "Use your voice and emphasize words", p: "Act it out or involve others", i: "Write a clear explanation" },
-        { q: "What describes your 'aha!' moment best?", v: "When I can finally 'see' it", a: "When it finally 'sounds' right", p: "When we solve it together", i: "When it makes logical sense to me" },
-        { q: "When taking a break, you prefer to:", v: "Look out the window at the view", a: "Hum a song or talk to yourself", p: "Text or call a friend", i: "Close your eyes and just think" },
-        { q: "Your favorite teachers are those who:", v: "Use lots of visual aids", a: "Are great at explaining verbally", p: "Encourage group participation", i: "Allow for independent study time" },
-        { q: "When you are trying to concentrate, you find:", v: "Bright lights are distracting", a: "Random noises are distracting", p: "Feeling lonely is distracting", i: "People talking to you is distracting" },
-        { q: "How do you prefer to brainstorm ideas?", v: "Using a mind map or whiteboard", a: "Talking ideas out loud to the room", p: "Bouncing ideas off a partner", i: "Writing a list of pros and cons alone" },
-        { q: "Which tool do you use most for school?", v: "Highlighters and colored pens", a: "Audio recording apps", p: "Group chat for sharing answers", i: "A personal planner or notebook" }
+        { q: "During a presentation, you notice:", v: "The quality of the slides and images", a: "The tone and clarity of the speaker", p: "How the audience is interacting", i: "The core facts and details presented" },
+        { q: "When following directions, you prefer:", v: "Looking at a map", a: "Hearing someone tell you the way", p: "Following someone else who knows", i: "Reading written step-by-step notes" },
+        { q: "What helps you focus most?", v: "A clean, organized visual space", a: "Instrumental background music", p: "Being around other people working", i: "Complete silence" },
+        { q: "When you are stuck, you usually:", v: "Look for a tutorial picture", a: "Ask someone to explain it again", p: "Ask a friend to work on it with you", i: "Figure it out alone" },
+        { q: "In your free time, you'd rather:", v: "Watch a movie or browse photos", a: "Listen to a podcast or music", p: "Go out and talk with friends", i: "Work on a hobby alone" },
+        { q: "How do you prefer feedback?", v: "Seeing written comments", a: "Having a one-on-one talk", p: "Discussing it in a group", i: "Reading a private report" },
+        { q: "Learning a new app, you:", v: "Look at icons and screenshots", a: "Listen to the tutorial voice", p: "Play with friends and learn", i: "Read the instruction file" },
+        { q: "Favorite school project?", v: "Designing a poster or video", a: "Giving an oral presentation", p: "Collaborating on a group mural", i: "Writing a research paper" },
+        { q: "Recall a memory, it is usually:", v: "A vivid mental picture", a: "The sounds and words spoken", p: "The feeling of being with people", i: "The facts of what happened" },
+        { q: "Your notes consist of:", v: "Diagrams and colors", a: "Keywords to say out loud", p: "Thoughts from classmates", i: "Detailed sentences" },
+        { q: "Buying something new, you:", v: "Look at the box pictures", a: "Ask for a verbal summary", p: "Check what friends use", i: "Read the specifications" },
+        { q: "During a lecture, you like it when:", v: "The teacher draws on the board", a: "The teacher tells a story", p: "There is a class debate", i: "You follow in your book" },
+        { q: "Explaining an idea, you:", v: "Draw a quick sketch", a: "Use your voice for emphasis", p: "Act it out with others", i: "Write a clear explanation" },
+        { q: "Your 'aha!' moment is:", v: "When I can finally 'see' it", a: "When it 'sounds' right", p: "When we solve it together", i: "When it makes logical sense" },
+        { q: "On a break, you prefer to:", v: "Look out the window", a: "Hum or talk to yourself", p: "Text or call a friend", i: "Close eyes and think" },
+        { q: "Favorite teachers:", v: "Use lots of visual aids", a: "Are great at explaining", p: "Encourage participation", i: "Allow independent time" },
+        { q: "Concentrating, you find:", v: "Bright lights are distracting", a: "Random noises are distracting", p: "Feeling lonely is distracting", i: "People talking is distracting" },
+        { q: "Brainstorming method:", v: "Mind maps or whiteboard", a: "Talking ideas out loud", p: "Bouncing ideas off a partner", i: "Listing pros and cons alone" },
+        { q: "Main school tool:", v: "Highlighters", a: "Audio recording apps", p: "Group chats", i: "A personal notebook" }
     ];
 
     function nav(id) {
@@ -218,13 +233,13 @@
         let total = 0;
         for(let v of data.values()) { scores[v]++; total++; }
 
-        if(total < 25) { alert("Please answer all 24 questions!"); return; }
+        if(total < 25) { alert("Please answer all 25 questions!"); return; }
 
         const top = Object.entries(scores).sort((a,b) => b[1]-a[1])[0][0];
         const resultLabel = top.toUpperCase() + " LEARNER";
 
         const btn = document.getElementById('finishBtn');
-        btn.innerText = "SAVING..."; btn.disabled = true;
+        btn.innerText = "SAVING DATA..."; btn.disabled = true;
 
         try {
             await fetch(SCRIPT_URL, {
@@ -234,9 +249,9 @@
                 body: `name=${encodeURIComponent(document.getElementById('stuName').value || "Anonymous")}&age=${document.getElementById('stuAge').value}&gender=${document.getElementById('stuGender').value}&result=${encodeURIComponent(resultLabel)}`
             });
             document.getElementById('resBox').style.display = 'block';
-            document.getElementById('resTitle').innerText = "RESULT: " + resultLabel;
+            document.getElementById('resTitle').innerText = "YOUR STYLE: " + resultLabel;
             document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
-        } catch (e) { alert("Check your Script URL!"); btn.disabled = false; }
+        } catch (e) { alert("Submission failed. Check your SCRIPT_URL."); btn.disabled = false; }
     }
 </script>
 </body>
