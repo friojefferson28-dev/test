@@ -97,7 +97,17 @@
 
         .progress-bar { height: 10px; background: var(--accent-pink); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
 
-        input { background: var(--card-bg); color: var(--text-color); border: 2px solid var(--text-color); padding: 15px; width: 100%; box-sizing: border-box; }
+        input, select { background: var(--card-bg); color: var(--text-color); border: 2px solid var(--text-color); padding: 15px; width: 100%; box-sizing: border-box; font-family: inherit; font-weight: bold; }
+        
+        .privacy-note { 
+            font-size: 12px; 
+            font-family: Arial, sans-serif; 
+            margin-top: 20px; 
+            padding: 15px; 
+            border: 1px dashed var(--text-color); 
+            line-height: 1.4;
+            opacity: 0.8;
+        }
     </style>
 </head>
 <body>
@@ -156,15 +166,32 @@
 <div id="pg2" class="section">
     <div class="survey-card">
         <h2 style="border-left: 10px solid var(--accent-pink); padding-left: 15px;">STUDENT PROFILE</h2>
-        <div style="margin: 20px 0;">
+        
+        <div style="margin: 15px 0;">
             <label style="font-weight: 900; display:block; margin-bottom:5px;">FULL NAME (OPTIONAL)</label>
             <input type="text" id="stuName" placeholder="Enter your name...">
         </div>
-        <div style="margin: 20px 0;">
+
+        <div style="margin: 15px 0;">
             <label style="font-weight: 900; display:block; margin-bottom:5px;">AGE</label>
             <input type="number" id="stuAge" value="17">
         </div>
-        <button class="admin-btn" onclick="nav('pg3')">START THE QUESTIONNAIRE</button>
+
+        <div style="margin: 15px 0;">
+            <label style="font-weight: 900; display:block; margin-bottom:5px;">GENDER</label>
+            <select id="stuGender">
+                <option value="" disabled selected>Select Gender</option>
+                <option value="girl">Girl</option>
+                <option value="boy">Boy</option>
+                <option value="other">Other</option>
+            </select>
+        </div>
+
+        <div class="privacy-note">
+            <strong>Privacy Concern:</strong> We value your privacy. The information provided (Name, Age, and Gender) is used solely for the purpose of this academic research by Group Technology 1. All data collected is kept confidential and will not be shared with outside parties.
+        </div>
+
+        <button class="admin-btn" onclick="nav('pg3')" style="margin-top: 20px;">START THE QUESTIONNAIRE</button>
     </div>
 </div>
 
@@ -185,7 +212,6 @@
 </div>
 
 <script>
-    // 25 Questions Data
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures", "Group activities", "Self-review"] },
@@ -214,20 +240,15 @@
         { q: "To master a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a graph", "Ask for explanation", "Talk to a peer", "Reflect alone"] }
     ];
 
-    // Navigation Logic with FADE EFFECT
     function nav(id) {
         const sections = document.querySelectorAll('.section');
-        
-        // 1. Instantly remove visual "fade-in" from all
         sections.forEach(s => s.classList.remove('fade-in'));
 
-        // 2. Wait for fade-out, then switch display
         setTimeout(() => {
             sections.forEach(s => s.classList.remove('active'));
             const target = document.getElementById(id);
             target.classList.add('active');
 
-            // 3. Trigger fade-in using double-frame request
             requestAnimationFrame(() => {
                 requestAnimationFrame(() => {
                     target.classList.add('fade-in');
