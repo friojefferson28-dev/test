@@ -4,159 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnStyle+ | Discover Your Style</title>
-    <style>
-        :root {
-            --base-pink: #D99EC9;
-            --light-pink: #f6d5f7;
-            --bg-color: #f0f0f0; 
-            --text-color: #1a1a1a;
-            --accent-pink: #E91E63;
-            --eac-red: #800000; 
-            --card-bg: #ffffff;
-        }
-
-        body.dark-mode {
-            --bg-color: #121212;
-            --text-color: #ffffff;
-            --light-pink: #2c2c2c;
-            --card-bg: #1e1e1e;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            color: var(--text-color);
-            background-color: var(--bg-color);
-            background-image: 
-                linear-gradient(135deg, var(--base-pink) 25%, transparent 25%), 
-                linear-gradient(225deg, var(--base-pink) 25%, transparent 25%), 
-                linear-gradient(45deg, var(--base-pink) 25%, transparent 25%), 
-                linear-gradient(315deg, var(--base-pink) 25%, var(--bg-color) 25%);
-            background-position: 40px 0, 40px 0, 0 0, 0 0;
-            background-size: 80px 80px;
-            background-repeat: repeat;
-            background-attachment: fixed;
-            transition: background-color 0.3s;
-        }
-
-        .fade-in { animation: fadeIn 0.4s forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            padding: 20px 80px;
-            background: var(--card-bg);
-            border-bottom: 2px solid var(--text-color);
-        }
-        .logo-area { display: flex; align-items: center; gap: 10px; font-weight: 800; line-height: 1; text-transform: uppercase; cursor: pointer; }
-        .nav-links { display: flex; gap: 40px; text-transform: uppercase; font-size: 14px; font-weight: 600; align-items: center; }
-
-        .hero-wrapper {
-            display: flex;
-            padding: 60px 80px;
-            gap: 60px;
-            min-height: 70vh;
-            background: var(--card-bg);
-            margin: 40px 80px;
-            border: 2px solid var(--text-color);
-        }
-        .hero-text { flex: 1; position: relative; padding-left: 20px; }
-        .accent-square { width: 15px; height: 15px; background: var(--accent-pink); position: absolute; left: -10px; top: 15px; }
-        .hero-text h1 { font-size: 55px; margin: 0; line-height: 1; font-weight: 900; letter-spacing: -2px; text-transform: uppercase; }
-        .hero-text p { font-size: 14px; margin-top: 30px; line-height: 1.6; max-width: 400px; font-weight: 500; text-transform: uppercase; }
-
-        .proceed-link { 
-            display: inline-block; margin-top: 80px; font-size: 22px; 
-            font-weight: 800; text-decoration: underline; cursor: pointer; color: var(--text-color);
-            text-transform: uppercase;
-        }
-
-        .hero-images { flex: 1.4; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 280px 200px; gap: 15px; }
-        .img-box { width: 100%; height: 100%; object-fit: cover; border: 1px solid var(--text-color); }
-        .img-span-2 { grid-column: span 2; }
-
-        .section { display: none; padding: 60px 80px; }
-        .survey-card { 
-            background: var(--card-bg); padding: 60px; border: 2px solid var(--text-color);
-            max-width: 900px; margin: auto;
-        }
-        .progress-bar { position: fixed; top: 0; left:0; height: 8px; background: var(--accent-pink); width: 0%; z-index: 1000; transition: 0.3s; }
-
-        .q-box { text-align: left; margin-top: 35px; padding-bottom: 25px; border-bottom: 1px solid var(--base-pink); }
-        .q-box p { font-weight: 900; font-size: 18px; text-transform: uppercase; margin-bottom: 15px; }
-        .q-box label { display: block; margin: 10px 0; cursor: pointer; font-weight: 600; font-size: 15px; }
-
-        .theme-toggle { 
-            cursor: pointer; background: var(--text-color); color: var(--card-bg); 
-            border: none; padding: 10px 20px; font-weight: 800; text-transform: uppercase;
-        }
-
-        .privacy-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 15px 30px;
-            background-color: var(--eac-red);
-            color: #ffffff;
-            font-weight: 800;
-            text-transform: uppercase;
-            border: 2px solid var(--eac-red);
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .privacy-btn:hover { background: transparent; color: var(--eac-red); }
-
-        .admin-btn {
-            display: inline-block; padding: 12px 25px; background-color: var(--text-color);
-            color: var(--card-bg); text-decoration: none; font-weight: 800; font-size: 12px;
-            border: 2px solid var(--text-color); transition: 0.3s; cursor: pointer; text-transform: uppercase;
-        }
-
-        #privacyModal {
-            display: none; 
-            position: fixed; 
-            z-index: 9999; 
-            left: 0; top: 0; 
-            width: 100%; height: 100%; 
-            background: rgba(0,0,0,0.8); 
-            backdrop-filter: blur(5px); 
-            align-items: center; 
-            justify-content: center; 
-            padding: 20px;
-        }
-
-        @media (max-width: 1100px) { 
-            .hero-wrapper { flex-direction: column; margin: 20px; padding: 40px; }
-            header { padding: 20px 40px; }
-            .hero-images { display: none; }
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div id="pBar" class="progress-bar"></div>
 
-<div id="privacyModal">
-    <div class="survey-card" style="max-width:500px; text-align:left; border-top: 10px solid var(--eac-red); padding: 40px;">
-        <h2 style="color:var(--eac-red); font-weight:900; text-transform: uppercase; margin-top: 0;">Privacy Notice</h2>
+<div id="privacyModal" style="display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); align-items: center; justify-content: center; padding: 20px;">
+    <div class="survey-card" style="max-width:500px; text-align:left; border-top: 10px solid #800000; padding: 40px; background: white;">
+        <h2 style="color:#800000; font-weight:900; text-transform: uppercase; margin-top: 0;">Privacy Notice</h2>
         <hr style="border:1px solid #ddd; margin:15px 0;">
-        <p style="font-size:14px; line-height:1.6;">
+        <p style="font-size:14px; line-height:1.6; color: #1a1a1a;">
             By proceeding, you agree that your responses will be collected for the research study: 
             <br><br>
             <strong>"Validity of LearnStyle+.com in Identifying Cognitive Learning Styles of EAC-Manila Students."</strong>
-            <br><br>
-            Data will be handled strictly for academic purposes by Group Technology 1 (12 STEM 6).
         </p>
         <div style="text-align: center;">
-            <button class="privacy-btn" onclick="acceptPrivacy()">I AGREE & PROCEED</button>
+            <button class="admin-btn" onclick="acceptPrivacy()">I AGREE & PROCEED</button>
         </div>
     </div>
 </div>
 
 <header>
-    <div class="logo-area" onclick="navToHome()">
+    <div class="logo-area" onclick="navToHome()" style="cursor:pointer;">
         <div style="font-size: 35px;">📖</div>
         <div>LEARNSTYLE+<br>.COM</div>
     </div>
@@ -172,53 +42,35 @@
         <div class="hero-text">
             <div class="accent-square"></div>
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p>LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH ANSWERING 25 RESEARCH QUESTIONS.</p>
+            <p>IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.</p>
             <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
         </div>
         <div class="hero-images">
-            <img src="image1.jpg" class="img-box" alt="Study 1">
-            <img src="image2.jpg" class="img-box" alt="Study 2">
-            <img src="image3.jpg" class="img-box" alt="Study 3">
-            <img src="image4.jpg" class="img-box img-span-2" alt="Library">
-            <img src="image5.jpg" class="img-box" alt="Laptop">
+            <img src="image1.jpg" class="img-box" alt="1"><img src="image2.jpg" class="img-box" alt="2">
+            <img src="image3.jpg" class="img-box" alt="3"><img src="image4.jpg" class="img-box img-span-2" alt="4">
+            <img src="image5.jpg" class="img-box" alt="5">
         </div>
     </div>
 </div>
 
 <div id="aboutPage" class="section">
-    <div class="survey-card" style="text-align: left;">
-        <h2 style="text-transform: uppercase; font-weight: 900; font-size: 32px; border-left: 10px solid var(--eac-red); padding-left: 20px;">About Us</h2>
-        <p>LearnStyle+.com is made by the students of <strong>Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1</strong>.</p>
-        <h3 style="margin-top: 30px; text-transform: uppercase; font-weight: 900;">The Team</h3>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-weight: 600;">
-            <div style="color: var(--eac-red);">• Jairus Bautista (Leader)</div>
-            <div style="color: var(--eac-red);">• Lordie Granada (Assistant)</div>
-            <div>• Christian Calma (Member)</div>
-            <div>• Jan Jefferson Frio (Member)</div>
-            <div>• Samuel Calixtro (Member)</div>
-            <div>• Gian Serrano (Member)</div>
-            <div>• Rain Grande (Member)</div>
-        </div>
+    <div class="survey-card">
+        <h2 style="text-transform: uppercase; font-weight: 900; border-left: 10px solid #800000; padding-left: 20px;">About Us</h2>
+        <p>Created by 12 STEM 6, Group Technology 1.</p>
         <div class="proceed-link" onclick="navToHome()">[ BACK TO HOME ]</div>
     </div>
 </div>
 
 <div id="pg2" class="section">
     <div class="survey-card">
-        <h2 style="text-transform: uppercase; font-weight: 900; font-size: 32px; border-left: 10px solid var(--eac-red); padding-left: 20px;">Student Profile</h2>
+        <h2 style="text-transform: uppercase; font-weight: 900; border-left: 10px solid #800000; padding-left: 20px;">Student Profile</h2>
         <div style="text-align: left; margin: 20px 0;">
             <label style="font-weight: 800;">FULL NAME (OPTIONAL)</label>
-            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; margin-top:5px;">
+            <input type="text" id="stuName" placeholder="Enter your name" style="width:100%; padding:15px; border:2px solid black; margin-top:5px;">
         </div>
         <div style="text-align: left; margin: 20px 0;">
             <label style="font-weight: 800;">AGE (REQUIRED)</label>
             <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; margin-top:5px;">
-        </div>
-        <div style="text-align: left; margin: 20px 0;">
-            <label style="font-weight: 800;">GENDER</label>
-            <select id="stuGender" style="width:100%; padding:15px; border:2px solid black; margin-top:5px; background:white;">
-                <option>Male</option><option>Female</option><option>Other</option>
-            </select>
         </div>
         <div class="proceed-link" onclick="triggerPrivacy()">[ START THE QUESTIONNAIRE ]</div>
     </div>
@@ -229,36 +81,23 @@
         <h2 id="greet" style="text-transform: uppercase; font-weight: 900;">Questionnaire</h2>
         <form id="styleForm" onchange="updateProg()">
             <div id="questions-container"></div>
-            <div style="text-align: center; margin-top: 40px;">
-                <button type="button" class="privacy-btn" onclick="showResults()">GENERATE FINAL RESULT</button>
-            </div>
+            <button type="button" class="admin-btn" onclick="showResults()" style="width:100%; margin-top:40px; height: 60px;">GENERATE RESULT</button>
         </form>
-        <div id="resBox" style="display:none; margin-top: 50px; text-align: left; border: 4px solid var(--text-color); padding: 30px;">
-            <h2 id="resTitle" style="font-size: 32px; font-weight: 900; color: var(--eac-red); text-align: center;"></h2>
-            <hr>
-            <h3>How to Maximize Your Potential:</h3>
-            <ul id="resTips" style="line-height: 1.8; font-size: 18px;"></ul>
-        </div>
-        <div id="afterSurvey" style="display:none; text-align: center; margin-top: 20px;">
-            <button onclick="downloadResults()" class="admin-btn">💾 DOWNLOAD RESULT</button>
+
+        <div id="resBox" style="display:none; margin-top: 50px; text-align: left; border: 4px solid #1a1a1a; padding: 30px;">
+            <h2 id="resTitle" style="font-weight: 900; color: #800000; text-align: center; text-transform: uppercase;"></h2>
+            <p style="font-weight: 700; margin-top: 20px;">Study Tips for You:</p>
+            <ul id="resTips" style="line-height: 1.8;"></ul>
+            <button onclick="location.reload()" class="admin-btn" style="width:100%; margin-top:20px;">RETAKE SURVEY</button>
         </div>
     </div>
 </div>
 
 <script>
-    const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec"; 
+    // 1. YOUR DATABASE LINK
+    const DATABASE_URL = "https://script.google.com/macros/s/AKfycbw1eYRVnkt3R8LXYqH3n0JVBVgg1hogabZ2dvnHX4JAHRYFB-YoF4qBYUSzF1hkhujnog/exec";
 
-    window.onload = function() {
-        navToHome();
-    };
-
-    const recommendations = {
-        "visual": ["Learning from infographics", "Watching educational videos", "Use data visualization", "Incorporate doodles"],
-        "auditory": ["Take notes while listening", "Consume podcasts", "Oral quizzes", "Listen to live lectures"],
-        "interpersonal": ["In-person collaboration", "Social apps (Discord)", "Cooperative games", "Study groups"],
-        "independent": ["Personal diaries", "Self-evaluation", "Review work solo", "Quiet reflection"]
-    };
-
+    // 2. THE 25 QUESTIONS
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures", "Group activities", "Self-review"] },
@@ -287,92 +126,89 @@
         { q: "To master a complex idea, you:", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Look for a graph", "Ask for explanation", "Talk to a peer", "Reflect alone"] }
     ];
 
-    const container = document.getElementById('questions-container');
-    questions.forEach((item, index) => {
-        let qNum = index + 1;
-        let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
-        item.options.forEach((opt, i) => {
-            html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
-        });
-        html += `</div>`;
-        container.innerHTML += html;
-    });
+    const studyTips = {
+        visual: ["Use color-coded notes.", "Watch video tutorials.", "Draw mind maps."],
+        auditory: ["Record lectures to listen later.", "Read notes out loud.", "Use rhymes to remember."],
+        interpersonal: ["Join study groups.", "Discuss lessons with peers.", "Teach someone else."],
+        independent: ["Set clear solo goals.", "Find a quiet study nook.", "Use a learning journal."]
+    };
 
-    function toggleDark() { document.body.classList.toggle('dark-mode'); }
-    
-    function nav(nextId) {
+    // 3. CORE FUNCTIONS
+    window.onload = function() {
+        navToHome();
+        const container = document.getElementById('questions-container');
+        questions.forEach((item, index) => {
+            let qNum = index + 1;
+            let html = `<div class="q-box"><p>${qNum}. ${item.q}</p>`;
+            item.options.forEach((opt, i) => {
+                html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
+            });
+            html += `</div>`;
+            container.innerHTML += html;
+        });
+    };
+
+    function nav(id) {
         document.querySelectorAll('.section, #pg1').forEach(s => s.style.display = 'none');
-        document.getElementById(nextId).style.display = 'block';
+        document.getElementById(id).style.display = 'block';
         window.scrollTo(0,0);
     }
-    
-    function navToHome() { nav('pg1'); }
 
+    function navToHome() { nav('pg1'); }
+    function toggleDark() { document.body.classList.toggle('dark-mode'); }
+    
     function triggerPrivacy() {
         document.getElementById('privacyModal').style.display = 'flex';
     }
-    
+
     function acceptPrivacy() { 
         document.getElementById('privacyModal').style.display = 'none'; 
-        startSurvey(); 
-    }
-
-    function startSurvey() {
-        const name = document.getElementById('stuName').value || "Student";
+        const name = document.getElementById('stuName').value || "Anonymous";
         document.getElementById('greet').innerText = "PARTICIPANT: " + name.toUpperCase();
-        nav('pg3');
+        nav('pg3'); 
     }
 
     function updateProg() {
         const data = new FormData(document.getElementById('styleForm'));
-        let count = 0; for(let p of data.entries()) count++;
+        let count = Array.from(data.keys()).length;
         document.getElementById('pBar').style.width = (count / 25 * 100) + "%";
     }
-
-    let currentStyle = "";
 
     function showResults() {
         const data = new FormData(document.getElementById('styleForm'));
         let scores = { visual:0, auditory:0, interpersonal:0, independent:0 };
         let answered = 0;
         for(let e of data.entries()) { scores[e[1]]++; answered++; }
-        if(answered < 25) { alert("PLEASE ANSWER ALL 25 QUESTIONS."); return; }
         
-        const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
-        let styleKey = "";
-        if (scores.visual === max) styleKey = "visual";
-        else if (scores.auditory === max) styleKey = "auditory";
-        else if (scores.interpersonal === max) styleKey = "interpersonal";
-        else styleKey = "independent";
+        if(answered < 25) { 
+            alert("PLEASE ANSWER ALL 25 QUESTIONS."); 
+            return; 
+        }
 
-        currentStyle = styleKey.toUpperCase() + " LEARNER";
+        const max = Math.max(scores.visual, scores.auditory, scores.interpersonal, scores.independent);
+        let styleKey = Object.keys(scores).find(key => scores[key] === max);
+
+        // SEND TO GOOGLE SHEET
+        const studentData = {
+            name: document.getElementById('stuName').value || "Anonymous",
+            age: document.getElementById('stuAge').value,
+            result: styleKey.toUpperCase(),
+            v_score: scores.visual, a_score: scores.auditory, inter_score: scores.interpersonal, ind_score: scores.independent
+        };
+
+        fetch(DATABASE_URL, {
+            method: "POST", mode: "no-cors", cache: "no-cache",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(studentData)
+        });
+
+        // DISPLAY ON SCREEN
         document.getElementById('resBox').style.display = 'block';
-        document.getElementById('resTitle').innerText = "RESULT: " + currentStyle;
+        document.getElementById('resTitle').innerText = "RESULT: " + styleKey.toUpperCase() + " LEARNER";
         const tipsList = document.getElementById('resTips');
         tipsList.innerHTML = "";
-        recommendations[styleKey].forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
-
-        // SEND TO GOOGLE SHEETS
-        const name = document.getElementById('stuName').value || "Anonymous";
-        const age = document.getElementById('stuAge').value;
-        const gender = document.getElementById('stuGender').value;
-        const formData = new URLSearchParams();
-        formData.append("name", name); formData.append("age", age);
-        formData.append("gender", gender); formData.append("result", currentStyle);
-        fetch(DATABASE_URL, { method: "POST", body: formData, mode: "no-cors" });
-        
-        document.getElementById('afterSurvey').style.display = 'block';
+        studyTips[styleKey].forEach(tip => { tipsList.innerHTML += `<li>${tip}</li>`; });
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
-    }
-
-    function downloadResults() {
-        const name = document.getElementById('stuName').value || "Student";
-        const content = `Name: ${name}\nResult: ${currentStyle}`;
-        const blob = new Blob([content], { type: "text/plain" });
-        const a = document.createElement("a");
-        a.href = URL.createObjectURL(blob);
-        a.download = `${name}_Result.txt`;
-        a.click();
     }
 </script>
 </body>
