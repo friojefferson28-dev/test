@@ -11,18 +11,16 @@
             --bg-light: #fdf2f8;
         }
 
-        /* Standard scrollable layout for all devices */
         body { 
             font-family: 'Arial Black', sans-serif; 
             margin: 0; 
             padding: 0;
-            transition: background 0.3s;
             background-color: var(--bg-light); 
-            background-image:  linear-gradient(135deg, #f8bbd0 25%, transparent 25%), 
-                               linear-gradient(225deg, #f8bbd0 25%, transparent 25%), 
-                               linear-gradient(45deg, #f8bbd0 25%, transparent 25%), 
-                               linear-gradient(315deg, #f8bbd0 25%, var(--bg-light) 25%);
-            background-position:  10px 0, 10px 0, 0 0, 0 0;
+            background-image: linear-gradient(135deg, #f8bbd0 25%, transparent 25%), 
+                              linear-gradient(225deg, #f8bbd0 25%, transparent 25%), 
+                              linear-gradient(45deg, #f8bbd0 25%, transparent 25%), 
+                              linear-gradient(315deg, #f8bbd0 25%, var(--bg-light) 25%);
+            background-position: 10px 0, 10px 0, 0 0, 0 0;
             background-size: 20px 20px;
             overflow-x: hidden;
         }
@@ -38,47 +36,40 @@
 
         .logo-area { display: flex; align-items: center; gap: 10px; cursor: pointer; }
 
-        /* Full-width vertical layout */
+        /* HERO SECTION - Vertical and Scrollable */
         .hero-wrapper {
             background: white; border: 3px solid black;
             margin: 20px auto; max-width: 900px; padding: 40px;
-            display: flex; flex-direction: column; gap: 30px;
-            box-sizing: border-box;
+            display: flex; flex-direction: column; 
+            gap: 20px; box-sizing: border-box;
         }
 
-        .hero-text h1 { font-size: clamp(30px, 8vw, 50px); line-height: 1.1; margin: 0; }
-        .accent-square { width: 20px; height: 20px; background: var(--accent-pink); margin-bottom: 15px; }
+        .hero-text h1 { font-size: clamp(32px, 8vw, 55px); line-height: 1; margin: 0; }
+        .accent-square { width: 20px; height: 20px; background: var(--accent-pink); }
 
-        /* 5-IMAGE GRID (NO SIDE BOXES) */
+        /* 5-IMAGE GRID - Matches your photo layout without side boxes */
         .hero-images {
-            display: grid; grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: minmax(100px, auto); gap: 10px;
-            width: 100%;
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            grid-template-rows: auto auto; 
+            gap: 10px; width: 100%;
         }
-        .img-box { width: 100%; height: 100%; object-fit: cover; border: 1px solid #000; border-radius: 4px; }
-        .img-span-2 { grid-column: span 2; height: 200px; }
+        .img-box { width: 100%; height: 150px; object-fit: cover; border: 1px solid #000; }
+        .img-span-2 { grid-column: span 2; height: 220px; }
 
         .proceed-link { 
             margin-top: 20px; font-weight: 900; text-decoration: underline; 
-            cursor: pointer; font-size: clamp(16px, 4vw, 20px); display: inline-block; 
+            cursor: pointer; font-size: 20px; display: inline-block; 
         }
 
         .section { display: none; padding: 20px 5%; width: 100%; box-sizing: border-box; }
         .active { display: block !important; }
 
-        .survey-card { background: white; border: 3px solid black; padding: 30px; max-width: 800px; margin: 0 auto; box-sizing: border-box; }
+        .survey-card { background: white; border: 3px solid black; padding: 30px; max-width: 800px; margin: 0 auto; }
         .q-box { background: #fff1f6; padding: 20px; margin-bottom: 20px; border: 1px solid var(--accent-pink); border-radius: 10px; }
-        label { display: block; background: white; padding: 12px; margin: 8px 0; border: 1px solid #ccc; cursor: pointer; border-radius: 5px; }
         
+        .admin-btn { background: var(--maroon); color: white; padding: 15px; border: none; font-weight: 900; cursor: pointer; width: 100%; text-transform: uppercase; }
         .progress-bar { height: 10px; background: var(--maroon); width: 0%; position: fixed; top: 0; left: 0; z-index: 2000; transition: 0.3s; }
-        
-        .admin-btn { background: var(--maroon); color: white; padding: 15px; border: none; font-weight: 900; cursor: pointer; width: 100%; border-radius: 5px; text-transform: uppercase; }
-
-        @media (max-width: 600px) {
-            .hero-wrapper { margin: 10px; padding: 20px; }
-            .hero-images { grid-template-columns: 1fr 1fr; }
-            .img-span-2 { grid-column: span 2; }
-        }
     </style>
 </head>
 <body>
@@ -90,20 +81,20 @@
         <div style="font-size: 30px;">📖</div>
         <div style="font-weight: 900; line-height: 1;">LEARNSTYLE+<br>.COM</div>
     </div>
-    <div>
-        <button onclick="toggleDark()" style="cursor:pointer; font-weight:700; padding: 5px 10px; border: 2px solid black; background: white;">🌓 MODE</button>
+    <div style="display: flex; gap: 15px; align-items: center;">
+        <span onclick="nav('aboutPage')" style="cursor:pointer; font-weight:700;">ABOUT US</span>
+        <button onclick="toggleDark()" style="cursor:pointer; padding: 5px 10px; border: 2px solid black; background: white; font-weight: 700;">🌓 MODE</button>
     </div>
 </header>
 
 <div id="pg1" class="section active">
     <div class="hero-wrapper">
+        <div class="accent-square"></div>
         <div class="hero-text">
-            <div class="accent-square"></div>
             <h1>LEARN YOUR<br>LEARNING STYLE!</h1>
-            <p style="font-size: 14px; font-weight: bold; margin-top: 20px; text-transform: uppercase; line-height: 1.6;">
+            <p style="font-size: 14px; font-weight: bold; margin-top: 20px; text-transform: uppercase; line-height: 1.5;">
                 LEARNSTYLE+.COM IS A WEBSITE INDICATOR WHEREIN YOU CAN IDENTIFY YOUR LEARNING STYLE THROUGH 25 RESEARCH QUESTIONS.
             </p>
-            <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
         </div>
 
         <div class="hero-images">
@@ -114,18 +105,21 @@
             <img src="image5.jpg" class="img-box">
         </div>
         
-        <center><button class="admin-btn" style="background:#333; max-width: 200px;" onclick="nav('aboutPage')">ABOUT US</button></center>
+        <div class="proceed-link" onclick="nav('pg2')">CLICK HERE TO PROCEED</div>
     </div>
 </div>
 
 <div id="aboutPage" class="section">
     <div class="survey-card">
-        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px; text-transform: uppercase;">About Us</h2>
-        <p style="line-height: 1.8; font-family: Arial, sans-serif;">
-            <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
-            <br><br>
-            <strong>LearnStyle+.com</strong> is made by the students of Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
-        </p>
+        <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px; text-transform: uppercase;">ABOUT US</h2>
+        <div style="line-height: 1.8; font-family: Arial, sans-serif; font-weight: 500; font-size: 16px;">
+            <p>
+                <strong>LearnStyle+.com</strong> is a website that can identify your learning style by answering 25 questions. It will also recommend best ways to assess your results!
+            </p>
+            <p>
+                <strong>LearnStyle+.com</strong> is made by the students of Emilio Aguinaldo College-Manila, 12 STEM 6, Group Technology 1. It aims to see the validity of this website in identifying students'— specifically from Emilio Aguinaldo College-Manila— Cognitive Learning Style.
+            </p>
+        </div>
         <div class="proceed-link" onclick="nav('pg1')">[ BACK TO HOME ]</div>
     </div>
 </div>
@@ -133,13 +127,13 @@
 <div id="pg2" class="section">
     <div class="survey-card">
         <h2 style="border-left: 10px solid var(--maroon); padding-left: 15px;">STUDENT PROFILE</h2>
-        <div style="margin: 25px 0;">
-            <label style="font-weight: 900;">FULL NAME (OPTIONAL)</label>
-            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box; font-family: sans-serif;">
+        <div style="margin: 20px 0;">
+            <label style="font-weight: 900; display:block; margin-bottom:5px;">FULL NAME (OPTIONAL)</label>
+            <input type="text" id="stuName" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
         </div>
-        <div style="margin: 25px 0;">
-            <label style="font-weight: 900;">AGE</label>
-            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box; font-family: sans-serif;">
+        <div style="margin: 20px 0;">
+            <label style="font-weight: 900; display:block; margin-bottom:5px;">AGE</label>
+            <input type="number" id="stuAge" value="17" style="width:100%; padding:15px; border:2px solid black; box-sizing: border-box;">
         </div>
         <button class="admin-btn" onclick="nav('pg3')">START THE QUESTIONNAIRE</button>
     </div>
@@ -150,7 +144,7 @@
         <h2 id="greet" style="margin-bottom: 30px; text-transform: uppercase;">Questionnaire</h2>
         <form id="styleForm" onchange="updateProg()">
             <div id="questions-container"></div>
-            <button type="button" class="admin-btn" onclick="showResults()" style="margin-top:30px;">GENERATE RESULT</button>
+            <button type="button" class="admin-btn" onclick="showResults()" style="margin-top:20px;">GENERATE RESULT</button>
         </form>
 
         <div id="resBox" style="display:none; margin-top: 40px; border: 5px solid black; padding: 30px; background: #fff;">
@@ -162,6 +156,7 @@
 </div>
 
 <script>
+    // 25 Questions Array
     const questions = [
         { q: "How do you learn best?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Seeing diagrams", "Listening to explanations", "Studying with others", "Studying alone"] },
         { q: "What helps you remember lessons?", options: ["visual", "auditory", "interpersonal", "independent"], labels: ["Charts and videos", "Lectures", "Group activities", "Self-review"] },
@@ -196,7 +191,7 @@
             let qNum = index + 1;
             let html = `<div class="q-box"><p><strong>${qNum}. ${item.q}</strong></p>`;
             item.options.forEach((opt, i) => {
-                html += `<label><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
+                html += `<label style="display:block; margin:5px 0; background:#fff; padding:10px; border:1px solid #ccc; border-radius:5px; cursor:pointer;"><input type="radio" name="q${qNum}" value="${opt}" required> ${item.labels[i]}</label>`;
             });
             html += `</div>`;
             container.innerHTML += html;
@@ -227,11 +222,10 @@
 
         let topStyle = Object.entries(scores).sort((a,b) => b[1] - a[1])[0][0];
         document.getElementById('resBox').style.display = 'block';
-        document.getElementById('resTitle').innerText = "YOUR STYLE: " + topStyle.toUpperCase();
-        document.getElementById('resDesc').innerText = "Based on your choices, you have a strong preference for " + topStyle + " learning! Check your study tips below.";
+        document.getElementById('resTitle').innerText = "RESULT: " + topStyle.toUpperCase() + " LEARNER";
+        document.getElementById('resDesc').innerText = "Based on your answers, you lean towards a " + topStyle + " learning style!";
         document.getElementById('resBox').scrollIntoView({behavior: 'smooth'});
     }
 </script>
-
 </body>
 </html>
